@@ -1,0 +1,6 @@
+module DCMTK {
+    header "dcmtk/dcmdata/dctk.h"
+    header "dcmtk/dcmimgle/dcmimage.h"
+    header "dcmtk/dcmimage/diregist.h"
+    export *
+}
