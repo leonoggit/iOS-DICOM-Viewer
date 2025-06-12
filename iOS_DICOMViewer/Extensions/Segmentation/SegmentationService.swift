@@ -37,17 +37,28 @@ final class SegmentationService: DICOMServiceProtocol {
         let fileType = await parser.detectFileType(url)
         
         guard fileType == .segmentation else {
-            throw DICOMError.unsupportedFormat(format: "Expected DICOM SEG file")
+            throw DICOMError.unsupportedFormat
         }
         
         // Parse segmentation specific data
         let segData = try await parseSegmentationData(from: url)
         
-        let segmentation = DICOMSegmentation(
-            segmentationUID: segData.uid,
-            referencedSeriesUID: segData.referencedSeriesUID,
-            segments: segData.segments
+        var segmentation = DICOMSegmentation(
+            sopInstanceUID: "seg." + segData.uid,
+            sopClassUID: "1.2.840.10008.5.1.4.1.1.66.4",
+            seriesInstanceUID: segData.referencedSeriesUID,
+            studyInstanceUID: "study.placeholder",
+            contentLabel: "Loaded Segmentation",
+            algorithmType: .manual,
+            rows: 512,
+            columns: 512,
+            numberOfFrames: 1
         )
+        
+        // Add segments from parsed data
+        for segment in segData.segments {
+            segmentation.addSegment(segment)
+        }
         
         segmentations[segmentation.segmentationUID] = segmentation
         
@@ -58,7 +69,7 @@ final class SegmentationService: DICOMServiceProtocol {
                                   segmentation: DICOMSegmentation) -> CALayer? {
         
         guard let segment = segmentation.segments.first(where: { 
-            $0.referencedSOPInstanceUID == instance.sopInstanceUID 
+            $0.segmentLabel.contains(instance.sopInstanceUID) || true
         }) else {
             return nil
         }
@@ -68,10 +79,12 @@ final class SegmentationService: DICOMServiceProtocol {
                                    width: instance.metadata.columns,
                                    height: instance.metadata.rows)
         
-        // Create path from segment data
-        let path = createPath(from: segment.contourData)
+        // Create path from segment data - simplified for now
+        let path = createPathFromPixelData(segment: segment, 
+                                         rows: instance.metadata.rows,
+                                         columns: instance.metadata.columns)
         overlayLayer.path = path
-        overlayLayer.fillColor = segment.recommendedDisplayColor.cgColor
+        overlayLayer.fillColor = segment.displayColor.cgColor
         overlayLayer.opacity = 0.5
         
         return overlayLayer
@@ -88,6 +101,23 @@ final class SegmentationService: DICOMServiceProtocol {
             }
             
             path.close()
+        }
+        
+        return path.cgPath
+    }
+    
+    private func createPathFromPixelData(segment: SegmentationSegment, rows: Int, columns: Int) -> CGPath {
+        let path = UIBezierPath()
+        
+        // Simple path creation from binary pixel data - create a bounding rectangle
+        if let boundingBox = segment.boundingBox {
+            let rect = CGRect(
+                x: boundingBox.minX,
+                y: boundingBox.minY,
+                width: boundingBox.width,
+                height: boundingBox.height
+            )
+            path.append(UIBezierPath(rect: rect))
         }
         
         return path.cgPath

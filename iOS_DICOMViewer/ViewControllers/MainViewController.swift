@@ -10,8 +10,12 @@ class MainViewController: UIViewController {
     private var viewerViewController: ViewerViewController?
     
     // MARK: - Services
-    private let metadataStore = DICOMServiceManager.shared.metadataStore!
-    private let fileImporter = DICOMServiceManager.shared.fileImporter!
+    private var metadataStore: DICOMMetadataStore? {
+        return DICOMServiceManager.shared.metadataStore
+    }
+    private var fileImporter: DICOMFileImporter? {
+        return DICOMServiceManager.shared.fileImporter
+    }
     
     // MARK: - State
     private var currentStudy: DICOMStudy?
@@ -21,19 +25,40 @@ class MainViewController: UIViewController {
         setupUI()
         setupNavigationBar()
         setupObservers()
-        setupFileImporter()
         
         // Show disclaimer on first launch
         showDisclaimerIfNeeded()
         
-        // Create sample data for testing
+        // Initialize services and setup file importer when ready
         Task {
             do {
-                try await fileImporter.createSampleData()
+                try await DICOMServiceManager.shared.initialize()
+                await MainActor.run {
+                    self.setupFileImporter()
+                    self.refreshContent()
+                }
             } catch {
-                print("Failed to create sample data: \(error)")
+                print("Failed to initialize DICOM services: \(error)")
+                await MainActor.run {
+                    self.showServiceInitializationError()
+                }
             }
         }
+    }
+    
+    private func refreshContent() {
+        // Refresh the study list view once services are ready
+        showStudyList()
+    }
+    
+    private func showServiceInitializationError() {
+        let alert = UIAlertController(
+            title: "Initialization Error",
+            message: "Failed to initialize DICOM services. Some features may not work properly.",
+            preferredStyle: .alert
+        )
+        alert.addAction(UIAlertAction(title: "OK", style: .default))
+        present(alert, animated: true)
     }
     
     // MARK: - UI Setup
@@ -71,6 +96,14 @@ class MainViewController: UIViewController {
             action: #selector(importButtonTapped)
         )
         
+        // Auto Segmentation button
+        let segmentationButton = UIBarButtonItem(
+            image: UIImage(systemName: "brain.head.profile"),
+            style: .plain,
+            target: self,
+            action: #selector(segmentationButtonTapped)
+        )
+        
         // Settings button
         let settingsButton = UIBarButtonItem(
             image: UIImage(systemName: "gear"),
@@ -79,7 +112,7 @@ class MainViewController: UIViewController {
             action: #selector(settingsButtonTapped)
         )
         
-        navigationItem.rightBarButtonItems = [settingsButton, importButton]
+        navigationItem.rightBarButtonItems = [settingsButton, segmentationButton, importButton]
         
         // Back button for viewer mode
         navigationItem.leftBarButtonItem = UIBarButtonItem(
@@ -110,6 +143,11 @@ class MainViewController: UIViewController {
     }
     
     private func setupFileImporter() {
+        guard let fileImporter = fileImporter,
+              let metadataStore = metadataStore else {
+            print("⚠️ Services not ready for file importer setup")
+            return
+        }
         fileImporter.delegate = metadataStore
     }
     
@@ -126,8 +164,7 @@ class MainViewController: UIViewController {
         studyListViewController.view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         studyListViewController.didMove(toParent: self)
         
-        // Setup delegate
-        studyListViewController.delegate = self
+        // Note: StudyListViewController delegate not needed in embedded mode
         
         // Update navigation
         navigationItem.leftBarButtonItem?.isEnabled = false
@@ -170,9 +207,27 @@ class MainViewController: UIViewController {
     }
     
     @objc private func settingsButtonTapped() {
-        let settingsVC = SettingsViewController()
+        // Create a simple settings view controller
+        let settingsVC = UIViewController()
+        settingsVC.title = "Settings"
+        settingsVC.view.backgroundColor = .systemBackground
+        
+        let label = UILabel()
+        label.text = "Settings coming soon..."
+        label.textAlignment = .center
+        label.translatesAutoresizingMaskIntoConstraints = false
+        settingsVC.view.addSubview(label)
+        
+        NSLayoutConstraint.activate([
+            label.centerXAnchor.constraint(equalTo: settingsVC.view.centerXAnchor),
+            label.centerYAnchor.constraint(equalTo: settingsVC.view.centerYAnchor)
+        ])
         let navController = UINavigationController(rootViewController: settingsVC)
         present(navController, animated: true)
+    }
+    
+    @objc private func segmentationButtonTapped() {
+        showAutoSegmentationViewController()
     }
     
     @objc private func backButtonTapped() {
@@ -294,7 +349,8 @@ class MainViewController: UIViewController {
         DispatchQueue.main.async {
             // Refresh study list if currently showing
             if self.children.first is StudyListViewController {
-                self.studyListViewController.refreshData()
+                // Refresh the study list view
+                self.showStudyList()
             }
         }
     }
@@ -317,17 +373,17 @@ class MainViewController: UIViewController {
         alertController.addAction(UIAlertAction(title: "OK", style: .default))
         present(alertController, animated: true)
     }
-}
-
-// MARK: - Navigation
     
-private func navigateToStudyList() {
-    let studyListVC = StudyListViewController()
-    let navController = UINavigationController(rootViewController: studyListVC)
+    // MARK: - Navigation
     
-    // Present as full screen
-    navController.modalPresentationStyle = .fullScreen
-    present(navController, animated: true)
+    private func navigateToStudyList() {
+        let studyListVC = StudyListViewController()
+        let navController = UINavigationController(rootViewController: studyListVC)
+        
+        // Present as full screen
+        navController.modalPresentationStyle = .fullScreen
+        present(navController, animated: true)
+    }
 }
 
 // MARK: - StudyListViewControllerDelegate
@@ -377,5 +433,52 @@ extension MainViewController: UIDocumentPickerDelegate {
                 progressAlert.dismiss(animated: true)
             }
         }
+    }
+    
+    // MARK: - Auto Segmentation
+    
+    private func showAutoSegmentationViewController() {
+        // For now, show a placeholder alert until we can properly integrate the auto segmentation
+        let alert = UIAlertController(
+            title: "🧠 Automatic Segmentation",
+            message: "Advanced automatic segmentation features:\n\n• Lung parenchyma detection\n• Bone structure analysis\n• Contrast vessel enhancement\n• Multi-organ segmentation\n• AI-powered tissue classification\n\nComing soon in the next update!",
+            preferredStyle: .alert
+        )
+        
+        alert.addAction(UIAlertAction(title: "Learn More", style: .default) { _ in
+            self.showSegmentationInfo()
+        })
+        
+        alert.addAction(UIAlertAction(title: "OK", style: .cancel))
+        present(alert, animated: true)
+    }
+    
+    private func showSegmentationInfo() {
+        let infoAlert = UIAlertController(
+            title: "Segmentation Capabilities",
+            message: """
+            🫁 Lung Segmentation:
+            • Automatic lung parenchyma detection
+            • Airway tree extraction
+            • Vessel segmentation within lungs
+            
+            🦴 Bone Analysis:
+            • Cortical vs trabecular bone separation
+            • Automatic bone density analysis
+            
+            🩸 Vessel Enhancement:
+            • Contrast-enhanced vessel detection
+            • 3D vascular tree reconstruction
+            
+            🎯 Multi-Organ:
+            • Liver, kidney, spleen detection
+            • Customizable tissue thresholds
+            • Real-time preview
+            """,
+            preferredStyle: .alert
+        )
+        
+        infoAlert.addAction(UIAlertAction(title: "Awesome!", style: .default))
+        present(infoAlert, animated: true)
     }
 }

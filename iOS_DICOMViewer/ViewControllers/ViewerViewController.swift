@@ -227,7 +227,7 @@ class ViewerViewController: UIViewController {
     }
     
     private func setupNavigationBar() {
-        title = study.studyDescription.isEmpty ? "DICOM Viewer" : study.studyDescription
+        title = (study.studyDescription?.isEmpty == false) ? study.studyDescription! : "DICOM Viewer"
         
         navigationItem.rightBarButtonItem = toolsButton
         
@@ -244,7 +244,7 @@ class ViewerViewController: UIViewController {
         seriesSegmentedControl.removeAllSegments()
         
         for (index, series) in study.series.enumerated() {
-            let title = series.seriesDescription.isEmpty ? "Series \(index + 1)" : series.seriesDescription
+            let title = (series.seriesDescription?.isEmpty == false) ? series.seriesDescription! : "Series \(index + 1)"
             seriesSegmentedControl.insertSegment(withTitle: title, at: index, animated: false)
         }
         

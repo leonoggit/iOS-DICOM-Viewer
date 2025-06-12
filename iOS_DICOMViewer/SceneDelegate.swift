@@ -46,7 +46,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     private func handleIncomingFiles(_ urlContexts: Set<UIOpenURLContext>) {
         for context in urlContexts {
-            DICOMFileImporter.shared.handleIncomingFile(url: context.url)
+            DispatchQueue.main.async {
+                do {
+                    _ = DICOMFileImporter.shared.handleIncomingFile(url: context.url)
+                } catch {
+                    print("⚠️ Failed to handle incoming file: \(error)")
+                }
+            }
         }
     }
 }

@@ -130,7 +130,7 @@ class StudyListViewController: UIViewController {
     
     // MARK: - Data Loading
     private func loadStudies() {
-        studies = metadataStore.getAllStudies()
+        studies = metadataStore?.getAllStudies() ?? []
         DispatchQueue.main.async {
             self.tableView.reloadData()
             self.updateEmptyState()
@@ -206,7 +206,7 @@ extension StudyListViewController: UITableViewDelegate {
             
             alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
             alert.addAction(UIAlertAction(title: "Delete", style: .destructive) { _ in
-                self.metadataStore.removeStudy(studyUID: study.studyInstanceUID)
+                self.metadataStore?.removeStudy(byUID: study.studyInstanceUID)
                 self.studies.remove(at: indexPath.row)
                 tableView.deleteRows(at: [indexPath], with: .fade)
                 self.updateEmptyState()
@@ -222,12 +222,8 @@ extension StudyListViewController: UIDocumentPickerDelegate {
     func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL]) {
         Task {
             do {
-                for url in urls {
-                    _ = url.startAccessingSecurityScopedResource()
-                    defer { url.stopAccessingSecurityScopedResource() }
-                    
-                    try await DICOMServiceManager.shared.fileImporter.importFile(from: url)
-                }
+                try await DICOMServiceManager.shared.fileImporter?.importMultipleFiles(urls, 
+                                                                                      progressHandler: { _ in })
             } catch {
                 DispatchQueue.main.async {
                     self.showError(error)
@@ -302,9 +298,9 @@ class StudyTableViewCell: UITableViewCell {
     }
     
     func configure(with study: DICOMStudy) {
-        studyLabel.text = study.studyDescription.isEmpty ? "Unnamed Study" : study.studyDescription
-        patientLabel.text = study.patientName.isEmpty ? "Unknown Patient" : study.patientName
-        dateLabel.text = formatDate(study.studyDate)
+        studyLabel.text = (study.studyDescription?.isEmpty == false) ? study.studyDescription! : "Unnamed Study"
+        patientLabel.text = (study.patientName?.isEmpty == false) ? study.patientName! : "Unknown Patient"
+        dateLabel.text = formatDate(study.studyDate ?? "")
         seriesCountLabel.text = "\(study.series.count) series"
     }
     

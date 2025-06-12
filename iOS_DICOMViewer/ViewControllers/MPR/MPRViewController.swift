@@ -167,7 +167,7 @@ class MPRViewController: UIViewController {
             windowWidthSlider.value = normalizedWidth
         } else {
             // Set defaults based on modality
-            let modality = metadata.modality?.uppercased() ?? "CT"
+            let modality = metadata.modality.uppercased()
             switch modality {
             case "CT":
                 mprRenderer.setWindowLevel(center: 0.4, width: 0.8)
@@ -407,8 +407,9 @@ class MPRViewController: UIViewController {
         otherController.mprRenderer.setWindowLevel(center: center, width: width)
         
         // Synchronize crosshair
-        let crosshairPos = mprRenderer.mprParams.crosshairPosition
-        otherController.setCrosshairPosition(crosshairPos)
+        let crosshairPos = mprRenderer.slicePosition
+        let normalizedPos = simd_float2(crosshairPos.x, crosshairPos.y)
+        otherController.setCrosshairPosition(normalizedPos)
         
         otherController.updateUI()
     }
@@ -544,16 +545,18 @@ extension TriPlanarViewController: MPRViewControllerDelegate {
             // Convert 3D position to 2D slice coordinate for each plane
             let normalizedPos: simd_float2
             
-            switch controller.currentPlane {
+            switch controller?.currentPlane {
             case .axial:
                 normalizedPos = simd_float2(position.x, position.y)
             case .sagittal:
                 normalizedPos = simd_float2(position.y, position.z)
             case .coronal:
                 normalizedPos = simd_float2(position.x, position.z)
+            case .none:
+                continue
             }
             
-            controller.setCrosshairPosition(normalizedPos)
+            controller?.setCrosshairPosition(normalizedPos)
         }
     }
 }

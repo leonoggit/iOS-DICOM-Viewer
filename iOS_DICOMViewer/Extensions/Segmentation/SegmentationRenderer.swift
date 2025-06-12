@@ -138,7 +138,11 @@ class SegmentationRenderer {
     }
     
     private func createColorLookupTexture() {
-        let descriptor = MTLTextureDescriptor.texture2D(pixelFormat: .rgba8Unorm, width: 256, height: 1, mipmapped: false)
+        let descriptor = MTLTextureDescriptor()
+        descriptor.textureType = .type2D
+        descriptor.pixelFormat = .rgba8Unorm
+        descriptor.width = 256
+        descriptor.height = 1
         descriptor.usage = [.shaderRead, .shaderWrite]
         
         colorLookupTexture = device.makeTexture(descriptor: descriptor)
@@ -276,7 +280,11 @@ class SegmentationRenderer {
         let width = segmentation.columns
         let height = segmentation.rows
         
-        let descriptor = MTLTextureDescriptor.texture2D(pixelFormat: .r8Uint, width: width, height: height, mipmapped: false)
+        let descriptor = MTLTextureDescriptor()
+        descriptor.textureType = .type2D
+        descriptor.pixelFormat = .r8Uint
+        descriptor.width = width
+        descriptor.height = height
         descriptor.usage = [.shaderRead]
         
         guard let texture = device.makeTexture(descriptor: descriptor) else {
@@ -407,25 +415,24 @@ class SegmentationRenderer {
         let results = statisticsBuffer.contents().bindMemory(to: Float.self, capacity: 6)
         
         return ROIStatistics(
-            pixelCount: Int(results[4]),
             area: Double(results[4]) * (metadata.pixelSpacing?[0] ?? 1.0) * (metadata.pixelSpacing?[1] ?? 1.0),
             perimeter: 0, // Would need contour tracing
+            pixelCount: Int(results[4]),
             mean: Double(results[2]),
             standardDeviation: Double(results[3]),
             minimum: Double(results[0]),
             maximum: Double(results[1]),
             median: Double(results[2]), // Approximation
-            sum: Double(results[5])
+            histogram: []
         )
     }
     
     private func createImageTexture(from data: Data, metadata: DICOMMetadata) -> MTLTexture? {
-        let descriptor = MTLTextureDescriptor.texture2D(
-            pixelFormat: .r16Uint,
-            width: metadata.columns,
-            height: metadata.rows,
-            mipmapped: false
-        )
+        let descriptor = MTLTextureDescriptor()
+        descriptor.textureType = .type2D
+        descriptor.pixelFormat = .r16Uint
+        descriptor.width = metadata.columns
+        descriptor.height = metadata.rows
         descriptor.usage = [.shaderRead]
         
         guard let texture = device.makeTexture(descriptor: descriptor) else {

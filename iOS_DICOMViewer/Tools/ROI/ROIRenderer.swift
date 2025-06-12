@@ -155,9 +155,7 @@ class ROIRenderer {
     }
     
     private func updateUniforms() {
-        guard let uniformPointer = uniformBuffer.contents().bindMemory(to: ROIUniforms.self, capacity: 1) else {
-            return
-        }
+        let uniformPointer = uniformBuffer.contents().bindMemory(to: ROIUniforms.self, capacity: 1)
         
         // Create orthographic projection matrix for screen coordinates
         let projectionMatrix = matrix_ortho(

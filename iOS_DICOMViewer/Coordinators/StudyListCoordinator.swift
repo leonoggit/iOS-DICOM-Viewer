@@ -15,8 +15,7 @@ final class StudyListCoordinator: Coordinator {
     }
 
     func start() {
-        let viewModel = StudyListViewModel()
-        let viewController = StudyListViewController(viewModel: viewModel, coordinator: self)
+        let viewController = StudyListViewController()
         navigationController.pushViewController(viewController, animated: false)
     }
 

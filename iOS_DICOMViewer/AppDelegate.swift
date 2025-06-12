@@ -4,11 +4,6 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Initialize DICOM services asynchronously
-        Task {
-            try? await DICOMServiceManager.shared.initialize()
-        }
-        
         // Register for file type handling
         setupFileTypeHandling()
         
@@ -28,7 +23,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // MARK: - File Handling
     
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
-        return DICOMFileImporter.shared.handleIncomingFile(url: url)
+        // Store the URL and handle it once services are initialized
+        DispatchQueue.main.async {
+            // Try to handle the file, but don't crash if services aren't ready
+            do {
+                _ = DICOMFileImporter.shared.handleIncomingFile(url: url)
+            } catch {
+                print("⚠️ Failed to handle incoming file: \(error)")
+            }
+        }
+        return true
     }
     
     private func setupFileTypeHandling() {

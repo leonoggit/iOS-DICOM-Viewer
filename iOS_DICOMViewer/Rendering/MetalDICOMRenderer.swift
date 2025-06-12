@@ -41,7 +41,7 @@ final class MetalDICOMRenderer: NSObject {
     func renderDICOMImage(_ pixelData: Data,
                          width: Int,
                          height: Int,
-                         windowLevel: WindowLevel,
+                         windowLevel: DICOMImageRenderer.WindowLevel,
                          to drawable: CAMetalDrawable) {
 
         guard let commandBuffer = commandQueue.makeCommandBuffer() else { return }
@@ -80,7 +80,7 @@ final class MetalDICOMRenderer: NSObject {
     private func applyWindowLevel(commandBuffer: MTLCommandBuffer,
                                  inputBuffer: MTLBuffer,
                                  outputTexture: MTLTexture,
-                                 windowLevel: WindowLevel) {
+                                 windowLevel: DICOMImageRenderer.WindowLevel) {
 
         guard let computeEncoder = commandBuffer.makeComputeCommandEncoder() else { return }
 
@@ -91,8 +91,8 @@ final class MetalDICOMRenderer: NSObject {
         var params = WindowLevelParams(
             window: windowLevel.window,
             level: windowLevel.level,
-            rescaleSlope: windowLevel.rescaleSlope,
-            rescaleIntercept: windowLevel.rescaleIntercept
+            rescaleSlope: 1.0,
+            rescaleIntercept: 0.0
         )
         computeEncoder.setBytes(&params, length: MemoryLayout<WindowLevelParams>.size, index: 1)
 
@@ -168,25 +168,20 @@ extension DICOMImageRenderer {
     private static let metalRenderer = MetalDICOMRenderer()
 
     func renderWithMetal(from pixelData: PixelData,
-                        windowLevel: WindowLevel,
+                        windowLevel: DICOMImageRenderer.WindowLevel,
                         to layer: CAMetalLayer) -> Bool {
 
         guard let drawable = layer.nextDrawable() else {
             return false
         }
 
-        MetalDICOMRenderer.metalRenderer.renderDICOMImage(
+        DICOMImageRenderer.metalRenderer.renderDICOMImage(
             Data(pixelData.data.flatMap {
                 withUnsafeBytes(of: $0) { Array($0) }
             }),
             width: pixelData.width,
             height: pixelData.height,
-            windowLevel: WindowLevel(
-                window: windowLevel.window,
-                level: windowLevel.level,
-                rescaleSlope: pixelData.rescaleSlope,
-                rescaleIntercept: pixelData.rescaleIntercept
-            ),
+            windowLevel: windowLevel,
             to: drawable
         )
 

@@ -8,11 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		0065E315D0BDE706FC130FE2 /* ROIShaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = 213EAA44EC1916D21C85809A /* ROIShaders.metal */; };
-		020B5462D7B127A3E25CFBCA /* MetalKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = DC25B80F07AD312F6CAE0AD1 /* MetalKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		05203F6631E3F0F58BA84747 /* PolygonROITool.swift in Sources */ = {isa = PBXBuildFile; fileRef = B617736EFE7B86D9FDE94533 /* PolygonROITool.swift */; };
 		08AD607E213021733AFDA407 /* ViewerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE6E5013094E8F9E2AC269D /* ViewerViewController.swift */; };
 		0A51DF6CDE277380A9148BF1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 382907EC48DD7F5F2D54AEE1 /* AppDelegate.swift */; };
-		0F3AB79F7BEEFC6153342A4B /* QuartzCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2BBA28BE8A60891349DE5C9A /* QuartzCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		15F90ADDF60DF9147B845523 /* DICOMMetadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF7F297F9C1C8E36E9ADDEC9 /* DICOMMetadata.swift */; };
 		1717009D2293D57D6C03F7A9 /* RTStructureSetParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 162E6D0BDA44BDCCAF559D11 /* RTStructureSetParser.swift */; };
 		1AB0BAAEB2B468B6F43B5788 /* DICOMImageRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FF51FB8AFF446BB177DA91C /* DICOMImageRenderer.swift */; };
@@ -22,14 +20,12 @@
 		281B0F1B30898DB4FB242072 /* DICOMError+Enhanced.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13E0A0B4F0F4423561996756 /* DICOMError+Enhanced.swift */; };
 		29AEC1379585CC8E25AE8CB2 /* DICOMGestureHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42A82151C5A1487BE7C53293 /* DICOMGestureHandler.swift */; };
 		2A6CA80F5F0EDD13F04B6D90 /* MPRRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46D206ABA893A5D16CB61388 /* MPRRenderer.swift */; };
-		34E2F1A4C6D0F0EDC0EB3060 /* UIKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 88B2B31C2E6659D6BA4D2A54 /* UIKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		35E7CD335455764296462338 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3E83F14ABB1A6B13A65801B /* SceneDelegate.swift */; };
 		3E817759EE713E7889652CCD /* DICOMServiceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ACB03E13FE148C334412B0F /* DICOMServiceManager.swift */; };
 		3FABDCD33E2486877B6E02B8 /* SegmentationRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB95C10DFFCA103001F38E79 /* SegmentationRenderer.swift */; };
 		42E7287B7E685AE6C13AFA0B /* DICOMFileImporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F542B6017363F19A009FD2EC /* DICOMFileImporter.swift */; };
 		45BC46DF96286BB0BEA6F87F /* MetalKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC25B80F07AD312F6CAE0AD1 /* MetalKit.framework */; };
 		460B53E1473A51F51461A0ED /* DICOMStudy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D342F2D7B5037BA98753936 /* DICOMStudy.swift */; };
-		464231BC4E2930A64D04B459 /* Foundation.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 18418F45335C5CECC2E65D0C /* Foundation.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		51C54B00F17BE513C28E6FB5 /* DICOMSegmentationParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01452AE6DB17FF409918BE10 /* DICOMSegmentationParser.swift */; };
 		5242A62A43D6E900F3F1EF48 /* ROITool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F5BEEE44BFAC844489CCFB3 /* ROITool.swift */; };
 		52632CCDA770CB416A992680 /* DICOMInstance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 918E69278850B163D5ACC26D /* DICOMInstance.swift */; };
@@ -53,7 +49,6 @@
 		9FF918C76A30FD5DAF466598 /* DICOMSeries.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90DD79045E16C659A2E71753 /* DICOMSeries.swift */; };
 		A1D878D105EF320F3D576E9E /* ClinicalComplianceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1FD77CC04F063D4EC906660 /* ClinicalComplianceManager.swift */; };
 		A5E7562C255D1825673550E7 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D12971BD7B8714E53C18942 /* MainViewController.swift */; };
-		A81EF416B80B183004D93461 /* Accelerate.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 98723A1530DB60F2CE6DE7F7 /* Accelerate.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		AB3C8B21324ED0F1E9294A7D /* iOS_DICOMViewerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A67C9483ECF0450DB0209C61 /* iOS_DICOMViewerTests.swift */; };
 		AC1CE189DFF5A7178CBD700B /* ROIRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB7D0D2579DE4FF7A75DE9F3 /* ROIRenderer.swift */; };
 		AD49D257647266BF721415B0 /* libofstd.a in Resources */ = {isa = PBXBuildFile; fileRef = AE8BA80C8CF2BACB040A8B88 /* libofstd.a */; };
@@ -67,13 +62,11 @@
 		C74555281B00344C27ABF3AA /* StudyListCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BBBEBFE352D239D277C9D2 /* StudyListCoordinator.swift */; };
 		C7C0C2F7936634C3425E3CCB /* DICOMMetadataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E224E9C9228D87FB70D105 /* DICOMMetadataStore.swift */; };
 		CA3C2AFE8994EFCC790A9B3F /* MPRShaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = A98B1242A8FD557D7AA4001D /* MPRShaders.metal */; };
-		D0844D0E4AD9C4D2925DD8BF /* CoreGraphics.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C39DE6F5F2502098CE8D43B7 /* CoreGraphics.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D25D052B70447696149C0A53 /* VolumeRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED9B53C953E0069A45F82431 /* VolumeRenderer.swift */; };
 		D46AE5E4E908ABC751FBF1BF /* DICOMCacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FFE92DE4F5773437FF5D8C9 /* DICOMCacheManager.swift */; };
 		D9FE24836AF4CA069215FF95 /* ROIToolsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4C3E4D460F23C2E06782DE /* ROIToolsTests.swift */; };
 		DC58C515FA7754EC0509117F /* RTStructureShaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = BED4B67601214ACE5F8915F9 /* RTStructureShaders.metal */; };
 		E2A016C654336F14B758AF35 /* HapticFeedback.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EE968C0C57A3F5461EFC9F6 /* HapticFeedback.swift */; };
-		E90ED054EEB821A7BE45907D /* Metal.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 54625880F53384F51EACCBC0 /* Metal.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		EC22570CA87DCA4AAE6C1197 /* SegmentationShaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = 5642CD013A48CA28391CDB6D /* SegmentationShaders.metal */; };
 		F18B70137E10E0D67C1454AC /* RTStructureSetService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5313D11092920EEF5C27BE15 /* RTStructureSetService.swift */; };
 		F4DBB7B653353B6E169E9541 /* RTStructureRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 251D4090577DC6874F9E084A /* RTStructureRenderer.swift */; };
@@ -105,13 +98,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				E90ED054EEB821A7BE45907D /* Metal.framework in Embed Frameworks */,
-				020B5462D7B127A3E25CFBCA /* MetalKit.framework in Embed Frameworks */,
-				A81EF416B80B183004D93461 /* Accelerate.framework in Embed Frameworks */,
-				D0844D0E4AD9C4D2925DD8BF /* CoreGraphics.framework in Embed Frameworks */,
-				0F3AB79F7BEEFC6153342A4B /* QuartzCore.framework in Embed Frameworks */,
-				34E2F1A4C6D0F0EDC0EB3060 /* UIKit.framework in Embed Frameworks */,
-				464231BC4E2930A64D04B459 /* Foundation.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
