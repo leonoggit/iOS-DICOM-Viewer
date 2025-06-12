@@ -247,6 +247,12 @@ extension StudyListViewController: UIDocumentPickerDelegate {
     }
 }
 
+// MARK: - StudyListViewControllerDelegate
+protocol StudyListViewControllerDelegate: AnyObject {
+    func didSelectStudy(_ study: DICOMStudy)
+    func didDeleteStudy(_ study: DICOMStudy)
+}
+
 // MARK: - StudyTableViewCell
 class StudyTableViewCell: UITableViewCell {
     static let identifier = "StudyTableViewCell"

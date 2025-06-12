@@ -4,11 +4,10 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Initialize DICOM services
-        DICOMServiceManager.shared.initialize()
-        
-        // Setup 3D rendering capabilities
-        RenderingEngine.shared.initialize()
+        // Initialize DICOM services asynchronously
+        Task {
+            try? await DICOMServiceManager.shared.initialize()
+        }
         
         // Register for file type handling
         setupFileTypeHandling()

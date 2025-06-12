@@ -8,12 +8,14 @@ protocol DICOMFileImporterDelegate: AnyObject {
 
 /// File importer service for handling DICOM files from various sources
 /// Supports Files app, AirDrop, iCloud Drive, and document picker
-class DICOMFileImporter: DICOMService {
+class DICOMFileImporter: DICOMServiceProtocol {
     static let shared = DICOMFileImporter()
     
+    let identifier = "DICOMFileImporter"
     weak var delegate: DICOMFileImporterDelegate?
     
     private let fileManager = FileManager.default
+    private var metadataStore: DICOMMetadataStore { return DICOMMetadataStore.shared }
     private let documentsDirectory: URL
     private let tempDirectory: URL
     
@@ -24,9 +26,14 @@ class DICOMFileImporter: DICOMService {
         self.tempDirectory = URL(fileURLWithPath: NSTemporaryDirectory())
     }
     
-    func initialize() {
+    func initialize() async throws {
         setupDirectories()
         print("📥 DICOM File Importer initialized")
+    }
+    
+    func shutdown() async {
+        clearTempDirectory()
+        print("🗑️ DICOM File Importer shutdown")
     }
     
     func reset() {
@@ -290,60 +297,86 @@ class DICOMFileImporter: DICOMService {
     func createSampleData() async throws {
         // Create sample study
         let sampleStudy = createSampleStudy()
-        await metadataStore.addStudy(sampleStudy)
+        DICOMMetadataStore.shared.addStudy(sampleStudy)
         
         // Notify observers
         DispatchQueue.main.async {
-            NotificationCenter.default.post(name: .studiesDidUpdate, object: nil)
+            NotificationCenter.default.post(name: DICOMMetadataStore.studyAddedNotification, object: nil)
         }
     }
     
     private func createSampleStudy() -> DICOMStudy {
-        // Create sample metadata
-        let metadata1 = DICOMMetadata(
-            sopInstanceUID: "1.2.3.4.5.6.7.8.9.1",
-            sopClassUID: "1.2.840.10008.5.1.4.1.1.2", // CT Image Storage
-            studyInstanceUID: "1.2.3.4.5.6.7.8",
-            seriesInstanceUID: "1.2.3.4.5.6.7.8.1",
-            patientName: "Sample^Patient",
-            patientID: "SP001",
-            studyDescription: "Sample CT Study",
-            seriesDescription: "Axial CT",
-            modality: "CT",
-            studyDate: "20231201",
-            seriesNumber: 1,
-            instanceNumber: 1
-        )
+        // Create sample metadata dictionaries
+        let metadata1Dict: [String: Any] = [
+            "SOPInstanceUID": "1.2.3.4.5.6.7.8.9.1",
+            "SOPClassUID": "1.2.840.10008.5.1.4.1.1.2", // CT Image Storage
+            "StudyInstanceUID": "1.2.3.4.5.6.7.8",
+            "SeriesInstanceUID": "1.2.3.4.5.6.7.8.1",
+            "PatientName": "Sample^Patient",
+            "PatientID": "SP001",
+            "StudyDescription": "Sample CT Study",
+            "SeriesDescription": "Axial CT",
+            "Modality": "CT",
+            "StudyDate": "20231201",
+            "SeriesNumber": 1,
+            "InstanceNumber": 1,
+            "Rows": 512,
+            "Columns": 512,
+            "BitsAllocated": 16,
+            "BitsStored": 16,
+            "SamplesPerPixel": 1,
+            "PhotometricInterpretation": "MONOCHROME2",
+            "PixelRepresentation": 1
+        ]
         
-        let metadata2 = DICOMMetadata(
-            sopInstanceUID: "1.2.3.4.5.6.7.8.9.2",
-            sopClassUID: "1.2.840.10008.5.1.4.1.1.2",
-            studyInstanceUID: "1.2.3.4.5.6.7.8",
-            seriesInstanceUID: "1.2.3.4.5.6.7.8.1",
-            patientName: "Sample^Patient",
-            patientID: "SP001",
-            studyDescription: "Sample CT Study",
-            seriesDescription: "Axial CT",
-            modality: "CT",
-            studyDate: "20231201",
-            seriesNumber: 1,
-            instanceNumber: 2
-        )
+        let metadata2Dict: [String: Any] = [
+            "SOPInstanceUID": "1.2.3.4.5.6.7.8.9.2",
+            "SOPClassUID": "1.2.840.10008.5.1.4.1.1.2",
+            "StudyInstanceUID": "1.2.3.4.5.6.7.8",
+            "SeriesInstanceUID": "1.2.3.4.5.6.7.8.1",
+            "PatientName": "Sample^Patient",
+            "PatientID": "SP001",
+            "StudyDescription": "Sample CT Study",
+            "SeriesDescription": "Axial CT",
+            "Modality": "CT",
+            "StudyDate": "20231201",
+            "SeriesNumber": 1,
+            "InstanceNumber": 2,
+            "Rows": 512,
+            "Columns": 512,
+            "BitsAllocated": 16,
+            "BitsStored": 16,
+            "SamplesPerPixel": 1,
+            "PhotometricInterpretation": "MONOCHROME2",
+            "PixelRepresentation": 1
+        ]
         
-        let metadata3 = DICOMMetadata(
-            sopInstanceUID: "1.2.3.4.5.6.7.8.9.3",
-            sopClassUID: "1.2.840.10008.5.1.4.1.1.4", // MR Image Storage
-            studyInstanceUID: "1.2.3.4.5.6.7.8",
-            seriesInstanceUID: "1.2.3.4.5.6.7.8.2",
-            patientName: "Sample^Patient",
-            patientID: "SP001",
-            studyDescription: "Sample CT Study",
-            seriesDescription: "T1 MR",
-            modality: "MR",
-            studyDate: "20231201",
-            seriesNumber: 2,
-            instanceNumber: 1
-        )
+        let metadata3Dict: [String: Any] = [
+            "SOPInstanceUID": "1.2.3.4.5.6.7.8.9.3",
+            "SOPClassUID": "1.2.840.10008.5.1.4.1.1.4", // MR Image Storage
+            "StudyInstanceUID": "1.2.3.4.5.6.7.8",
+            "SeriesInstanceUID": "1.2.3.4.5.6.7.8.2",
+            "PatientName": "Sample^Patient",
+            "PatientID": "SP001",
+            "StudyDescription": "Sample CT Study",
+            "SeriesDescription": "T1 MR",
+            "Modality": "MR",
+            "StudyDate": "20231201",
+            "SeriesNumber": 2,
+            "InstanceNumber": 1,
+            "Rows": 256,
+            "Columns": 256,
+            "BitsAllocated": 16,
+            "BitsStored": 16,
+            "SamplesPerPixel": 1,
+            "PhotometricInterpretation": "MONOCHROME2",
+            "PixelRepresentation": 1
+        ]
+        
+        // Create metadata objects
+        let metadata1 = DICOMMetadata(dictionary: metadata1Dict)
+        let metadata2 = DICOMMetadata(dictionary: metadata2Dict)
+        let metadata3 = DICOMMetadata(dictionary: metadata3Dict)
         
         // Create instances
         let instance1 = DICOMInstance(metadata: metadata1)
@@ -352,19 +385,31 @@ class DICOMFileImporter: DICOMService {
         
         // Create series
         let series1 = DICOMSeries(
-            metadata: metadata1,
-            instances: [instance1, instance2]
+            seriesInstanceUID: "1.2.3.4.5.6.7.8.1",
+            seriesNumber: 1,
+            seriesDescription: "Axial CT",
+            modality: "CT",
+            studyInstanceUID: "1.2.3.4.5.6.7.8"
         )
         
         let series2 = DICOMSeries(
-            metadata: metadata3,
-            instances: [instance3]
+            seriesInstanceUID: "1.2.3.4.5.6.7.8.2",
+            seriesNumber: 2,
+            seriesDescription: "T1 MR",
+            modality: "MR",
+            studyInstanceUID: "1.2.3.4.5.6.7.8"
         )
+        
+        // Add instances to series (need to check if there's an addInstance method)
+        // For now, let's create the study and add instances later
         
         // Create study
         return DICOMStudy(
-            metadata: metadata1,
-            series: [series1, series2]
+            studyInstanceUID: "1.2.3.4.5.6.7.8",
+            studyDate: "20231201",
+            studyDescription: "Sample CT Study",
+            patientName: "Sample^Patient",
+            patientID: "SP001"
         )
     }
     

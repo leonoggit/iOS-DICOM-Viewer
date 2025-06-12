@@ -57,7 +57,7 @@ final class ClinicalComplianceManager {
                    operation, duration)
             
             if duration > 1.0 {
-                os_log(.warning, log: performanceLogger,
+                os_log(.error, log: performanceLogger,
                        "Slow rendering detected for '%{public}@': %{public}.3f seconds",
                        operation, duration)
             }
@@ -224,41 +224,5 @@ extension DICOMMetadata {
         // Implementation would convert metadata to dictionary format
         // For now, return placeholder
         return [:]
-    }
-    
-    init(dictionary: [String: Any]) {
-        // Implementation would create metadata from dictionary
-        // For now, use existing init
-        self.init(
-            sopInstanceUID: dictionary["SOPInstanceUID"] as? String ?? "",
-            sopClassUID: dictionary["SOPClassUID"] as? String ?? "",
-            studyInstanceUID: dictionary["StudyInstanceUID"] as? String ?? "",
-            seriesInstanceUID: dictionary["SeriesInstanceUID"] as? String ?? "",
-            instanceNumber: dictionary["InstanceNumber"] as? Int ?? 0,
-            rows: dictionary["Rows"] as? Int ?? 0,
-            columns: dictionary["Columns"] as? Int ?? 0,
-            bitsAllocated: dictionary["BitsAllocated"] as? Int ?? 0,
-            bitsStored: dictionary["BitsStored"] as? Int ?? 0,
-            pixelRepresentation: dictionary["PixelRepresentation"] as? Int ?? 0,
-            photometricInterpretation: dictionary["PhotometricInterpretation"] as? String ?? "",
-            imagePositionPatient: dictionary["ImagePositionPatient"] as? [Double],
-            imageOrientationPatient: dictionary["ImageOrientationPatient"] as? [Double],
-            pixelSpacing: dictionary["PixelSpacing"] as? [Double],
-            sliceThickness: dictionary["SliceThickness"] as? Double,
-            windowCenter: dictionary["WindowCenter"] as? [Double],
-            windowWidth: dictionary["WindowWidth"] as? [Double],
-            rescaleIntercept: dictionary["RescaleIntercept"] as? Double ?? 0,
-            rescaleSlope: dictionary["RescaleSlope"] as? Double ?? 1,
-            modality: dictionary["Modality"] as? String ?? "",
-            patientName: dictionary["PatientName"] as? String,
-            patientID: dictionary["PatientID"] as? String,
-            studyDate: dictionary["StudyDate"] as? String,
-            studyTime: dictionary["StudyTime"] as? String,
-            studyDescription: dictionary["StudyDescription"] as? String,
-            seriesDescription: dictionary["SeriesDescription"] as? String,
-            protocolName: dictionary["ProtocolName"] as? String,
-            bodyPartExamined: dictionary["BodyPartExamined"] as? String,
-            transferSyntaxUID: dictionary["TransferSyntaxUID"] as? String
-        )
     }
 }

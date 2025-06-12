@@ -121,45 +121,7 @@ final class SegmentationService: DICOMServiceProtocol {
 struct SegmentationData {
     let uid: String
     let referencedSeriesUID: String
-    let segments: [DICOMSegmentation.Segment]
+    let segments: [SegmentationSegment]
 }
 
-// DICOM Segmentation models
-struct DICOMSegmentation {
-    let segmentationUID: String
-    let referencedSeriesUID: String
-    let segments: [Segment]
-    
-    struct Segment {
-        let segmentNumber: Int
-        let segmentLabel: String
-        let segmentDescription: String?
-        let recommendedDisplayColor: UIColor
-        let referencedSOPInstanceUID: String
-        let contourData: [CGPoint]
-        let algorithmType: AlgorithmType
-        
-        enum AlgorithmType {
-            case manual
-            case semiautomatic
-            case automatic
-        }
-    }
-}
 
-// MARK: - Extensions
-
-extension DICOMParser {
-    func detectFileType(_ url: URL) async -> DICOMFileType {
-        // Implementation would analyze DICOM file to determine type
-        // For now, return placeholder
-        return .image
-    }
-}
-
-enum DICOMFileType {
-    case image
-    case segmentation
-    case structureSet
-    case plan
-}

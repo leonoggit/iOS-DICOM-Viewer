@@ -8,20 +8,9 @@
 
 import Foundation
 
-enum DICOMError: LocalizedError {
-    case invalidFile(reason: InvalidFileReason)
-    case failedToParse(details: ParseError)
-    case failedToParseMetadata(tag: String)
-    case unsupportedFormat(format: String)
-    case unsupportedTransferSyntax(syntax: String, suggestion: String)
-    case missingPixelData(sopInstanceUID: String)
-    case invalidPixelData(details: PixelDataError)
-    case memoryAllocationFailed(requiredBytes: Int64)
-    case fileNotFound(path: String)
-    case permissionDenied(path: String)
-    case corruptedData(details: String)
-    case networkError(underlyingError: Error)
-    case unknownSOPClass(sopClass: String, knownClasses: [String])
+// MARK: - Enhanced Error Support Types
+
+extension DICOMError {
     
     enum InvalidFileReason {
         case notDICOM
@@ -44,86 +33,98 @@ enum DICOMError: LocalizedError {
     }
     
     enum ParseError {
-        case invalidDataElement(tag: String)
-        case unexpectedEndOfFile
-        case invalidVR(vr: String)
-        case exceedsMaxLength(length: Int64)
+        case malformedHeader
+        case invalidDataElement
+        case unsupportedEncoding
+        case truncatedFile
         
         var localizedDescription: String {
             switch self {
-            case .invalidDataElement(let tag):
-                return "Invalid data element at tag \(tag)"
-            case .unexpectedEndOfFile:
-                return "Unexpected end of file"
-            case .invalidVR(let vr):
-                return "Invalid value representation: \(vr)"
-            case .exceedsMaxLength(let length):
-                return "Data element exceeds maximum length: \(length)"
+            case .malformedHeader:
+                return "Malformed DICOM header"
+            case .invalidDataElement:
+                return "Invalid data element"
+            case .unsupportedEncoding:
+                return "Unsupported character encoding"
+            case .truncatedFile:
+                return "File appears truncated"
             }
         }
     }
     
     enum PixelDataError {
-        case inconsistentDimensions
-        case unsupportedBitsAllocated(bits: Int)
-        case compressedDataError
-        case invalidPhotometricInterpretation(value: String)
+        case invalidBitsAllocated
+        case unsupportedPhotometricInterpretation
+        case compressionError
+        case invalidDimensions
         
         var localizedDescription: String {
             switch self {
-            case .inconsistentDimensions:
-                return "Inconsistent image dimensions"
-            case .unsupportedBitsAllocated(let bits):
-                return "Unsupported bits allocated: \(bits)"
-            case .compressedDataError:
+            case .invalidBitsAllocated:
+                return "Invalid bits allocated for pixel data"
+            case .unsupportedPhotometricInterpretation:
+                return "Unsupported photometric interpretation"
+            case .compressionError:
                 return "Error decompressing pixel data"
-            case .invalidPhotometricInterpretation(let value):
-                return "Invalid photometric interpretation: \(value)"
+            case .invalidDimensions:
+                return "Invalid image dimensions"
             }
         }
     }
+}
+
+// MARK: - Enhanced Error Creation Methods
+
+extension DICOMError {
     
-    var errorDescription: String? {
+    static func invalidFileEnhanced(reason: InvalidFileReason) -> DICOMError {
+        return .invalidFile
+    }
+    
+    static func failedToParseEnhanced(details: ParseError) -> DICOMError {
+        return .failedToParse
+    }
+    
+    static func invalidPixelDataEnhanced(details: PixelDataError) -> DICOMError {
+        return .invalidPixelData
+    }
+    
+    static func memoryAllocationFailedEnhanced(requiredBytes: Int64) -> DICOMError {
+        return .memoryAllocationFailed
+    }
+}
+
+// MARK: - Clinical Compliance Extensions
+
+extension DICOMError {
+    
+    /// Returns whether this error should be reported for clinical compliance
+    var requiresComplianceReporting: Bool {
         switch self {
-        case .invalidFile(let reason):
-            return "Invalid DICOM file: \(reason.localizedDescription)"
-        case .failedToParse(let details):
-            return "Failed to parse DICOM file: \(details.localizedDescription)"
-        case .failedToParseMetadata(let tag):
-            return "Failed to parse metadata for tag: \(tag)"
-        case .unsupportedFormat(let format):
-            return "Unsupported DICOM format: \(format)"
-        case .unsupportedTransferSyntax(let syntax, _):
-            return "Unsupported transfer syntax: \(syntax)"
-        case .missingPixelData(let uid):
-            return "Missing pixel data for instance: \(uid)"
-        case .invalidPixelData(let details):
-            return "Invalid pixel data: \(details.localizedDescription)"
-        case .memoryAllocationFailed(let bytes):
-            return "Failed to allocate \(ByteCountFormatter.string(fromByteCount: bytes, countStyle: .memory))"
-        case .fileNotFound(let path):
-            return "File not found: \(path)"
-        case .permissionDenied(let path):
-            return "Permission denied: \(path)"
-        case .corruptedData(let details):
-            return "Corrupted data: \(details)"
-        case .networkError(let error):
-            return "Network error: \(error.localizedDescription)"
-        case .unknownSOPClass(let sopClass, _):
-            return "Unknown SOP Class: \(sopClass)"
+        case .invalidFile, .failedToParse, .corruptedData:
+            return true
+        case .fileNotFound, .permissionDenied, .networkError:
+            return false
+        default:
+            return false
         }
     }
     
-    var recoverySuggestion: String? {
+    /// Returns suggested recovery actions for clinical environments
+    var clinicalRecoveryActions: [String] {
         switch self {
-        case .unsupportedTransferSyntax(_, let suggestion):
-            return suggestion
+        case .invalidFile:
+            return ["Verify file is a valid DICOM", "Check file source", "Contact IT support"]
+        case .failedToParse:
+            return ["Try re-exporting from PACS", "Check DICOM conformance", "Update software"]
+        case .unsupportedFormat:
+            return ["Convert to supported format", "Update viewer software", "Check modality settings"]
         case .memoryAllocationFailed:
-            return "Try closing other applications or reducing the image quality"
-        case .unknownSOPClass(_, let knownClasses):
-            return "Supported SOP Classes: \(knownClasses.joined(separator: ", "))"
+            return ["Close other applications", "Restart application", "Use smaller image series"]
+        case .networkError:
+            return ["Check network connection", "Retry operation", "Contact system administrator"]
         default:
-            return nil
+            return ["Contact technical support"]
         }
     }
 }

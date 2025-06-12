@@ -1,0 +1,77 @@
+name: iOS_DICOMViewer
+options:
+  bundleIdPrefix: com.dicomviewer
+  deploymentTarget:
+    iOS: 18.0
+
+targets:
+  iOS_DICOMViewer:
+    type: application
+    platform: iOS
+    sources:
+      - path: iOS_DICOMViewer
+        excludes:
+          - "**/*.xcassets"
+          - "**/*.storyboard"
+          - "**/*.plist"
+    resources:
+      - iOS_DICOMViewer/Assets.xcassets
+      - iOS_DICOMViewer/LaunchScreen.storyboard
+    info:
+      path: iOS_DICOMViewer/Info.plist
+    settings:
+      PRODUCT_BUNDLE_IDENTIFIER: com.dicomviewer.iOS-DICOMViewer
+      SWIFT_VERSION: 5.0
+      TARGETED_DEVICE_FAMILY: "1,2"
+      IPHONEOS_DEPLOYMENT_TARGET: 18.0
+      HEADER_SEARCH_PATHS:
+        - "$(PROJECT_DIR)/iOS_DICOMViewer/Frameworks/DCMTK/include"
+      LIBRARY_SEARCH_PATHS:
+        - "$(PROJECT_DIR)/iOS_DICOMViewer/Frameworks/DCMTK/lib"
+      SWIFT_OBJC_BRIDGING_HEADER: iOS_DICOMViewer-Bridging-Header.h
+      CLANG_CXX_LANGUAGE_STANDARD: "gnu++20"
+      CLANG_ENABLE_MODULES: YES
+      CLANG_ENABLE_OBJC_ARC: YES
+      MTL_ENABLE_DEBUG_INFO: INCLUDE_SOURCE
+      MTL_FAST_MATH: YES
+    dependencies:
+      - framework: Metal.framework
+      - framework: MetalKit.framework
+      - framework: Accelerate.framework
+      - framework: CoreGraphics.framework
+      - framework: QuartzCore.framework
+      - framework: UIKit.framework
+      - framework: Foundation.framework
+
+  iOS_DICOMViewerTests:
+    type: bundle.unit-test
+    platform: iOS
+    sources:
+      - iOS_DICOMViewerTests
+    dependencies:
+      - target: iOS_DICOMViewer
+
+  iOS_DICOMViewerUITests:
+    type: bundle.ui-testing
+    platform: iOS
+    sources:
+      - iOS_DICOMViewerUITests
+    dependencies:
+      - target: iOS_DICOMViewer
+
+schemes:
+  iOS_DICOMViewer:
+    build:
+      targets:
+        iOS_DICOMViewer: all
+        iOS_DICOMViewerTests: [test]
+        iOS_DICOMViewerUITests: [test]
+    run:
+      config: Debug
+    test:
+      config: Debug
+      targets:
+        - iOS_DICOMViewerTests
+        - iOS_DICOMViewerUITests
+    archive:
+      config: Release

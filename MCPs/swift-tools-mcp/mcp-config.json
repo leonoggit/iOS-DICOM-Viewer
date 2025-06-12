@@ -1,0 +1,230 @@
+{
+  "server": {
+    "name": "swift-tools-mcp",
+    "version": "1.0.0",
+    "description": "Swift and iOS development tools for Claude Code",
+    "command": "node",
+    "args": ["dist/index.js"],
+    "capabilities": {
+      "resources": {
+        "swift://project-info": {
+          "description": "Current iOS project configuration and status",
+          "mimeType": "application/json"
+        },
+        "swift://build-settings": {
+          "description": "Current build configuration and settings",
+          "mimeType": "application/json"
+        },
+        "swift://simulators": {
+          "description": "Available iOS simulators and their status",
+          "mimeType": "application/json"
+        }
+      },
+      "tools": {
+        "analyze_xcode_project": {
+          "description": "Analyze Xcode project structure, targets, schemes, and configurations",
+          "parameters": {
+            "type": "object",
+            "properties": {
+              "projectPath": {
+                "type": "string",
+                "description": "Path to the .xcodeproj or .xcworkspace file"
+              },
+              "analyzeTargets": {
+                "type": "boolean",
+                "description": "Include detailed target analysis",
+                "default": true
+              },
+              "analyzeSchemes": {
+                "type": "boolean", 
+                "description": "Include scheme analysis",
+                "default": true
+              }
+            },
+            "required": ["projectPath"]
+          }
+        },
+        "validate_build_settings": {
+          "description": "Validate Xcode build settings for iOS deployment and best practices",
+          "parameters": {
+            "type": "object",
+            "properties": {
+              "projectPath": {"type": "string", "description": "Path to Xcode project"},
+              "target": {"type": "string", "description": "Specific target to validate"},
+              "configuration": {"type": "string", "description": "Build configuration (Debug/Release)"}
+            },
+            "required": ["projectPath"]
+          }
+        },
+        "analyze_swift_code": {
+          "description": "Analyze Swift code for syntax, best practices, and potential issues",
+          "parameters": {
+            "type": "object",
+            "properties": {
+              "filePath": {"type": "string", "description": "Path to Swift file or directory"},
+              "checkSyntax": {"type": "boolean", "description": "Check syntax validity", "default": true},
+              "checkStyle": {"type": "boolean", "description": "Check Swift style guidelines", "default": true},
+              "checkPerformance": {"type": "boolean", "description": "Check for performance issues", "default": true}
+            },
+            "required": ["filePath"]
+          }
+        },
+        "compile_swift_file": {
+          "description": "Compile a Swift file and check for compilation errors",
+          "parameters": {
+            "type": "object", 
+            "properties": {
+              "filePath": {"type": "string", "description": "Path to Swift file"},
+              "target": {"type": "string", "description": "iOS deployment target version"},
+              "sdk": {"type": "string", "description": "SDK to use (iphoneos, iphonesimulator)", "default": "iphonesimulator"}
+            },
+            "required": ["filePath"]
+          }
+        },
+        "validate_ios_deployment": {
+          "description": "Validate iOS deployment configuration and requirements",
+          "parameters": {
+            "type": "object",
+            "properties": {
+              "projectPath": {"type": "string", "description": "Path to Xcode project"},
+              "targetVersion": {"type": "string", "description": "Target iOS version"},
+              "validateCapabilities": {"type": "boolean", "description": "Validate app capabilities", "default": true}
+            },
+            "required": ["projectPath"]
+          }
+        },
+        "compile_metal_shaders": {
+          "description": "Compile and validate Metal shaders for iOS",
+          "parameters": {
+            "type": "object",
+            "properties": {
+              "shaderPath": {"type": "string", "description": "Path to .metal file or directory"},
+              "target": {"type": "string", "description": "Metal target (ios, ios-simulator)", "default": "ios"},
+              "optimizationLevel": {"type": "string", "description": "Optimization level (none, speed, size)", "default": "speed"}
+            },
+            "required": ["shaderPath"]
+          }
+        },
+        "analyze_metal_performance": {
+          "description": "Analyze Metal shader performance and provide optimization suggestions",
+          "parameters": {
+            "type": "object",
+            "properties": {
+              "shaderPath": {"type": "string", "description": "Path to .metal file"},
+              "deviceFamily": {"type": "string", "description": "Target device family (iPhone, iPad)", "default": "iPhone"}
+            },
+            "required": ["shaderPath"]
+          }
+        },
+        "analyze_memory_usage": {
+          "description": "Analyze iOS app memory usage patterns and provide optimization suggestions",
+          "parameters": {
+            "type": "object",
+            "properties": {
+              "projectPath": {"type": "string", "description": "Path to Xcode project"},
+              "target": {"type": "string", "description": "Target to analyze"},
+              "analyzeLeaks": {"type": "boolean", "description": "Check for potential memory leaks", "default": true}
+            },
+            "required": ["projectPath"]
+          }
+        },
+        "list_ios_simulators": {
+          "description": "List available iOS simulators and their status",
+          "parameters": {
+            "type": "object",
+            "properties": {
+              "runtime": {"type": "string", "description": "Filter by iOS runtime version"},
+              "deviceType": {"type": "string", "description": "Filter by device type"}
+            }
+          }
+        },
+        "boot_simulator": {
+          "description": "Boot an iOS simulator for testing",
+          "parameters": {
+            "type": "object",
+            "properties": {
+              "deviceId": {"type": "string", "description": "Simulator device ID or name"},
+              "waitForBoot": {"type": "boolean", "description": "Wait for simulator to fully boot", "default": true}
+            },
+            "required": ["deviceId"]
+          }
+        },
+        "install_app_simulator": {
+          "description": "Install and launch app on iOS simulator",
+          "parameters": {
+            "type": "object",
+            "properties": {
+              "appPath": {"type": "string", "description": "Path to .app bundle"},
+              "deviceId": {"type": "string", "description": "Simulator device ID"},
+              "launch": {"type": "boolean", "description": "Launch app after installation", "default": true}
+            },
+            "required": ["appPath", "deviceId"]
+          }
+        },
+        "check_swiftui_best_practices": {
+          "description": "Check SwiftUI code for best practices and common issues",
+          "parameters": {
+            "type": "object",
+            "properties": {
+              "filePath": {"type": "string", "description": "Path to SwiftUI file or directory"},
+              "checkPerformance": {"type": "boolean", "description": "Check for performance issues", "default": true},
+              "checkAccessibility": {"type": "boolean", "description": "Check accessibility compliance", "default": true}
+            },
+            "required": ["filePath"]
+          }
+        },
+        "check_uikit_best_practices": {
+          "description": "Check UIKit code for best practices and modernization opportunities",
+          "parameters": {
+            "type": "object",
+            "properties": {
+              "filePath": {"type": "string", "description": "Path to UIKit file or directory"},
+              "suggestSwiftUI": {"type": "boolean", "description": "Suggest SwiftUI alternatives", "default": true},
+              "checkMemoryManagement": {"type": "boolean", "description": "Check memory management", "default": true}
+            },
+            "required": ["filePath"]
+          }
+        },
+        "build_ios_project": {
+          "description": "Build iOS project with specified configuration",
+          "parameters": {
+            "type": "object",
+            "properties": {
+              "projectPath": {"type": "string", "description": "Path to Xcode project"},
+              "scheme": {"type": "string", "description": "Build scheme"},
+              "configuration": {"type": "string", "description": "Build configuration", "default": "Debug"},
+              "destination": {"type": "string", "description": "Build destination", "default": "generic/platform=iOS Simulator"},
+              "clean": {"type": "boolean", "description": "Clean before building", "default": false}
+            },
+            "required": ["projectPath"]
+          }
+        },
+        "run_ios_tests": {
+          "description": "Run iOS unit and UI tests",
+          "parameters": {
+            "type": "object",
+            "properties": {
+              "projectPath": {"type": "string", "description": "Path to Xcode project"},
+              "scheme": {"type": "string", "description": "Test scheme"},
+              "testType": {"type": "string", "description": "Type of tests (unit, ui, all)", "default": "all"},
+              "destination": {"type": "string", "description": "Test destination"}
+            },
+            "required": ["projectPath"]
+          }
+        }
+      }
+    }
+  },
+  "tags": ["ios", "swift", "xcode", "mobile", "medical-imaging", "dicom", "metal"],
+  "requirements": {
+    "platform": "darwin",
+    "tools": ["xcode", "node", "npm"]
+  },
+  "optimization": {
+    "medical_imaging": true,
+    "dicom_support": true,
+    "metal_shaders": true,
+    "accessibility": true,
+    "memory_profiling": true
+  }
+}

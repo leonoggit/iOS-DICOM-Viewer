@@ -2,7 +2,10 @@ import Foundation
 
 /// Metadata store service that manages DICOM studies, series, and instances
 /// Follows OHIF's metadata management patterns
-class DICOMMetadataStore: DICOMService {
+class DICOMMetadataStore: DICOMServiceProtocol {
+    static let shared = DICOMMetadataStore()
+    
+    let identifier = "DICOMMetadataStore"
     private var studies: [String: DICOMStudy] = [:]
     private var series: [String: DICOMSeries] = [:]
     private var instances: [String: DICOMInstance] = [:]
@@ -16,8 +19,15 @@ class DICOMMetadataStore: DICOMService {
     static let instanceAddedNotification = Notification.Name("DICOMInstanceAdded")
     static let metadataUpdatedNotification = Notification.Name("DICOMMetadataUpdated")
     
-    func initialize() {
+    private init() {}
+    
+    func initialize() async throws {
         print("📊 DICOM Metadata Store initialized")
+    }
+    
+    func shutdown() async {
+        reset()
+        print("🗑️ DICOM Metadata Store shutdown")
     }
     
     func reset() {

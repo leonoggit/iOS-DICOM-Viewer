@@ -41,7 +41,7 @@ vertex VertexOut vertexShader(uint vertexID [[vertex_id]]) {
 // Fragment shader
 fragment float4 fragmentShader(VertexOut in [[stage_in]],
                               texture2d<float> texture [[texture(0)]]) {
-    constexpr sampler textureSampler(mag_filter::linear, min_filter::linear);
+    sampler textureSampler(mag_filter::linear, min_filter::linear);
     float4 color = texture.sample(textureSampler, in.texCoord);
     return color;
 }

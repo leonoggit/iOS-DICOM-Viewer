@@ -15,20 +15,29 @@ class DICOMParser {
         return try await withCheckedThrowingContinuation { continuation in
             DispatchQueue.global(qos: .userInitiated).async {
                 guard let metadataDict = DCMTKBridge.parseMetadata(fromFile: fileURL.path) else {
-                    continuation.resume(throwing: DICOMError.failedToParseMetadata(tag: "DICOM_HEADER"))
+                    continuation.resume(throwing: DICOMError.failedToParseMetadata)
                     return
                 }
                 
-                let metadata = DICOMMetadata(dictionary: metadataDict)
+                // Convert [AnyHashable: Any] to [String: Any]
+                let stringKeyedDict = Dictionary(uniqueKeysWithValues: 
+                    metadataDict.compactMap { key, value in
+                        if let stringKey = key as? String {
+                            return (stringKey, value)
+                        }
+                        return nil
+                    }
+                )
+                let metadata = DICOMMetadata(dictionary: stringKeyedDict)
                 
                 // Validate critical DICOM tags for clinical compliance
                 if metadata.sopInstanceUID.isEmpty {
-                    continuation.resume(throwing: DICOMError.failedToParseMetadata(tag: "SOPInstanceUID"))
+                    continuation.resume(throwing: DICOMError.failedToParseMetadata)
                     return
                 }
                 
                 if metadata.studyInstanceUID.isEmpty {
-                    continuation.resume(throwing: DICOMError.failedToParseMetadata(tag: "StudyInstanceUID"))
+                    continuation.resume(throwing: DICOMError.failedToParseMetadata)
                     return
                 }
                 
@@ -124,7 +133,19 @@ class DICOMParser {
         return await withCheckedContinuation { continuation in
             DispatchQueue.global(qos: .utility).async {
                 let geometry = DCMTKBridge.getImageGeometry(fileURL.path)
-                continuation.resume(returning: geometry)
+                // Convert [AnyHashable: Any] to [String: Any]
+                var stringKeyedGeometry: [String: Any]?
+                if let dict = geometry {
+                    stringKeyedGeometry = Dictionary(uniqueKeysWithValues: 
+                        dict.compactMap { key, value in
+                            if let stringKey = key as? String {
+                                return (stringKey, value)
+                            }
+                            return nil
+                        }
+                    )
+                }
+                continuation.resume(returning: stringKeyedGeometry)
             }
         }
     }

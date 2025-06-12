@@ -1,0 +1,46 @@
+{
+  "name": "swift-tools-mcp",
+  "version": "1.0.0",
+  "description": "This MCP server provides Swift and iOS development tools for enhanced Claude Code capabilities when working with iOS projects.",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "dev": "ts-node src/index.ts",
+    "start": "node dist/index.js",
+    "watch": "tsc -w",
+    "clean": "rm -rf dist",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prepare": "npm run clean && npm run build",
+    "validate": "tsc --noEmit",
+    "analyze": "npm run build && node dist/index.js --help",
+    "install-global": "npm link"
+  },
+  "keywords": [
+    "mcp",
+    "swift",
+    "ios",
+    "xcode",
+    "development",
+    "metal",
+    "compiler"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.12.1",
+    "@types/fs-extra": "^11.0.4",
+    "@types/node": "^24.0.0",
+    "fast-glob": "^3.3.3",
+    "fs-extra": "^11.3.0",
+    "glob": "^11.0.2",
+    "plist": "^3.1.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.3",
+    "xml2js": "^0.6.2"
+  },
+  "devDependencies": {
+    "@types/plist": "^3.0.5",
+    "@types/xml2js": "^0.4.14"
+  }
+}

@@ -1,0 +1,23 @@
+# MCP Server generated files
+node_modules/
+dist/
+build/
+*.log
+
+# Environment files
+.env
+.env.local
+
+# Runtime files
+*.pid
+*.tmp
+
+# macOS
+.DS_Store
+
+# IDE files
+.vscode/
+.idea/
+
+# Temporary installation files
+temp_mcp_install/

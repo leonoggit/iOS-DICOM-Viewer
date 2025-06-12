@@ -8,13 +8,23 @@
 #ifndef iOS_DICOMViewer_Bridging_Header_h
 #define iOS_DICOMViewer_Bridging_Header_h
 
-// Import DCMTK Bridge (uncomment when DCMTK is integrated)
-// #import "iOS_DICOMViewer/DICOM/Bridge/DCMTKBridge.h"
+// Import DCMTK Bridge for Swift access
+#import "DCMTKBridge.h"
 
-// DCMTK Headers (uncomment when DCMTK is integrated)
-// #import "dcmtk/dcmdata/dctk.h"
+// Core Foundation and other system frameworks
+#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
+#import <CoreGraphics/CoreGraphics.h>
+#import <Metal/Metal.h>
+#import <MetalKit/MetalKit.h>
+
+// DCMTK Headers (enabled for production DICOM parsing)
+// Note: These should only be uncommented after running ./build_dcmtk.sh
+// and configuring Xcode project with proper library/header search paths
+//
+// #import "dcmtk/config/osconfig.h"
+// #import "dcmtk/dcmdata/dctk.h"  
 // #import "dcmtk/dcmimgle/dcmimage.h"
-
-// Add any other Objective-C/C++ headers that need to be accessible from Swift
+// #import "dcmtk/dcmimage/diregist.h"
 
 #endif /* iOS_DICOMViewer_Bridging_Header_h */

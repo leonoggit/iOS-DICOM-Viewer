@@ -1,0 +1,28 @@
+{
+  "name": "ios-dicom-mcps",
+  "version": "1.0.0",
+  "description": "MCP servers for iOS DICOM Viewer project",
+  "private": true,
+  "scripts": {
+    "install-mcps": "npm install @modelcontextprotocol/server-filesystem @modelcontextprotocol/server-git @modelcontextprotocol/server-everything @modelcontextprotocol/server-memory",
+    "test-mcps": "npm list --depth=0"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/server-everything": "^2025.5.12",
+    "@modelcontextprotocol/server-filesystem": "^2025.3.28",
+    "@modelcontextprotocol/server-github": "^2025.4.8",
+    "@modelcontextprotocol/server-memory": "^2025.4.25",
+    "@modelcontextprotocol/server-postgres": "^0.6.2"
+  },
+  "keywords": [
+    "mcp",
+    "dicom",
+    "medical-imaging",
+    "ios"
+  ],
+  "author": "iOS DICOM Project",
+  "license": "MIT",
+  "devDependencies": {
+    "@modelcontextprotocol/sdk": "^1.12.1"
+  }
+}

@@ -24,7 +24,7 @@ class DICOMServiceManager {
         guard !isInitialized else { return }
         
         // Initialize core services
-        metadataStore = DICOMMetadataStore()
+        metadataStore = DICOMMetadataStore.shared
         imageLoader = DICOMImageRenderer()
         fileImporter = DICOMFileImporter.shared
         renderingEngine = DICOMImageRenderer()
@@ -36,7 +36,7 @@ class DICOMServiceManager {
         setupServiceDependencies()
         
         // Initialize all services
-        try await initializeAllServices()
+        // try await initializeAllServices()
         
         isInitialized = true
         
@@ -56,14 +56,14 @@ class DICOMServiceManager {
         fileImporter.delegate = metadataStore
         
         // Connect image loader to rendering engine
-        imageLoader.renderingEngine = renderingEngine
+        // imageLoader.renderingEngine = renderingEngine
     }
     
     /// Reset all services (useful for testing or cleanup)
     func reset() {
         metadataStore?.reset()
-        imageLoader?.clearCache()
-        renderingEngine?.cleanup()
+        // imageLoader?.clearCache()
+        // renderingEngine?.cleanup()
         
         print("🔄 DICOM Service Manager reset")
     }
@@ -73,12 +73,12 @@ class DICOMServiceManager {
         switch type {
         case is DICOMMetadataStore.Type:
             return metadataStore as? T
-        case is DICOMImageLoader.Type:
-            return imageLoader as? T
+        // case is DICOMImageLoader.Type:
+        //     return imageLoader as? T
         case is DICOMFileImporter.Type:
             return fileImporter as? T
-        case is RenderingEngine.Type:
-            return renderingEngine as? T
+        // case is RenderingEngine.Type:
+        //     return renderingEngine as? T
         case is SegmentationService.Type:
             return segmentationService as? T
         case is RTStructureSetService.Type:

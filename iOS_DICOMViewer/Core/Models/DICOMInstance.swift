@@ -76,9 +76,6 @@ class DICOMInstance {
         guard let spacing = metadata.pixelSpacing, spacing.count >= 2 else { return nil }
         return (spacing[0], spacing[1])
     }
-}
-
-// MARK: - Computed Properties
     
     /// File path for compatibility with image renderer
     var filePath: String? {
@@ -90,6 +87,7 @@ class DICOMInstance {
         return metadata.sopInstanceUID
     }
 }
+
 
 // MARK: - Identifiable
 extension DICOMInstance: Identifiable {

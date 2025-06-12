@@ -1,0 +1,236 @@
+{
+  "mcpServers": {
+    "filesystem": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-filesystem",
+        "/Users/leandroalmeida/iOS_DICOM"
+      ],
+      "description": "File system operations for iOS DICOM Viewer project",
+      "capabilities": ["read", "write", "create", "delete"],
+      "priority": "high"
+    },
+    "memory": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-memory"
+      ],
+      "description": "Persistent memory storage for conversation context",
+      "capabilities": ["store", "retrieve", "search"],
+      "priority": "high"
+    },
+    "github": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-github"
+      ],
+      "env": {
+        "GITHUB_PERSONAL_ACCESS_TOKEN": "${GITHUB_TOKEN}"
+      },
+      "description": "GitHub integration for repository management",
+      "capabilities": ["repositories", "issues", "pull-requests", "commits"],
+      "priority": "high"
+    },
+    "custom-dicom-mcp": {
+      "command": "node",
+      "args": [
+        "/Users/leandroalmeida/iOS_DICOM/MCPs/custom-dicom-mcp/dist/index.js"
+      ],
+      "description": "Specialized DICOM medical imaging tools and compliance checking",
+      "capabilities": [
+        "dicom-parsing",
+        "medical-compliance",
+        "medical-terminology",
+        "pixel-analysis",
+        "file-detection"
+      ],
+      "priority": "high",
+      "context": "medical-imaging"
+    },
+    "swift-tools-mcp": {
+      "command": "node",
+      "args": [
+        "/Users/leandroalmeida/iOS_DICOM/MCPs/swift-tools-mcp/dist/index.js"
+      ],
+      "description": "Swift and iOS development tools including Xcode project management",
+      "capabilities": [
+        "swift-analysis",
+        "ios-deployment",
+        "metal-validation",
+        "memory-profiling",
+        "simulator-management",
+        "xcode-project-management"
+      ],
+      "priority": "high",
+      "context": "ios-development"
+    },
+    "github-copilot-medical-ios": {
+      "command": "node",
+      "args": [
+        "/Users/leandroalmeida/iOS_DICOM/MCPs/github-copilot-medical-ios/dist/index.js"
+      ],
+      "description": "GitHub Copilot integration with medical imaging and iOS development context",
+      "capabilities": [
+        "enhanced-code-generation",
+        "medical-prompt-templates",
+        "ios-optimization-analysis",
+        "context-aware-suggestions"
+      ],
+      "priority": "high",
+      "context": "copilot-enhancement"
+    },
+    "brave-search": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-brave-search"
+      ],
+      "env": {
+        "BRAVE_API_KEY": "${BRAVE_API_KEY}"
+      },
+      "description": "Web search capabilities for research and documentation",
+      "capabilities": ["web-search", "real-time-information"],
+      "priority": "medium"
+    },
+    "postgres": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-postgres"
+      ],
+      "env": {
+        "POSTGRES_CONNECTION_STRING": "${POSTGRES_CONNECTION_STRING}"
+      },
+      "description": "PostgreSQL database operations for DICOM metadata storage",
+      "capabilities": ["database-queries", "schema-management"],
+      "priority": "medium",
+      "optional": true
+    }
+  },
+  "contexts": {
+    "medical-imaging": {
+      "description": "Context for medical imaging, DICOM standards, and clinical compliance",
+      "servers": ["custom-dicom-mcp", "github-copilot-medical-ios"],
+      "defaultPromptEnhancements": [
+        "Consider DICOM compliance requirements",
+        "Ensure patient data privacy (HIPAA)",
+        "Follow FDA medical device software guidelines",
+        "Implement proper error handling for medical data",
+        "Include audit logging for clinical environments"
+      ]
+    },
+    "ios-development": {
+      "description": "Context for iOS development, Swift programming, and Xcode integration",
+      "servers": ["swift-tools-mcp", "github-copilot-medical-ios"],
+      "defaultPromptEnhancements": [
+        "Optimize for iOS memory management (ARC)",
+        "Use Metal for GPU acceleration where appropriate",
+        "Follow Apple Human Interface Guidelines",
+        "Ensure iOS accessibility compliance",
+        "Test on multiple device sizes and orientations"
+      ]
+    },
+    "copilot-enhancement": {
+      "description": "Enhanced code generation with medical imaging and iOS context",
+      "servers": ["github-copilot-medical-ios"],
+      "defaultPromptEnhancements": [
+        "Generate production-ready Swift code",
+        "Include comprehensive error handling",
+        "Follow medical device software standards",
+        "Optimize for iOS performance characteristics",
+        "Provide detailed documentation and best practices"
+      ]
+    }
+  },
+  "workflows": {
+    "medical-ios-development": {
+      "description": "Complete workflow for developing medical imaging iOS applications",
+      "steps": [
+        {
+          "name": "Project Analysis",
+          "servers": ["filesystem", "swift-tools-mcp"],
+          "actions": ["analyze-project-structure", "validate-ios-deployment"]
+        },
+        {
+          "name": "DICOM Compliance Check",
+          "servers": ["custom-dicom-mcp"],
+          "actions": ["check-dicom-compliance", "validate-medical-terminology"]
+        },
+        {
+          "name": "Code Generation",
+          "servers": ["github-copilot-medical-ios"],
+          "actions": ["generate-medical-ios-code", "apply-optimization-suggestions"]
+        },
+        {
+          "name": "Quality Assurance", 
+          "servers": ["swift-tools-mcp", "custom-dicom-mcp"],
+          "actions": ["analyze-swift-code", "validate-medical-compliance"]
+        },
+        {
+          "name": "Documentation",
+          "servers": ["memory", "filesystem"],
+          "actions": ["store-context", "generate-documentation"]
+        }
+      ]
+    },
+    "dicom-integration": {
+      "description": "Workflow for integrating DICOM parsing and rendering capabilities",
+      "steps": [
+        {
+          "name": "DICOM Analysis",
+          "servers": ["custom-dicom-mcp"],
+          "actions": ["detect-medical-files", "parse-dicom-metadata", "analyze-pixel-data"]
+        },
+        {
+          "name": "iOS Integration",
+          "servers": ["swift-tools-mcp", "github-copilot-medical-ios"],
+          "actions": ["generate-swift-bridge", "optimize-metal-shaders", "validate-memory-usage"]
+        },
+        {
+          "name": "Testing",
+          "servers": ["swift-tools-mcp"],
+          "actions": ["run-simulator-tests", "profile-performance"]
+        }
+      ]
+    }
+  },
+  "configuration": {
+    "autoStart": true,
+    "healthCheckInterval": 30000,
+    "maxRetries": 3,
+    "timeout": 120000,
+    "logLevel": "info",
+    "enableContextualPrompts": true,
+    "medicalImagingMode": true,
+    "iosOptimizationMode": true
+  },
+  "environment": {
+    "requiredVariables": [
+      "GITHUB_TOKEN"
+    ],
+    "optionalVariables": [
+      "BRAVE_API_KEY",
+      "POSTGRES_CONNECTION_STRING"
+    ],
+    "defaultPaths": {
+      "projectRoot": "/Users/leandroalmeida/iOS_DICOM",
+      "mcpServers": "/Users/leandroalmeida/iOS_DICOM/MCPs",
+      "buildOutput": "/Users/leandroalmeida/iOS_DICOM/MCPs/*/dist"
+    }
+  },
+  "metadata": {
+    "version": "1.0.0",
+    "description": "Comprehensive MCP configuration for iOS DICOM Viewer development",
+    "author": "iOS DICOM Viewer Team",
+    "created": "2025-01-06",
+    "lastUpdated": "2025-01-06",
+    "compatibleWith": {
+      "claudeCode": ">=1.0.0",
+      "modelContextProtocol": ">=1.0.0",
+      "node": ">=18.0.0"
+    }
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "name": "github-copilot-medical-ios-mcp",
+  "version": "1.0.0",
+  "description": "MCP server for GitHub Copilot integration with medical imaging and iOS development context",
+  "main": "dist/index.js",
+  "type": "module",
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "dev": "tsc && node dist/index.js",
+    "test": "node test-server.js"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.3",
+    "@types/node": "^22.10.1",
+    "zod": "^3.24.1"
+  },
+  "devDependencies": {
+    "typescript": "^5.7.2"
+  },
+  "keywords": [
+    "mcp",
+    "github-copilot",
+    "medical-imaging",
+    "ios-development",
+    "swift",
+    "dicom",
+    "healthcare"
+  ],
+  "author": "iOS DICOM Viewer Team",
+  "license": "MIT"
+}

@@ -1,0 +1,18 @@
+{
+  "mcpServers": {
+    "custom-dicom-mcp": {
+      "command": "node",
+      "args": ["../custom-dicom-mcp/dist/index.js"],
+      "env": {
+        "PROJECT_ROOT": "/Users/leandroalmeida/iOS_DICOM"
+      }
+    },
+    "swift-tools-mcp": {
+      "command": "node", 
+      "args": ["../swift-tools-mcp/dist/index.js"],
+      "env": {
+        "XCODE_PROJECT": "/Users/leandroalmeida/iOS_DICOM/iOS_DICOMViewer.xcodeproj"
+      }
+    }
+  }
+}

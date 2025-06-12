@@ -92,4 +92,8 @@ struct DICOMMetadata {
     var defaultWindowWidth: Double {
         return windowWidth?.first ?? (bitsStored > 8 ? 65536.0 : 256.0)
     }
+    
+    var isSigned: Bool {
+        return pixelRepresentation == 1
+    }
 }
