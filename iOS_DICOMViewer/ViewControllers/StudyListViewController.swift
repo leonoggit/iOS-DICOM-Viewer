@@ -13,57 +13,151 @@ class StudyListViewController: UIViewController {
     private let complianceManager = ClinicalComplianceManager.shared
     
     // MARK: - UI Components
-    private lazy var tableView: UITableView = {
-        let table = UITableView(frame: .zero, style: .grouped)
-        table.delegate = self
-        table.dataSource = self
-        table.register(StudyTableViewCell.self, forCellReuseIdentifier: StudyTableViewCell.identifier)
-        table.separatorStyle = .singleLine
-        table.backgroundColor = .systemGroupedBackground
-        table.translatesAutoresizingMaskIntoConstraints = false
-        return table
+    private lazy var collectionView: UICollectionView = {
+        let layout = createModernLayout()
+        let collection = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collection.delegate = self
+        collection.dataSource = self
+        collection.backgroundColor = .clear
+        collection.translatesAutoresizingMaskIntoConstraints = false
+        collection.register(ModernStudyCell.self, forCellWithReuseIdentifier: ModernStudyCell.identifier)
+        collection.register(StudyHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: StudyHeaderView.identifier)
+        collection.showsVerticalScrollIndicator = false
+        return collection
     }()
+    
+    private func createModernLayout() -> UICollectionViewLayout {
+        let layout = UICollectionViewCompositionalLayout { sectionIndex, environment in
+            // Create item
+            let itemSize = NSCollectionLayoutSize(
+                widthDimension: .fractionalWidth(1.0),
+                heightDimension: .estimated(140)
+            )
+            let item = NSCollectionLayoutItem(layoutSize: itemSize)
+            
+            // Create group
+            let groupSize = NSCollectionLayoutSize(
+                widthDimension: .fractionalWidth(1.0),
+                heightDimension: .estimated(140)
+            )
+            let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
+            
+            // Create section
+            let section = NSCollectionLayoutSection(group: group)
+            section.interGroupSpacing = 16
+            section.contentInsets = NSDirectionalEdgeInsets(top: 16, leading: 20, bottom: 16, trailing: 20)
+            
+            // Add header
+            let headerSize = NSCollectionLayoutSize(
+                widthDimension: .fractionalWidth(1.0),
+                heightDimension: .estimated(60)
+            )
+            let header = NSCollectionLayoutBoundarySupplementaryItem(
+                layoutSize: headerSize,
+                elementKind: UICollectionView.elementKindSectionHeader,
+                alignment: .top
+            )
+            section.boundarySupplementaryItems = [header]
+            
+            return section
+        }
+        return layout
+    }
     
     private lazy var emptyStateView: UIView = {
         let view = UIView()
+        view.backgroundColor = .clear
         view.translatesAutoresizingMaskIntoConstraints = false
         
-        let imageView = UIImageView(image: UIImage(systemName: "doc.text.image"))
+        // Modern empty state card
+        let cardView = UIView()
+        cardView.backgroundColor = UIColor.systemBackground.withAlphaComponent(0.8)
+        cardView.layer.cornerRadius = 24
+        cardView.layer.shadowColor = UIColor.black.cgColor
+        cardView.layer.shadowOffset = CGSize(width: 0, height: 8)
+        cardView.layer.shadowRadius = 16
+        cardView.layer.shadowOpacity = 0.1
+        cardView.translatesAutoresizingMaskIntoConstraints = false
+        
+        // Medical icon with background
+        let iconBackground = UIView()
+        iconBackground.backgroundColor = UIColor.systemBlue.withAlphaComponent(0.1)
+        iconBackground.layer.cornerRadius = 40
+        iconBackground.translatesAutoresizingMaskIntoConstraints = false
+        
+        let imageView = UIImageView(image: UIImage(systemName: "heart.text.square.fill"))
         imageView.contentMode = .scaleAspectFit
-        imageView.tintColor = .systemGray3
+        imageView.tintColor = .systemBlue
         imageView.translatesAutoresizingMaskIntoConstraints = false
         
-        let label = UILabel()
-        label.text = "No DICOM Studies"
-        label.font = .systemFont(ofSize: 18, weight: .medium)
-        label.textColor = .systemGray2
-        label.textAlignment = .center
-        label.translatesAutoresizingMaskIntoConstraints = false
+        // Title and subtitle
+        let titleLabel = UILabel()
+        titleLabel.text = "No Medical Studies"
+        titleLabel.font = .systemFont(ofSize: 24, weight: .bold)
+        titleLabel.textColor = .label
+        titleLabel.textAlignment = .center
+        titleLabel.translatesAutoresizingMaskIntoConstraints = false
         
-        let sublabel = UILabel()
-        sublabel.text = "Import DICOM files to get started"
-        sublabel.font = .systemFont(ofSize: 14)
-        sublabel.textColor = .systemGray3
-        sublabel.textAlignment = .center
-        sublabel.translatesAutoresizingMaskIntoConstraints = false
+        let subtitleLabel = UILabel()
+        subtitleLabel.text = "Import DICOM files to begin medical imaging analysis"
+        subtitleLabel.font = .systemFont(ofSize: 16, weight: .medium)
+        subtitleLabel.textColor = .secondaryLabel
+        subtitleLabel.textAlignment = .center
+        subtitleLabel.numberOfLines = 0
+        subtitleLabel.translatesAutoresizingMaskIntoConstraints = false
         
-        view.addSubview(imageView)
-        view.addSubview(label)
-        view.addSubview(sublabel)
+        // Action button
+        let actionButton = UIButton(type: .system)
+        actionButton.setTitle("Import Studies", for: .normal)
+        actionButton.titleLabel?.font = .systemFont(ofSize: 18, weight: .semibold)
+        actionButton.backgroundColor = .systemBlue
+        actionButton.setTitleColor(.white, for: .normal)
+        actionButton.layer.cornerRadius = 12
+        actionButton.translatesAutoresizingMaskIntoConstraints = false
+        
+        // Assembly
+        iconBackground.addSubview(imageView)
+        cardView.addSubview(iconBackground)
+        cardView.addSubview(titleLabel)
+        cardView.addSubview(subtitleLabel)
+        cardView.addSubview(actionButton)
+        view.addSubview(cardView)
         
         NSLayoutConstraint.activate([
-            imageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            imageView.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: -30),
-            imageView.widthAnchor.constraint(equalToConstant: 60),
-            imageView.heightAnchor.constraint(equalToConstant: 60),
+            // Card view
+            cardView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            cardView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            cardView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 40),
+            cardView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -40),
             
-            label.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 16),
-            label.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-            label.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            // Icon background
+            iconBackground.topAnchor.constraint(equalTo: cardView.topAnchor, constant: 40),
+            iconBackground.centerXAnchor.constraint(equalTo: cardView.centerXAnchor),
+            iconBackground.widthAnchor.constraint(equalToConstant: 80),
+            iconBackground.heightAnchor.constraint(equalToConstant: 80),
             
-            sublabel.topAnchor.constraint(equalTo: label.bottomAnchor, constant: 8),
-            sublabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-            sublabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20)
+            // Icon
+            imageView.centerXAnchor.constraint(equalTo: iconBackground.centerXAnchor),
+            imageView.centerYAnchor.constraint(equalTo: iconBackground.centerYAnchor),
+            imageView.widthAnchor.constraint(equalToConstant: 48),
+            imageView.heightAnchor.constraint(equalToConstant: 48),
+            
+            // Title
+            titleLabel.topAnchor.constraint(equalTo: iconBackground.bottomAnchor, constant: 24),
+            titleLabel.leadingAnchor.constraint(equalTo: cardView.leadingAnchor, constant: 24),
+            titleLabel.trailingAnchor.constraint(equalTo: cardView.trailingAnchor, constant: -24),
+            
+            // Subtitle
+            subtitleLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 8),
+            subtitleLabel.leadingAnchor.constraint(equalTo: cardView.leadingAnchor, constant: 24),
+            subtitleLabel.trailingAnchor.constraint(equalTo: cardView.trailingAnchor, constant: -24),
+            
+            // Action button
+            actionButton.topAnchor.constraint(equalTo: subtitleLabel.bottomAnchor, constant: 32),
+            actionButton.centerXAnchor.constraint(equalTo: cardView.centerXAnchor),
+            actionButton.widthAnchor.constraint(equalToConstant: 160),
+            actionButton.heightAnchor.constraint(equalToConstant: 48),
+            actionButton.bottomAnchor.constraint(equalTo: cardView.bottomAnchor, constant: -40)
         ])
         
         return view
@@ -71,13 +165,15 @@ class StudyListViewController: UIViewController {
     
     // MARK: - Properties
     private var studies: [DICOMStudy] = []
-    private let metadataStore = DICOMServiceManager.shared.metadataStore
+    private var metadataStore: DICOMMetadataStore? {
+        return DICOMServiceManager.shared.metadataStore
+    }
     
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupUI()
-        setupNavigationBar()
+        setupModernUI()
+        setupElegantNavigationBar()
         loadStudies()
         
         // Listen for new studies
@@ -89,95 +185,147 @@ class StudyListViewController: UIViewController {
         )
     }
     
-    deinit {
-        NotificationCenter.default.removeObserver(self)
-    }
-    
-    // MARK: - UI Setup
-    private func setupUI() {
+    private func setupModernUI() {
         view.backgroundColor = .systemGroupedBackground
         
-        view.addSubview(tableView)
+        // Setup gradient background
+        let gradientLayer = CAGradientLayer()
+        gradientLayer.frame = view.bounds
+        gradientLayer.colors = [
+            UIColor.systemBlue.withAlphaComponent(0.05).cgColor,
+            UIColor.systemBackground.withAlphaComponent(0.8).cgColor
+        ]
+        gradientLayer.locations = [0.0, 1.0]
+        view.layer.insertSublayer(gradientLayer, at: 0)
+        
+        // Add collection view
+        view.addSubview(collectionView)
         view.addSubview(emptyStateView)
         
         NSLayoutConstraint.activate([
-            tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             
-            emptyStateView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            emptyStateView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            emptyStateView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             emptyStateView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            emptyStateView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
+            emptyStateView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            emptyStateView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
         
         updateEmptyState()
     }
     
-    private func setupNavigationBar() {
-        title = "DICOM Studies"
-        navigationController?.navigationBar.prefersLargeTitles = true
+    private func setupElegantNavigationBar() {
+        title = "Medical Studies"
         
-        let importButton = UIBarButtonItem(
-            image: UIImage(systemName: "plus"),
+        // Add modern search and filter buttons
+        let searchButton = UIBarButtonItem(
+            image: UIImage(systemName: "magnifyingglass"),
             style: .plain,
             target: self,
-            action: #selector(importFiles)
+            action: #selector(searchButtonTapped)
         )
-        navigationItem.rightBarButtonItem = importButton
+        
+        let filterButton = UIBarButtonItem(
+            image: UIImage(systemName: "line.3.horizontal.decrease.circle"),
+            style: .plain,
+            target: self,
+            action: #selector(filterButtonTapped)
+        )
+        
+        navigationItem.rightBarButtonItems = [filterButton, searchButton]
+        
+        // Style buttons
+        searchButton.tintColor = .systemBlue
+        filterButton.tintColor = .systemBlue
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
     }
     
     // MARK: - Data Loading
     private func loadStudies() {
         studies = metadataStore?.getAllStudies() ?? []
         DispatchQueue.main.async {
-            self.tableView.reloadData()
+            self.collectionView.reloadData()
             self.updateEmptyState()
         }
     }
     
     private func updateEmptyState() {
         emptyStateView.isHidden = !studies.isEmpty
-        tableView.isHidden = studies.isEmpty
+        collectionView.isHidden = studies.isEmpty
     }
     
     // MARK: - Actions
+    @objc private func searchButtonTapped() {
+        // Implement search functionality
+        let alert = UIAlertController(title: "Search", message: "Search functionality coming soon", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default))
+        present(alert, animated: true)
+    }
+    
+    @objc private func filterButtonTapped() {
+        // Implement filter functionality
+        let alert = UIAlertController(title: "Filter", message: "Filter functionality coming soon", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default))
+        present(alert, animated: true)
+    }
+    
+    @objc private func studiesDidUpdate() {
+        loadStudies()
+    }
+    
+    // MARK: - File Import
     @objc private func importFiles() {
         let documentPicker = UIDocumentPickerViewController(forOpeningContentTypes: [.data])
         documentPicker.delegate = self
         documentPicker.allowsMultipleSelection = true
         present(documentPicker, animated: true)
     }
-    
-    @objc private func studiesDidUpdate() {
-        loadStudies()
-    }
 }
 
-// MARK: - UITableViewDataSource
-extension StudyListViewController: UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+// MARK: - UICollectionViewDataSource
+extension StudyListViewController: UICollectionViewDataSource {
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 1
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return studies.count
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: StudyTableViewCell.identifier, for: indexPath) as? StudyTableViewCell else {
-            return UITableViewCell()
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ModernStudyCell.identifier, for: indexPath) as? ModernStudyCell else {
+            return UICollectionViewCell()
         }
         
-        let study = studies[indexPath.row]
+        let study = studies[indexPath.item]
         cell.configure(with: study)
         return cell
     }
+    
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        guard kind == UICollectionView.elementKindSectionHeader,
+              let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: StudyHeaderView.identifier, for: indexPath) as? StudyHeaderView else {
+            return UICollectionReusableView()
+        }
+        
+        let studyCount = studies.count
+        let title = studyCount == 0 ? "No Studies" : "Medical Studies"
+        header.configure(title: title, count: studyCount)
+        
+        return header
+    }
 }
 
-// MARK: - UITableViewDelegate
-extension StudyListViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
-        
-        let study = studies[indexPath.row]
+// MARK: - UICollectionViewDelegate
+extension StudyListViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let study = studies[indexPath.item]
         
         // Log patient data access for audit compliance
         complianceManager.logPatientDataAccess(
@@ -186,34 +334,67 @@ extension StudyListViewController: UITableViewDelegate {
             action: .view
         )
         
+        // Add haptic feedback
+        let impactGenerator = UIImpactFeedbackGenerator(style: .medium)
+        impactGenerator.impactOccurred()
+        
         let viewerVC = ViewerViewController(study: study)
         navigationController?.pushViewController(viewerVC, animated: true)
     }
     
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 80
+    func collectionView(_ collectionView: UICollectionView, contextMenuConfigurationForItemAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
+        let study = studies[indexPath.item]
+        
+        return UIContextMenuConfiguration(identifier: nil, previewProvider: nil) { _ in
+            let deleteAction = UIAction(
+                title: "Delete Study",
+                image: UIImage(systemName: "trash"),
+                attributes: .destructive
+            ) { _ in
+                self.showDeleteConfirmation(for: study, at: indexPath)
+            }
+            
+            let infoAction = UIAction(
+                title: "Study Info",
+                image: UIImage(systemName: "info.circle")
+            ) { _ in
+                self.showStudyInfo(for: study)
+            }
+            
+            return UIMenu(title: "", children: [infoAction, deleteAction])
+        }
     }
     
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            let study = studies[indexPath.row]
-            
-            let alert = UIAlertController(
-                title: "Delete Study",
-                message: "Are you sure you want to delete this study? This action cannot be undone.",
-                preferredStyle: .alert
-            )
-            
-            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
-            alert.addAction(UIAlertAction(title: "Delete", style: .destructive) { _ in
-                self.metadataStore?.removeStudy(byUID: study.studyInstanceUID)
-                self.studies.remove(at: indexPath.row)
-                tableView.deleteRows(at: [indexPath], with: .fade)
-                self.updateEmptyState()
-            })
-            
-            present(alert, animated: true)
-        }
+    private func showDeleteConfirmation(for study: DICOMStudy, at indexPath: IndexPath) {
+        let alert = UIAlertController(
+            title: "Delete Study",
+            message: "Are you sure you want to delete this study? This action cannot be undone.",
+            preferredStyle: .alert
+        )
+        
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+        alert.addAction(UIAlertAction(title: "Delete", style: .destructive) { _ in
+            self.metadataStore?.removeStudy(byUID: study.studyInstanceUID)
+            self.studies.remove(at: indexPath.item)
+            self.collectionView.deleteItems(at: [indexPath])
+            self.updateEmptyState()
+        })
+        
+        present(alert, animated: true)
+    }
+    
+    private func showStudyInfo(for study: DICOMStudy) {
+        let message = """
+        Patient: \(study.patientName ?? "Unknown")
+        Study Date: \(study.studyDate?.description ?? "Unknown")
+        Modality: \(study.series.first?.modality ?? "Unknown")
+        Series Count: \(study.series.count)
+        Study UID: \(study.studyInstanceUID)
+        """
+        
+        let alert = UIAlertController(title: "Study Information", message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default))
+        present(alert, animated: true)
     }
 }
 
@@ -222,8 +403,9 @@ extension StudyListViewController: UIDocumentPickerDelegate {
     func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL]) {
         Task {
             do {
-                try await DICOMServiceManager.shared.fileImporter?.importMultipleFiles(urls, 
-                                                                                      progressHandler: { _ in })
+                if let fileImporter = DICOMServiceManager.shared.fileImporter {
+                    try await fileImporter.importMultipleFiles(urls, progressHandler: { _ in })
+                }
             } catch {
                 DispatchQueue.main.async {
                     self.showError(error)
@@ -249,73 +431,6 @@ protocol StudyListViewControllerDelegate: AnyObject {
     func didDeleteStudy(_ study: DICOMStudy)
 }
 
-// MARK: - StudyTableViewCell
-class StudyTableViewCell: UITableViewCell {
-    static let identifier = "StudyTableViewCell"
-    
-    private let studyLabel = UILabel()
-    private let patientLabel = UILabel()
-    private let dateLabel = UILabel()
-    private let seriesCountLabel = UILabel()
-    
-    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
-        setupUI()
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    private func setupUI() {
-        accessoryType = .disclosureIndicator
-        
-        studyLabel.font = .systemFont(ofSize: 16, weight: .medium)
-        studyLabel.textColor = .label
-        
-        patientLabel.font = .systemFont(ofSize: 14)
-        patientLabel.textColor = .secondaryLabel
-        
-        dateLabel.font = .systemFont(ofSize: 12)
-        dateLabel.textColor = .tertiaryLabel
-        
-        seriesCountLabel.font = .systemFont(ofSize: 12)
-        seriesCountLabel.textColor = .systemBlue
-        
-        let stackView = UIStackView(arrangedSubviews: [studyLabel, patientLabel, dateLabel, seriesCountLabel])
-        stackView.axis = .vertical
-        stackView.spacing = 2
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        
-        contentView.addSubview(stackView)
-        
-        NSLayoutConstraint.activate([
-            stackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
-            stackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
-            stackView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
-            stackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -8)
-        ])
-    }
-    
-    func configure(with study: DICOMStudy) {
-        studyLabel.text = (study.studyDescription?.isEmpty == false) ? study.studyDescription! : "Unnamed Study"
-        patientLabel.text = (study.patientName?.isEmpty == false) ? study.patientName! : "Unknown Patient"
-        dateLabel.text = formatDate(study.studyDate ?? "")
-        seriesCountLabel.text = "\(study.series.count) series"
-    }
-    
-    private func formatDate(_ dateString: String) -> String {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyyMMdd"
-        
-        if let date = formatter.date(from: dateString) {
-            formatter.dateStyle = .medium
-            return formatter.string(from: date)
-        }
-        
-        return dateString.isEmpty ? "Unknown Date" : dateString
-    }
-}
 
 // MARK: - Notifications
 extension Notification.Name {

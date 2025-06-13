@@ -72,11 +72,6 @@
 		F4DBB7B653353B6E169E9541 /* RTStructureRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 251D4090577DC6874F9E084A /* RTStructureRenderer.swift */; };
 		FBE0A9013AA4DDA4B1B980E5 /* DICOMParsingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7AC3B9BF55DD3803B29065 /* DICOMParsingTests.swift */; };
 		FF361FB0EEEE1A012B743DED /* SegmentationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FA059AC006CC3DFCB3BD13E /* SegmentationService.swift */; };
-		20F7209C39C64621BB3C4B27 /* AutomaticSegmentationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDD080DC9F4FCD8545F147 /* AutomaticSegmentationService.swift */; };
-		04BC0530C2104FCB99C6A2C4 /* UrinaryTractSegmentationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2D9477CD64142FA9978CC0C /* UrinaryTractSegmentationService.swift */; };
-		A43958E5D0E4413DA0B3EDB7 /* CoreMLSegmentationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09B8DF73678544359F1B3238 /* CoreMLSegmentationService.swift */; };
-		DD49856232A843CA8A4EE03C /* ModernStudyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66CEC845F3EE40308F7D3C82 /* ModernStudyCell.swift */; };
-		B9C3A0D754EA49D8BFD5FC4C /* StudyHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB8710B6DA34727AE99BDEB /* StudyHeaderView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -184,11 +179,6 @@
 		F94DF31E78D7BB980B9A298B /* module.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = module.modulemap; sourceTree = "<group>"; };
 		FB95C10DFFCA103001F38E79 /* SegmentationRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentationRenderer.swift; sourceTree = "<group>"; };
 		FEDE1524D848B5A18F96FB1D /* ServiceProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceProtocols.swift; sourceTree = "<group>"; };
-		35CDD080DC9F4FCD8545F147 /* AutomaticSegmentationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutomaticSegmentationService.swift; sourceTree = "<group>"; };
-		C2D9477CD64142FA9978CC0C /* UrinaryTractSegmentationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UrinaryTractSegmentationService.swift; sourceTree = "<group>"; };
-		09B8DF73678544359F1B3238 /* CoreMLSegmentationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreMLSegmentationService.swift; sourceTree = "<group>"; };
-		66CEC845F3EE40308F7D3C82 /* ModernStudyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModernStudyCell.swift; sourceTree = "<group>"; };
-		5DB8710B6DA34727AE99BDEB /* StudyHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudyHeaderView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -276,8 +266,6 @@
 				30E5B6E844290E6AE04673D8 /* Gestures */,
 				144E6D9655A4D694FB394BAD /* MPR */,
 				C7CE45827DE6F1C654DD122A /* ROI */,
-				66CEC845F3EE40308F7D3C82 /* ModernStudyCell.swift */,
-				5DB8710B6DA34727AE99BDEB /* StudyHeaderView.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -397,9 +385,6 @@
 				26E224E9C9228D87FB70D105 /* DICOMMetadataStore.swift */,
 				6ACB03E13FE148C334412B0F /* DICOMServiceManager.swift */,
 				FEDE1524D848B5A18F96FB1D /* ServiceProtocols.swift */,
-				35CDD080DC9F4FCD8545F147 /* AutomaticSegmentationService.swift */,
-				C2D9477CD64142FA9978CC0C /* UrinaryTractSegmentationService.swift */,
-				09B8DF73678544359F1B3238 /* CoreMLSegmentationService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -749,11 +734,6 @@
 				08AD607E213021733AFDA407 /* ViewerViewController.swift in Sources */,
 				D25D052B70447696149C0A53 /* VolumeRenderer.swift in Sources */,
 				2447824A48F13D49A2806DB5 /* VolumeRenderingShaders.metal in Sources */,
-				20F7209C39C64621BB3C4B27 /* AutomaticSegmentationService.swift in Sources */,
-				04BC0530C2104FCB99C6A2C4 /* UrinaryTractSegmentationService.swift in Sources */,
-				A43958E5D0E4413DA0B3EDB7 /* CoreMLSegmentationService.swift in Sources */,
-				DD49856232A843CA8A4EE03C /* ModernStudyCell.swift in Sources */,
-				B9C3A0D754EA49D8BFD5FC4C /* StudyHeaderView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

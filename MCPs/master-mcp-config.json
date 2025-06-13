@@ -108,6 +108,25 @@
       "capabilities": ["database-queries", "schema-management"],
       "priority": "medium",
       "optional": true
+    },
+    "XcodeBuildMCP": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "xcodebuildmcp@latest"
+      ],
+      "description": "Xcode build and project management tools for iOS development",
+      "capabilities": [
+        "xcode-project-discovery",
+        "build-operations",
+        "platform-specific-builds",
+        "project-information",
+        "clean-operations",
+        "incremental-builds",
+        "project-scaffolding"
+      ],
+      "priority": "high",
+      "context": "ios-development"
     }
   },
   "contexts": {
@@ -124,7 +143,7 @@
     },
     "ios-development": {
       "description": "Context for iOS development, Swift programming, and Xcode integration",
-      "servers": ["swift-tools-mcp", "github-copilot-medical-ios"],
+      "servers": ["swift-tools-mcp", "github-copilot-medical-ios", "XcodeBuildMCP"],
       "defaultPromptEnhancements": [
         "Optimize for iOS memory management (ARC)",
         "Use Metal for GPU acceleration where appropriate",
