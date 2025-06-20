@@ -28,17 +28,17 @@ class StudyListViewController: UIViewController {
     
     private func createModernLayout() -> UICollectionViewLayout {
         let layout = UICollectionViewCompositionalLayout { sectionIndex, environment in
-            // Create item
+            // Create item - increased height for thumbnail images
             let itemSize = NSCollectionLayoutSize(
                 widthDimension: .fractionalWidth(1.0),
-                heightDimension: .estimated(140)
+                heightDimension: .estimated(220)
             )
             let item = NSCollectionLayoutItem(layoutSize: itemSize)
             
             // Create group
             let groupSize = NSCollectionLayoutSize(
                 widthDimension: .fractionalWidth(1.0),
-                heightDimension: .estimated(140)
+                heightDimension: .estimated(220)
             )
             let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
             
@@ -114,6 +114,7 @@ class StudyListViewController: UIViewController {
         actionButton.setTitleColor(.white, for: .normal)
         actionButton.layer.cornerRadius = 12
         actionButton.translatesAutoresizingMaskIntoConstraints = false
+        actionButton.addTarget(self, action: #selector(importFiles), for: .touchUpInside)
         
         // Assembly
         iconBackground.addSubview(imageView)
@@ -172,17 +173,34 @@ class StudyListViewController: UIViewController {
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("📺 StudyListViewController: viewDidLoad() called")
         setupModernUI()
         setupElegantNavigationBar()
         loadStudies()
         
         // Listen for new studies
+        print("📻 StudyListViewController: Setting up notification observers")
         NotificationCenter.default.addObserver(
             self,
             selector: #selector(studiesDidUpdate),
-            name: .studiesDidUpdate,
+            name: DICOMMetadataStore.studyAddedNotification,
             object: nil
         )
+        
+        // Listen for metadata updates
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(studiesDidUpdate),
+            name: DICOMMetadataStore.metadataUpdatedNotification,
+            object: nil
+        )
+        print("📻 StudyListViewController: Notification observers set up for: studyAdded and metadataUpdated")
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        print("👁️ StudyListViewController: viewDidAppear - forcing data reload")
+        loadStudies()
     }
     
     private func setupModernUI() {
@@ -206,12 +224,12 @@ class StudyListViewController: UIViewController {
             collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            collectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
             
             emptyStateView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             emptyStateView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             emptyStateView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            emptyStateView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+            emptyStateView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])
         
         updateEmptyState()
@@ -247,11 +265,37 @@ class StudyListViewController: UIViewController {
     }
     
     // MARK: - Data Loading
-    private func loadStudies() {
-        studies = metadataStore?.getAllStudies() ?? []
+    func loadStudies() {
+        print("📚 StudyListViewController: loadStudies() called")
+        
+        // Get metadata store and check its state
+        guard let store = metadataStore else {
+            print("❌ StudyListViewController: metadataStore is nil!")
+            return
+        }
+        
+        let loadedStudies = store.getAllStudies()
+        print("📚 StudyListViewController: Metadata store returned \(loadedStudies.count) studies")
+        
+        // Get store statistics for debugging
+        let stats = store.getStatistics()
+        print("📊 StudyListViewController: Store stats - Studies: \(stats.studies), Series: \(stats.series), Instances: \(stats.instances)")
+        
+        studies = loadedStudies
+        
+        // Log each study for debugging
+        for (index, study) in studies.enumerated() {
+            print("  📖 Study \(index + 1): \(study.patientName ?? "Unknown") - \(study.studyDescription ?? "No description") [UID: \(study.studyInstanceUID)]")
+            print("    Series count: \(study.series.count)")
+        }
+        
+        print("🔄 StudyListViewController: About to reload UI with \(self.studies.count) studies")
+        
         DispatchQueue.main.async {
+            print("🔄 StudyListViewController: On main thread - reloading collection view")
             self.collectionView.reloadData()
             self.updateEmptyState()
+            print("✅ StudyListViewController: Collection view reloaded and empty state updated")
         }
     }
     
@@ -276,7 +320,41 @@ class StudyListViewController: UIViewController {
     }
     
     @objc private func studiesDidUpdate() {
-        loadStudies()
+        print("🔔 StudyListViewController: Received studiesDidUpdate notification")
+        print("🔔 StudyListViewController: Current thread: \(Thread.current)")
+        print("🔔 StudyListViewController: Is main thread: \(Thread.isMainThread)")
+        
+        DispatchQueue.main.async {
+            print("🔄 StudyListViewController: Executing loadStudies on main thread")
+            print("🔄 StudyListViewController: Current studies count before load: \(self.studies.count)")
+            
+            self.loadStudies()
+            
+            print("🔄 StudyListViewController: Current studies count after load: \(self.studies.count)")
+            
+            // Force complete UI refresh
+            print("🔄 StudyListViewController: Forcing complete UI refresh")
+            self.updateEmptyState()
+            
+            // Check if collection view is visible
+            print("🔄 StudyListViewController: CollectionView isHidden: \(self.collectionView.isHidden)")
+            print("🔄 StudyListViewController: EmptyStateView isHidden: \(self.emptyStateView.isHidden)")
+            
+            self.collectionView.reloadData()
+            
+            // Force layout update
+            self.view.setNeedsLayout()
+            self.view.layoutIfNeeded()
+            
+            // Additional UI refresh attempt
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                print("🔄 StudyListViewController: Secondary UI refresh attempt")
+                self.collectionView.reloadData()
+                self.updateEmptyState()
+            }
+            
+            print("✅ StudyListViewController: Complete UI refresh finished")
+        }
     }
     
     // MARK: - File Import
@@ -401,16 +479,22 @@ extension StudyListViewController: UICollectionViewDelegate {
 // MARK: - UIDocumentPickerDelegate
 extension StudyListViewController: UIDocumentPickerDelegate {
     func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL]) {
+        print("📁 StudyListViewController: Document picker selected \(urls.count) files")
+        
         Task {
-            do {
-                if let fileImporter = DICOMServiceManager.shared.fileImporter {
-                    try await fileImporter.importMultipleFiles(urls, progressHandler: { _ in })
+            guard let fileImporter = DICOMServiceManager.shared.fileImporter else {
+                print("❌ StudyListViewController: File importer not available")
+                await MainActor.run {
+                    self.showError(NSError(domain: "DICOMViewer", code: 1, userInfo: [NSLocalizedDescriptionKey: "File importer not available"]))
                 }
-            } catch {
-                DispatchQueue.main.async {
-                    self.showError(error)
-                }
+                return
             }
+            
+            print("🚀 StudyListViewController: Starting import of \(urls.count) files")
+            await fileImporter.importMultipleFiles(urls) { progress in
+                print("📊 Import progress: \(Int(progress * 100))%")
+            }
+            print("✅ StudyListViewController: Import completed successfully")
         }
     }
     
@@ -433,6 +517,4 @@ protocol StudyListViewControllerDelegate: AnyObject {
 
 
 // MARK: - Notifications
-extension Notification.Name {
-    static let studiesDidUpdate = Notification.Name("studiesDidUpdate")
-}
+// Notification names are now defined in DICOMMetadataStore

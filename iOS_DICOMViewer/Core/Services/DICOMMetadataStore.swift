@@ -269,5 +269,12 @@ extension DICOMMetadataStore: DICOMFileImporterDelegate {
         if getStudy(byUID: studyUID) == nil {
             addStudy(study)
         }
+        
+        // Always post metadata updated notification after import on main thread
+        print("📡 DICOMMetadataStore: Posting metadataUpdatedNotification on main thread")
+        DispatchQueue.main.async {
+            self.notificationCenter.post(name: Self.metadataUpdatedNotification, object: nil)
+            print("📡 DICOMMetadataStore: Posted notification on main thread")
+        }
     }
 }

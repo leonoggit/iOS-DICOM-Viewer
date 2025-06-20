@@ -18,13 +18,12 @@
 #import <Metal/Metal.h>
 #import <MetalKit/MetalKit.h>
 
-// DCMTK Headers (enabled for production DICOM parsing)
+// DCMTK Headers (disabled for mock build)
 // Note: These should only be uncommented after running ./build_dcmtk.sh
 // and configuring Xcode project with proper library/header search paths
 //
-// #import "dcmtk/config/osconfig.h"
-// #import "dcmtk/dcmdata/dctk.h"  
-// #import "dcmtk/dcmimgle/dcmimage.h"
-// #import "dcmtk/dcmimage/diregist.h"
+//#import "dcmtk/dcmdata/dctk.h"
+//#import "dcmtk/dcmimgle/dcmimage.h"
+//#import "dcmtk/dcmimage/diregist.h"
 
 #endif /* iOS_DICOMViewer_Bridging_Header_h */

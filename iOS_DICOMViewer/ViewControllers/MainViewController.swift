@@ -46,13 +46,20 @@ class MainViewController: UIViewController {
         // Initialize services asynchronously
         initializeDICOMServices()
         
+        // TEMPORARY DEBUG: Force immediate transition after a delay
+        print("🎯 MainViewController: Setting up emergency UI transition timer")
+        DispatchQueue.main.asyncAfter(deadline: .now() + 5.0) {
+            print("🎯 MainViewController: Emergency transition - forcing showStudyList")
+            self.showStudyList()
+        }
+        
         logger.info("✅ MainViewController: viewDidLoad completed")
     }
     
     private func setupModernUI() {
-        // Modern gradient background
-        view.backgroundColor = .systemBackground
-        setupGradientBackground()
+        // Colors from HTML template
+        let backgroundDark = UIColor(red: 17/255, green: 22/255, blue: 24/255, alpha: 1.0) // #111618
+        view.backgroundColor = backgroundDark
         
         // Setup main content area
         setupContentArea()
@@ -61,84 +68,73 @@ class MainViewController: UIViewController {
         setupWelcomeInterface()
     }
     
-    private func setupGradientBackground() {
-        let gradientLayer = CAGradientLayer()
-        gradientLayer.frame = view.bounds
-        gradientLayer.colors = [
-            UIColor.systemBlue.withAlphaComponent(0.1).cgColor,
-            UIColor.systemBackground.cgColor,
-            UIColor.systemTeal.withAlphaComponent(0.05).cgColor
-        ]
-        gradientLayer.locations = [0.0, 0.5, 1.0]
-        gradientLayer.startPoint = CGPoint(x: 0, y: 0)
-        gradientLayer.endPoint = CGPoint(x: 1, y: 1)
-        view.layer.insertSublayer(gradientLayer, at: 0)
-    }
-    
     private func setupContentArea() {
         containerView.backgroundColor = .clear
-        containerView.layer.cornerRadius = 16
-        containerView.layer.shadowColor = UIColor.black.cgColor
-        containerView.layer.shadowOffset = CGSize(width: 0, height: 4)
-        containerView.layer.shadowRadius = 12
-        containerView.layer.shadowOpacity = 0.1
-        
         containerView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(containerView)
         
+        // Optimized for iPhone 16 Pro Max - full screen utilization
         NSLayoutConstraint.activate([
-            containerView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
-            containerView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
-            containerView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
-            containerView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -20)
+            containerView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            containerView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            containerView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            containerView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])
     }
     
     private func setupWelcomeInterface() {
-        // Create welcome card
+        // Create welcome card matching HTML template style
         welcomeCard = UIView()
-        welcomeCard!.backgroundColor = UIColor.systemBackground.withAlphaComponent(0.95)
+        let surfaceDarkSecondary = UIColor(red: 40/255, green: 53/255, blue: 57/255, alpha: 1.0) // #283539
+        welcomeCard!.backgroundColor = surfaceDarkSecondary
+        welcomeCard!.layer.cornerRadius = 16
+        welcomeCard!.layer.masksToBounds = true
+        welcomeCard!.translatesAutoresizingMaskIntoConstraints = false
+        
+        // Setup card styling
         welcomeCard!.layer.cornerRadius = 20
         welcomeCard!.layer.shadowColor = UIColor.black.cgColor
         welcomeCard!.layer.shadowOffset = CGSize(width: 0, height: 8)
         welcomeCard!.layer.shadowRadius = 20
         welcomeCard!.layer.shadowOpacity = 0.15
-        welcomeCard!.translatesAutoresizingMaskIntoConstraints = false
         
         // Medical icon
         let iconImageView = UIImageView()
         iconImageView.image = UIImage(systemName: "stethoscope.circle.fill")
-        iconImageView.tintColor = .systemBlue
+        let primaryColor = UIColor(red: 12/255, green: 184/255, blue: 242/255, alpha: 1.0)
+        iconImageView.tintColor = primaryColor
         iconImageView.contentMode = .scaleAspectFit
         iconImageView.translatesAutoresizingMaskIntoConstraints = false
         
         // Title label
         let titleLabel = UILabel()
-        titleLabel.text = "DICOM Viewer Pro"
-        titleLabel.font = .systemFont(ofSize: 32, weight: .bold)
-        titleLabel.textColor = .label
+        titleLabel.text = "DICOM Viewer"
+        titleLabel.font = UIFont.systemFont(ofSize: 28, weight: .bold)
+        titleLabel.textColor = UIColor.white // HTML template text-primary-dark
         titleLabel.textAlignment = .center
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         
         // Subtitle label
         let subtitleLabel = UILabel()
-        subtitleLabel.text = "Professional Medical Imaging"
-        subtitleLabel.font = .systemFont(ofSize: 18, weight: .medium)
-        subtitleLabel.textColor = .secondaryLabel
+        subtitleLabel.text = "Professional Medical Imaging\nfor iOS 18+"
+        subtitleLabel.font = UIFont.systemFont(ofSize: 16, weight: .medium)
+        let textSecondary = UIColor(red: 156/255, green: 178/255, blue: 186/255, alpha: 1.0) // #9cb2ba
+        subtitleLabel.textColor = textSecondary
         subtitleLabel.textAlignment = .center
+        subtitleLabel.numberOfLines = 0
         subtitleLabel.translatesAutoresizingMaskIntoConstraints = false
         
         // Status label
         statusLabel = UILabel()
         statusLabel!.text = "Initializing Services..."
-        statusLabel!.font = .systemFont(ofSize: 16, weight: .regular)
-        statusLabel!.textColor = .systemBlue
+        statusLabel!.font = UIFont.systemFont(ofSize: 16, weight: .regular)
+        statusLabel!.textColor = primaryColor
         statusLabel!.textAlignment = .center
         statusLabel!.translatesAutoresizingMaskIntoConstraints = false
         
         // Activity indicator
         activityIndicator = UIActivityIndicatorView(style: .medium)
-        activityIndicator!.color = .systemBlue
+        activityIndicator!.color = primaryColor
         activityIndicator!.startAnimating()
         activityIndicator!.translatesAutoresizingMaskIntoConstraints = false
         
@@ -154,10 +150,11 @@ class MainViewController: UIViewController {
         NSLayoutConstraint.activate([
             // Welcome card
             welcomeCard!.centerXAnchor.constraint(equalTo: containerView.centerXAnchor),
-            welcomeCard!.centerYAnchor.constraint(equalTo: containerView.centerYAnchor),
-            welcomeCard!.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 24),
-            welcomeCard!.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -24),
-            welcomeCard!.heightAnchor.constraint(equalToConstant: 320),
+            welcomeCard!.centerYAnchor.constraint(equalTo: containerView.centerYAnchor, constant: -40),
+            welcomeCard!.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 20),
+            welcomeCard!.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -20),
+            welcomeCard!.heightAnchor.constraint(lessThanOrEqualToConstant: 400),
+            welcomeCard!.heightAnchor.constraint(greaterThanOrEqualToConstant: 280),
             
             // Icon
             iconImageView.topAnchor.constraint(equalTo: welcomeCard!.topAnchor, constant: 40),
@@ -196,8 +193,21 @@ class MainViewController: UIViewController {
                 await initializeSegmentationServices()
                 
                 await MainActor.run {
+                    print("🎯 MainViewController: MainActor.run block executed")
                     logger.info("✅ MainViewController: DICOM services initialized successfully")
+                    print("🎯 MainViewController: About to call updateUIForServicesReady")
                     self.updateUIForServicesReady()
+                    
+                    // Post notification that services are ready
+                    print("🎯 MainViewController: Posting DICOMServicesReady notification")
+                    NotificationCenter.default.post(name: .init("DICOMServicesReady"), object: nil)
+                    
+                    // Force immediate transition for debugging
+                    print("🎯 MainViewController: Forcing immediate study list transition for debug")
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
+                        print("🎯 MainViewController: Attempting immediate showStudyList call")
+                        self.showStudyList()
+                    }
                 }
             } catch {
                 logger.error("❌ MainViewController: Failed to initialize DICOM services: \(error.localizedDescription)")
@@ -238,15 +248,18 @@ class MainViewController: UIViewController {
     }
     
     private func updateUIForServicesReady() {
+        print("🎯 MainViewController: updateUIForServicesReady() called")
         statusLabel?.text = "Ready for Medical Imaging"
         statusLabel?.textColor = .systemGreen
         activityIndicator?.stopAnimating()
         activityIndicator?.isHidden = true
         
+        print("🎯 MainViewController: Starting transition animation")
         // Animate transition
         UIView.animate(withDuration: 0.5, delay: 1.0, options: .curveEaseInOut) {
             self.statusLabel?.alpha = 0.0
         } completion: { _ in
+            print("🎯 MainViewController: Animation completed, calling transitionToMainInterface")
             self.transitionToMainInterface()
         }
     }
@@ -259,53 +272,65 @@ class MainViewController: UIViewController {
     }
     
     private func transitionToMainInterface() {
+        print("🎯 MainViewController: transitionToMainInterface() called")
         // Animate welcome card out
         UIView.animate(withDuration: 0.8, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0.2, options: .curveEaseInOut) {
             self.welcomeCard?.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
             self.welcomeCard?.alpha = 0.0
         } completion: { _ in
+            print("🎯 MainViewController: Welcome card animation completed")
             self.welcomeCard?.removeFromSuperview()
+            print("🎯 MainViewController: About to call showStudyList()")
             self.showStudyList()
+            print("🎯 MainViewController: Setting up observers")
             self.setupObservers()
+            print("🎯 MainViewController: Showing disclaimer if needed")
             self.showDisclaimerIfNeeded()
+            print("🎯 MainViewController: Transition to main interface completed")
         }
     }
     
     private func setupElegantNavigationBar() {
-        // Modern navigation bar styling
-        navigationController?.navigationBar.prefersLargeTitles = true
-        navigationController?.navigationBar.largeTitleTextAttributes = [
-            NSAttributedString.Key.font: UIFont.systemFont(ofSize: 34, weight: .bold),
-            NSAttributedString.Key.foregroundColor: UIColor.label
-        ]
+        // Modern navigation bar styling matching HTML template
+        navigationController?.navigationBar.prefersLargeTitles = false
         
-        // Configure appearance
+        // Configure appearance with dark theme
         let appearance = UINavigationBarAppearance()
-        appearance.configureWithTransparentBackground()
-        appearance.backgroundColor = UIColor.systemBackground.withAlphaComponent(0.95)
-        appearance.shadowColor = UIColor.separator.withAlphaComponent(0.3)
+        appearance.configureWithOpaqueBackground()
+        
+        let backgroundDark = UIColor(red: 17/255, green: 22/255, blue: 24/255, alpha: 0.8) // #111618/80
+        let borderDark = UIColor(red: 59/255, green: 78/255, blue: 84/255, alpha: 1.0) // #3b4e54
+        
+        appearance.backgroundColor = backgroundDark
+        appearance.titleTextAttributes = [
+            .foregroundColor: UIColor.white,
+            .font: UIFont.systemFont(ofSize: 20, weight: .bold)
+        ]
+        appearance.shadowColor = borderDark
         
         navigationController?.navigationBar.standardAppearance = appearance
         navigationController?.navigationBar.scrollEdgeAppearance = appearance
         navigationController?.navigationBar.compactAppearance = appearance
+        navigationController?.navigationBar.isTranslucent = true
         
-        title = "DICOM Viewer Pro"
+        title = "DICOM Viewer"
         
-        // Add elegant buttons later when services are ready
+        // Add settings button matching HTML template
         setupBasicNavigationButtons()
     }
     
     private func setupBasicNavigationButtons() {
-        // Import button with elegant styling
-        let importButton = UIBarButtonItem(
-            image: UIImage(systemName: "plus.circle.fill"),
+        // Settings button matching HTML template
+        let settingsButton = UIBarButtonItem(
+            image: UIImage(systemName: "gearshape"),
             style: .plain,
             target: self,
-            action: #selector(importButtonTapped)
+            action: #selector(settingsButtonTapped)
         )
-        importButton.tintColor = .systemBlue
+        let accentTeal = UIColor(red: 20/255, green: 184/255, blue: 166/255, alpha: 1.0) // #14b8a6
+        settingsButton.tintColor = accentTeal
         
-        navigationItem.rightBarButtonItem = importButton
+        navigationItem.rightBarButtonItem = settingsButton
     }
     
     private func setupFullUI() {
@@ -420,6 +445,22 @@ class MainViewController: UIViewController {
     // MARK: - View Management
     
     private func showStudyList() {
+        print("🏠 MainViewController: showStudyList() called")
+        
+        // Check metadata store state immediately
+        if let store = metadataStore {
+            let stats = store.getStatistics()
+            print("🏠 MainViewController: Metadata store stats - Studies: \(stats.studies), Series: \(stats.series), Instances: \(stats.instances)")
+            
+            let studies = store.getAllStudies()
+            print("🏠 MainViewController: Found \(studies.count) studies in metadata store")
+            for (index, study) in studies.enumerated() {
+                print("  📚 Study \(index + 1): \(study.patientName ?? "Unknown") - \(study.studyDescription ?? "No description")")
+            }
+        } else {
+            print("🏠 MainViewController: ⚠️ Metadata store is nil!")
+        }
+        
         // Remove current child view controller
         removeCurrentChildViewController()
         
@@ -429,6 +470,14 @@ class MainViewController: UIViewController {
         studyListViewController.view.frame = containerView.bounds
         studyListViewController.view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         studyListViewController.didMove(toParent: self)
+        
+        print("🏠 MainViewController: StudyListViewController added as child")
+        
+        // Force immediate data load on the study list
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            print("🏠 MainViewController: Triggering manual study list refresh")
+            self.studyListViewController.loadStudies()
+        }
         
         // Note: StudyListViewController delegate not needed in embedded mode
         
@@ -630,6 +679,12 @@ class MainViewController: UIViewController {
     }
     
     private func showError(_ error: Error) {
+        // Prevent presenting multiple alerts simultaneously
+        guard presentedViewController == nil else { 
+            print("⚠️ Skipping error alert - another alert is already presented")
+            return 
+        }
+        
         let alertController = UIAlertController(
             title: "Import Error",
             message: error.localizedDescription,
@@ -650,6 +705,86 @@ class MainViewController: UIViewController {
         navController.modalPresentationStyle = .fullScreen
         present(navController, animated: true)
     }
+    
+    // MARK: - Modern Viewer Navigation
+    
+    func showModern2DViewer(for study: DICOMStudy) {
+        // Use the existing ViewerViewController for now
+        let viewer = ViewerViewController(study: study)
+        
+        let navController = UINavigationController(rootViewController: viewer)
+        navController.modalPresentationStyle = .fullScreen
+        present(navController, animated: true)
+    }
+    
+    func showMPRViewer(for study: DICOMStudy) {
+        // Create a simple MPR placeholder view controller
+        let mprVC = UIViewController()
+        mprVC.title = "MPR Viewer"
+        mprVC.view.backgroundColor = .systemBackground
+        
+        let label = UILabel()
+        label.text = "MPR Viewer\nComing Soon..."
+        label.textAlignment = .center
+        label.numberOfLines = 0
+        label.translatesAutoresizingMaskIntoConstraints = false
+        mprVC.view.addSubview(label)
+        
+        NSLayoutConstraint.activate([
+            label.centerXAnchor.constraint(equalTo: mprVC.view.centerXAnchor),
+            label.centerYAnchor.constraint(equalTo: mprVC.view.centerYAnchor)
+        ])
+        
+        let navController = UINavigationController(rootViewController: mprVC)
+        navController.modalPresentationStyle = .fullScreen
+        present(navController, animated: true)
+    }
+    
+    func show3DSegmentationViewer(for study: DICOMStudy) {
+        // Create a simple 3D segmentation placeholder view controller
+        let segmentationVC = UIViewController()
+        segmentationVC.title = "3D & AI Analysis"
+        segmentationVC.view.backgroundColor = .systemBackground
+        
+        let label = UILabel()
+        label.text = "3D Segmentation & AI Analysis\nComing Soon..."
+        label.textAlignment = .center
+        label.numberOfLines = 0
+        label.translatesAutoresizingMaskIntoConstraints = false
+        segmentationVC.view.addSubview(label)
+        
+        NSLayoutConstraint.activate([
+            label.centerXAnchor.constraint(equalTo: segmentationVC.view.centerXAnchor),
+            label.centerYAnchor.constraint(equalTo: segmentationVC.view.centerYAnchor)
+        ])
+        
+        let navController = UINavigationController(rootViewController: segmentationVC)
+        navController.modalPresentationStyle = .fullScreen
+        present(navController, animated: true)
+    }
+    
+    func showSettingsView() {
+        // Create a simple settings view controller
+        let settingsVC = UIViewController()
+        settingsVC.title = "Settings"
+        settingsVC.view.backgroundColor = .systemBackground
+        
+        let label = UILabel()
+        label.text = "Settings\nComing Soon..."
+        label.textAlignment = .center
+        label.numberOfLines = 0
+        label.translatesAutoresizingMaskIntoConstraints = false
+        settingsVC.view.addSubview(label)
+        
+        NSLayoutConstraint.activate([
+            label.centerXAnchor.constraint(equalTo: settingsVC.view.centerXAnchor),
+            label.centerYAnchor.constraint(equalTo: settingsVC.view.centerYAnchor)
+        ])
+        
+        let navController = UINavigationController(rootViewController: settingsVC)
+        navController.modalPresentationStyle = .formSheet
+        present(navController, animated: true)
+    }
 }
 
 // MARK: - StudyListViewControllerDelegate
@@ -666,12 +801,22 @@ extension MainViewController: StudyListViewControllerDelegate {
 // MARK: - UIDocumentPickerDelegate  
 extension MainViewController: UIDocumentPickerDelegate {
     func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL]) {
-        guard !urls.isEmpty else { return }
+        print("📁 Document picker selected \(urls.count) files:")
+        for (index, url) in urls.enumerated() {
+            print("  \(index + 1). \(url.lastPathComponent) - \(url.path)")
+            print("     Security scoped: \(url.hasDirectoryPath ? "Directory" : "File")")
+            print("     Scheme: \(url.scheme ?? "none")")
+        }
+        
+        guard !urls.isEmpty else { 
+            print("❌ No URLs selected")
+            return 
+        }
         
         // Show progress
         let progressAlert = UIAlertController(
             title: "Importing DICOM Files",
-            message: "Please wait...",
+            message: "Processing \(urls.count) file(s)...",
             preferredStyle: .alert
         )
         
@@ -689,22 +834,42 @@ extension MainViewController: UIDocumentPickerDelegate {
         
         // Import files
         Task {
+            print("🚀 Starting file import process...")
+            
             await fileImporter?.importMultipleFiles(urls) { progress in
                 Task { @MainActor in
                     progressView.progress = Float(progress)
+                    print("📊 Import progress: \(Int(progress * 100))%")
                 }
             }
             
             await MainActor.run {
+                print("✅ File import process completed")
                 progressAlert.dismiss(animated: true)
+                
+                // Show success message
+                let successAlert = UIAlertController(
+                    title: "Import Complete",
+                    message: "DICOM files have been processed. Check the Studies tab to view imported files.",
+                    preferredStyle: .alert
+                )
+                successAlert.addAction(UIAlertAction(title: "OK", style: .default) { _ in
+                    // Navigate to study list to show imported files
+                    self.showStudyList()
+                })
+                self.present(successAlert, animated: true)
             }
         }
+    }
+    
+    func documentPickerWasCancelled(_ controller: UIDocumentPickerViewController) {
+        print("📁 Document picker was cancelled")
     }
     
     // MARK: - Auto Segmentation
     
     private func showAutoSegmentationViewController() {
-        guard let urinaryTractService = urinaryTractService else {
+        guard urinaryTractService != nil else {
             showSegmentationServiceUnavailable()
             return
         }
@@ -773,7 +938,7 @@ extension MainViewController: UIDocumentPickerDelegate {
         present(progressAlert, animated: true)
         
         // Setup progress observation
-        let progressView = progressAlert.view.subviews.compactMap { $0 as? UIProgressView }.first
+        _ = progressAlert.view.subviews.compactMap { $0 as? UIProgressView }.first
         
         // Note: For now, we'll use a simple progress update without Publishers
         // In a future implementation, the segmentation services would have proper Publisher support

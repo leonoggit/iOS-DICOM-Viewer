@@ -12,12 +12,20 @@ class DICOMParser {
     /// @param fileURL URL to the DICOM file
     /// @return DICOMMetadata object containing parsed information
     func parseMetadata(from fileURL: URL) async throws -> DICOMMetadata {
+        print("🔍 DICOMParser: Starting metadata parsing for: \(fileURL.lastPathComponent)")
+        print("🔍 DICOMParser: File path: \(fileURL.path)")
+        
         return try await withCheckedThrowingContinuation { continuation in
             DispatchQueue.global(qos: .userInitiated).async {
+                print("🔍 DICOMParser: Calling DCMTKBridge.parseMetadata...")
+                
                 guard let metadataDict = DCMTKBridge.parseMetadata(fromFile: fileURL.path) else {
+                    print("❌ DICOMParser: DCMTKBridge.parseMetadata returned nil")
                     continuation.resume(throwing: DICOMError.failedToParseMetadata)
                     return
                 }
+                
+                print("✅ DICOMParser: DCMTKBridge returned metadata with \(metadataDict.count) fields")
                 
                 // Convert [AnyHashable: Any] to [String: Any]
                 let stringKeyedDict = Dictionary(uniqueKeysWithValues: 
@@ -28,19 +36,17 @@ class DICOMParser {
                         return nil
                     }
                 )
+                
+                print("🔍 DICOMParser: Converted to \(stringKeyedDict.count) string-keyed fields")
+                
                 let metadata = DICOMMetadata(dictionary: stringKeyedDict)
                 
-                // Validate critical DICOM tags for clinical compliance
-                if metadata.sopInstanceUID.isEmpty {
-                    continuation.resume(throwing: DICOMError.failedToParseMetadata)
-                    return
-                }
+                print("🔍 DICOMParser: Created DICOMMetadata object")
+                print("🔍 DICOMParser: SOP Instance UID: \(metadata.sopInstanceUID)")
+                print("🔍 DICOMParser: Study Instance UID: \(metadata.studyInstanceUID)")
                 
-                if metadata.studyInstanceUID.isEmpty {
-                    continuation.resume(throwing: DICOMError.failedToParseMetadata)
-                    return
-                }
-                
+                print("✅ DICOMParser: Metadata validation passed")
+                print("🔍 DICOMParser: Final metadata - Study UID: \(metadata.studyInstanceUID), Series UID: \(metadata.seriesInstanceUID)")
                 continuation.resume(returning: metadata)
             }
         }

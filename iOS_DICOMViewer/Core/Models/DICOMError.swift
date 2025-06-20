@@ -15,6 +15,7 @@ enum DICOMError: Error, LocalizedError {
     case corruptedData
     case networkError
     case unknownSOPClass(String)
+    case processingFailed
     
     var errorDescription: String? {
         switch self {
@@ -44,6 +45,8 @@ enum DICOMError: Error, LocalizedError {
             return "Network error while retrieving DICOM data"
         case .unknownSOPClass(let sopClass):
             return "Unknown SOP Class: \(sopClass)"
+        case .processingFailed:
+            return "Processing failed"
         }
     }
     

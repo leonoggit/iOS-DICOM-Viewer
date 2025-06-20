@@ -1,0 +1,134 @@
+<html><head>
+<meta charset="utf-8"/>
+<link crossorigin="" href="https://fonts.gstatic.com/" rel="preconnect"/>
+<link as="style" href="https://fonts.googleapis.com/css2?display=swap&amp;family=Noto+Sans%3Awght%40400%3B500%3B700%3B900&amp;family=Space+Grotesk%3Awght%40400%3B500%3B700" onload="this.rel='stylesheet'" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<title>DICOM Viewer</title>
+<link href="data:image/x-icon;base64," rel="icon" type="image/x-icon"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<style type="text/tailwindcss">
+	:root {
+	  --primary-color: #0cb8f2;
+	  --secondary-color: #0899CC;--accent-color-teal: #14b8a6;--accent-color-blue: #3b82f6;--background-dark: #111618;
+	  --surface-dark: #1b2427;
+	  --surface-dark-secondary: #283539;
+	  --text-primary-dark: #ffffff;
+	  --text-secondary-dark: #9cb2ba;
+	  --border-dark: #3b4e54;
+	}
+	.material-symbols-rounded {
+	  font-variation-settings:
+	  'FILL' 1,
+	  'wght' 400,
+	  'GRAD' 0,
+	  'opsz' 24
+	}
+  </style>
+<style>
+	body {
+	  min-height: max(884px, 100dvh);
+	}
+  </style>
+<style>
+	body {
+	  min-height: max(884px, 100dvh);
+	}
+  </style>
+  </head>
+<body class="bg-[var(--background-dark)]" style='font-family: "Space Grotesk", "Noto Sans", sans-serif;'>
+<div class="relative flex size-full min-h-screen flex-col dark justify-between group/design-root overflow-x-hidden">
+<div class="flex-grow">
+<header class="sticky top-0 z-10 bg-[var(--background-dark)]/80 backdrop-blur-sm">
+<div class="flex items-center p-4 pb-3 justify-between border-b border-[var(--border-dark)]">
+<h1 class="text-[var(--text-primary-dark)] text-xl font-bold leading-tight tracking-tight flex-1 text-center pl-10">DICOM Viewer</h1>
+<button class="flex items-center justify-center rounded-full h-10 w-10 bg-transparent text-[var(--accent-color-teal)] hover:bg-[var(--surface-dark-secondary)] transition-colors">
+<span class="material-symbols-rounded text-2xl">settings</span>
+</button>
+</div>
+</header>
+<main class="p-4 space-y-6">
+<section>
+<h2 class="text-[var(--text-primary-dark)] text-xl font-semibold leading-tight tracking-tight mb-3">Upload DICOM Files</h2>
+<div class="flex flex-col items-center gap-3 rounded-xl border-2 border-dashed border-[var(--border-dark)] bg-[var(--surface-dark-secondary)]/50 px-6 py-6 text-center">
+<span class="material-symbols-rounded text-4xl text-[var(--accent-color-teal)]">medical_services</span>
+<p class="text-[var(--text-primary-dark)] text-base font-medium">Tap to upload DICOM files</p>
+<p class="text-[var(--text-secondary-dark)] text-xs">Ensure files are in .dcm format</p>
+<button class="mt-2 flex min-w-[120px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-[var(--accent-color-teal)] text-white text-sm font-semibold leading-normal tracking-wide hover:bg-[var(--secondary-color)] transition-colors shadow-md">
+<span class="material-symbols-rounded text-lg mr-1.5">upload</span>
+<span class="truncate">Choose Files</span>
+</button>
+</div>
+</section>
+<section>
+<label class="flex flex-col min-w-40 h-12 w-full">
+<div class="flex w-full flex-1 items-stretch rounded-lg h-full bg-[var(--surface-dark-secondary)] shadow">
+<div class="text-[var(--text-secondary-dark)] flex items-center justify-center pl-3 pr-2">
+<span class="material-symbols-rounded text-2xl">search</span>
+</div>
+<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-r-lg text-[var(--text-primary-dark)] focus:outline-none focus:ring-2 focus:ring-[var(--accent-color-teal)] border-none bg-transparent h-full placeholder:text-[var(--text-secondary-dark)] px-2 text-base font-normal leading-normal" placeholder="Search recent files..." value=""/>
+</div>
+</label>
+</section>
+<section>
+<h2 class="text-[var(--text-primary-dark)] text-xl font-semibold leading-tight tracking-tight mb-3">Recent Files</h2>
+<div class="space-y-3">
+<div class="flex items-center gap-4 bg-[var(--surface-dark-secondary)] p-3 rounded-lg shadow hover:bg-[var(--border-dark)]/60 transition-colors cursor-pointer">
+<div class="text-[var(--accent-color-blue)] flex items-center justify-center rounded-lg bg-[var(--background-dark)] shrink-0 size-12">
+<span class="material-symbols-rounded text-3xl">image</span>
+</div>
+<div class="flex-grow">
+<p class="text-[var(--text-primary-dark)] text-base font-medium leading-normal line-clamp-1">Patient: Emily Carter</p>
+<p class="text-[var(--text-secondary-dark)] text-sm font-normal leading-normal line-clamp-1">Study Date: 2024-01-15 <span class="mx-1 text-[var(--border-dark)]">|</span> Modality: CT</p>
+</div>
+<span class="material-symbols-rounded text-[var(--text-secondary-dark)]">chevron_right</span>
+</div>
+<div class="flex items-center gap-4 bg-[var(--surface-dark-secondary)] p-3 rounded-lg shadow hover:bg-[var(--border-dark)]/60 transition-colors cursor-pointer">
+<div class="text-[var(--accent-color-blue)] flex items-center justify-center rounded-lg bg-[var(--background-dark)] shrink-0 size-12">
+<span class="material-symbols-rounded text-3xl">image</span>
+</div>
+<div class="flex-grow">
+<p class="text-[var(--text-primary-dark)] text-base font-medium leading-normal line-clamp-1">Patient: David Lee</p>
+<p class="text-[var(--text-secondary-dark)] text-sm font-normal leading-normal line-clamp-1">Study Date: 2024-01-10 <span class="mx-1 text-[var(--border-dark)]">|</span> Modality: MRI</p>
+</div>
+<span class="material-symbols-rounded text-[var(--text-secondary-dark)]">chevron_right</span>
+</div>
+<div class="flex items-center gap-4 bg-[var(--surface-dark-secondary)] p-3 rounded-lg shadow hover:bg-[var(--border-dark)]/60 transition-colors cursor-pointer">
+<div class="text-[var(--accent-color-blue)] flex items-center justify-center rounded-lg bg-[var(--background-dark)] shrink-0 size-12">
+<span class="material-symbols-rounded text-3xl">image</span>
+</div>
+<div class="flex-grow">
+<p class="text-[var(--text-primary-dark)] text-base font-medium leading-normal line-clamp-1">Patient: Sarah Johnson</p>
+<p class="text-[var(--text-secondary-dark)] text-sm font-normal leading-normal line-clamp-1">Study Date: 2024-01-05 <span class="mx-1 text-[var(--border-dark)]">|</span> Modality: X-Ray</p>
+</div>
+<span class="material-symbols-rounded text-[var(--text-secondary-dark)]">chevron_right</span>
+</div>
+</div>
+</section>
+</main>
+</div>
+<footer class="sticky bottom-0 z-10">
+<nav class="flex justify-around border-t border-[var(--border-dark)] bg-[var(--surface-dark)]/90 backdrop-blur-sm pt-2 pb-[calc(0.5rem+env(safe-area-inset-bottom))]">
+<a class="flex flex-1 flex-col items-center justify-end gap-1 text-[var(--accent-color-teal)]" href="#">
+<span class="material-symbols-rounded text-2xl">home</span>
+<span class="text-xs font-medium">Home</span>
+</a>
+<a class="flex flex-1 flex-col items-center justify-end gap-1 text-[var(--text-secondary-dark)] hover:text-[var(--accent-color-teal)] transition-colors" href="#">
+<span class="material-symbols-rounded text-2xl">search</span>
+<span class="text-xs font-medium">Search</span>
+</a>
+<a class="flex flex-1 flex-col items-center justify-end gap-1 text-[var(--text-secondary-dark)] hover:text-[var(--accent-color-teal)] transition-colors" href="#">
+<span class="material-symbols-rounded text-2xl">add_circle</span>
+<span class="text-xs font-medium">New</span>
+</a>
+<a class="flex flex-1 flex-col items-center justify-end gap-1 text-[var(--text-secondary-dark)] hover:text-[var(--accent-color-teal)] transition-colors" href="#">
+<span class="material-symbols-rounded text-2xl">bookmark</span>
+<span class="text-xs font-medium">Saved</span>
+</a>
+<a class="flex flex-1 flex-col items-center justify-end gap-1 text-[var(--text-secondary-dark)] hover:text-[var(--accent-color-teal)] transition-colors" href="#">
+<span class="material-symbols-rounded text-2xl">person</span>
+<span class="text-xs font-medium">Profile</span>
+</a>
+</nav>
+</footer>
+</div>
+</body></html>

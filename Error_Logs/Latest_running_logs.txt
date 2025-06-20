@@ -1,0 +1,2516 @@
+  \`UIScene` lifecycle will soon be required. Failure to adopt will result in an assert in the future.
+Registration rejected; com.yourcompany.fma100workflowautomation.refresh is not advertised in the application's Info.plist
+com.yourcompany.fma100workflowautomation.refresh is not advertised in the application's Info.plist
+Could not schedule app refresh: Error Domain=BGTaskSchedulerErrorDomain Code=3 "(null)" UserInfo={Unrecognized Identifier=com.yourcompany.fma100workflowautomation.refresh}
+Bluetooth is powered on and ready
+Started scanning for FMA100 devices...
+Found FMA100 device: FMA100
+Connected to FMA100 device
+Found FMA100 service
+Found characteristic: 81EB77BD-89B8-4494-8A09-7F83D986DDC7 with properties: 4
+✓ Write without response characteristic has write permission
+Found characteristic: 81EB77BD-89B8-4494-8A09-7F83D986DDC7 with properties: 16
+⚠️ Write without response characteristic missing write permission. Properties: CBCharacteristicProperties(rawValue: 16)
+✓ Subscribing to notifications for write-without-response characteristic
+Found characteristic: 6C1CEF07-3377-410E-B231-47F76C5A39E1 with properties: 8
+✓ Write with response characteristic has write permission
+Found characteristic: 6C1CEF07-3377-410E-B231-47F76C5A39E1 with properties: 16
+⚠️ Write with response characteristic missing write permission. Properties: CBCharacteristicProperties(rawValue: 16)
+✓ Subscribing to notifications for write-with-response characteristic
+✓ FMA100 is ready for communication and workflow execution
+  - Available: Write with response
+  - Available: Write without response
+Received notification data: 17 bytes
+com.yourcompany.fma100workflowautomation.refresh is not advertised in the application's Info.plist
+Could not schedule app refresh: Error Domain=BGTaskSchedulerErrorDomain Code=3 "(null)" UserInfo={Unrecognized Identifier=com.yourcompany.fma100workflowautomation.refresh}
+App is being debugged, do not track this hang
+Hang detected: 4.70s (debugger attached, not reporting)
+<0x160232800> Gesture: System gesture gate timed out.
+App is being debugged, do not track this hang
+Hang detected: 1.49s (debugger attached, not reporting)
+🔄 Executing action: Paste (Ctrl+V) - ''
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 01 00 19 00 00 00 00 00
+✅ HID command sent successfully: Paste (Ctrl+V)
+🎉 Workflow execution completed successfully!
+🔄 Resetting workflow execution state
+🔄 Executing action: Direct Text Input - 'CLIPBOARD_CONTENT'
+📋 Using clipboard content: '   • Make sure you have no build errors elsewhere ...'
+⚠️ Unsupported character: '•'
+🔤 Converting text '   • Make sure you h...' to 76 HID commands
+📨 Sending HID command 1/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 2C 00 00 00 00 00
+App is being debugged, do not track this hang
+Hang detected: 2.41s (debugger attached, not reporting)
+📨 Sending HID command 2/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 2C 00 00 00 00 00
+📨 Sending HID command 3/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 2C 00 00 00 00 00
+📨 Sending HID command 4/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 2C 00 00 00 00 00
+📨 Sending HID command 5/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 02 00 10 00 00 00 00 00
+📨 Sending HID command 6/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 04 00 00 00 00 00
+📨 Sending HID command 7/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 0E 00 00 00 00 00
+📨 Sending HID command 8/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 08 00 00 00 00 00
+📨 Sending HID command 9/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 2C 00 00 00 00 00
+📨 Sending HID command 10/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 16 00 00 00 00 00
+📨 Sending HID command 11/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 18 00 00 00 00 00
+📨 Sending HID command 12/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 15 00 00 00 00 00
+📨 Sending HID command 13/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 08 00 00 00 00 00
+📨 Sending HID command 14/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 2C 00 00 00 00 00
+📨 Sending HID command 15/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 1C 00 00 00 00 00
+📨 Sending HID command 16/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 12 00 00 00 00 00
+📨 Sending HID command 17/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 18 00 00 00 00 00
+📨 Sending HID command 18/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 2C 00 00 00 00 00
+📨 Sending HID command 19/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 0B 00 00 00 00 00
+📨 Sending HID command 20/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 04 00 00 00 00 00
+📨 Sending HID command 21/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 19 00 00 00 00 00
+📨 Sending HID command 22/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 08 00 00 00 00 00
+📨 Sending HID command 23/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 2C 00 00 00 00 00
+📨 Sending HID command 24/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 11 00 00 00 00 00
+📨 Sending HID command 25/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 12 00 00 00 00 00
+📨 Sending HID command 26/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 2C 00 00 00 00 00
+📨 Sending HID command 27/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 05 00 00 00 00 00
+📨 Sending HID command 28/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 18 00 00 00 00 00
+📨 Sending HID command 29/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 0C 00 00 00 00 00
+📨 Sending HID command 30/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 0F 00 00 00 00 00
+📨 Sending HID command 31/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 07 00 00 00 00 00
+📨 Sending HID command 32/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 2C 00 00 00 00 00
+📨 Sending HID command 33/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 08 00 00 00 00 00
+📨 Sending HID command 34/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 15 00 00 00 00 00
+📨 Sending HID command 35/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 15 00 00 00 00 00
+📨 Sending HID command 36/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 12 00 00 00 00 00
+📨 Sending HID command 37/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 15 00 00 00 00 00
+📨 Sending HID command 38/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 16 00 00 00 00 00
+📨 Sending HID command 39/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 2C 00 00 00 00 00
+📨 Sending HID command 40/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 08 00 00 00 00 00
+📨 Sending HID command 41/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 0F 00 00 00 00 00
+📨 Sending HID command 42/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 16 00 00 00 00 00
+📨 Sending HID command 43/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 08 00 00 00 00 00
+📨 Sending HID command 44/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 1A 00 00 00 00 00
+📨 Sending HID command 45/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 0B 00 00 00 00 00
+📨 Sending HID command 46/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 08 00 00 00 00 00
+📨 Sending HID command 47/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 15 00 00 00 00 00
+📨 Sending HID command 48/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 08 00 00 00 00 00
+📨 Sending HID command 49/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 2C 00 00 00 00 00
+📨 Sending HID command 50/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 17 00 00 00 00 00
+📨 Sending HID command 51/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 0B 00 00 00 00 00
+📨 Sending HID command 52/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 04 00 00 00 00 00
+📨 Sending HID command 53/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 17 00 00 00 00 00
+📨 Sending HID command 54/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 2C 00 00 00 00 00
+📨 Sending HID command 55/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 04 00 00 00 00 00
+📨 Sending HID command 56/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 15 00 00 00 00 00
+📨 Sending HID command 57/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 08 00 00 00 00 00
+📨 Sending HID command 58/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 2C 00 00 00 00 00
+📨 Sending HID command 59/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 05 00 00 00 00 00
+📨 Sending HID command 60/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 0F 00 00 00 00 00
+📨 Sending HID command 61/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 12 00 00 00 00 00
+📨 Sending HID command 62/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 06 00 00 00 00 00
+📨 Sending HID command 63/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 0E 00 00 00 00 00
+📨 Sending HID command 64/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 0C 00 00 00 00 00
+📨 Sending HID command 65/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 11 00 00 00 00 00
+📨 Sending HID command 66/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 0A 00 00 00 00 00
+📨 Sending HID command 67/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 2C 00 00 00 00 00
+📨 Sending HID command 68/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 13 00 00 00 00 00
+📨 Sending HID command 69/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 15 00 00 00 00 00
+📨 Sending HID command 70/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 08 00 00 00 00 00
+📨 Sending HID command 71/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 19 00 00 00 00 00
+📨 Sending HID command 72/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 0C 00 00 00 00 00
+📨 Sending HID command 73/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 08 00 00 00 00 00
+📨 Sending HID command 74/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 1A 00 00 00 00 00
+📨 Sending HID command 75/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 16 00 00 00 00 00
+📨 Sending HID command 76/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 37 00 00 00 00 00
+✅ HID sequence completed for text: '   • Make sure you h...'
+🔄 Executing action: Key Press - ''
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 2B 00 00 00 00 00
+✅ HID command sent successfully: Key Press
+🎉 Workflow execution completed successfully!
+🔄 Resetting workflow execution state
+🔄 Executing action: Direct Text Input - 'CLIPBOARD_CONTENT'
+📋 Using clipboard content: '   • Make sure you have no build errors elsewhere ...'
+⚠️ Unsupported character: '•'
+🔤 Converting text '   • Make sure you h...' to 76 HID commands
+📨 Sending HID command 1/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 2C 00 00 00 00 00
+📨 Sending HID command 2/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 2C 00 00 00 00 00
+📨 Sending HID command 3/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 2C 00 00 00 00 00
+📨 Sending HID command 4/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 2C 00 00 00 00 00
+📨 Sending HID command 5/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 02 00 10 00 00 00 00 00
+📨 Sending HID command 6/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 04 00 00 00 00 00
+📨 Sending HID command 7/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 0E 00 00 00 00 00
+📨 Sending HID command 8/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 08 00 00 00 00 00
+📨 Sending HID command 9/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 2C 00 00 00 00 00
+📨 Sending HID command 10/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 16 00 00 00 00 00
+📨 Sending HID command 11/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 18 00 00 00 00 00
+📨 Sending HID command 12/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 15 00 00 00 00 00
+📨 Sending HID command 13/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 08 00 00 00 00 00
+📨 Sending HID command 14/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 2C 00 00 00 00 00
+📨 Sending HID command 15/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 1C 00 00 00 00 00
+📨 Sending HID command 16/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 12 00 00 00 00 00
+📨 Sending HID command 17/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 18 00 00 00 00 00
+📨 Sending HID command 18/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 2C 00 00 00 00 00
+📨 Sending HID command 19/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 0B 00 00 00 00 00
+📨 Sending HID command 20/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 04 00 00 00 00 00
+📨 Sending HID command 21/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 19 00 00 00 00 00
+📨 Sending HID command 22/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 08 00 00 00 00 00
+📨 Sending HID command 23/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 2C 00 00 00 00 00
+📨 Sending HID command 24/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 11 00 00 00 00 00
+📨 Sending HID command 25/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 12 00 00 00 00 00
+📨 Sending HID command 26/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 2C 00 00 00 00 00
+📨 Sending HID command 27/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 05 00 00 00 00 00
+📨 Sending HID command 28/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 18 00 00 00 00 00
+📨 Sending HID command 29/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 0C 00 00 00 00 00
+📨 Sending HID command 30/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 0F 00 00 00 00 00
+📨 Sending HID command 31/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 07 00 00 00 00 00
+📨 Sending HID command 32/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 2C 00 00 00 00 00
+📨 Sending HID command 33/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 08 00 00 00 00 00
+📨 Sending HID command 34/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 15 00 00 00 00 00
+📨 Sending HID command 35/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 15 00 00 00 00 00
+📨 Sending HID command 36/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 12 00 00 00 00 00
+📨 Sending HID command 37/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 15 00 00 00 00 00
+📨 Sending HID command 38/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 16 00 00 00 00 00
+📨 Sending HID command 39/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 2C 00 00 00 00 00
+📨 Sending HID command 40/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 08 00 00 00 00 00
+📨 Sending HID command 41/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 0F 00 00 00 00 00
+📨 Sending HID command 42/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 16 00 00 00 00 00
+📨 Sending HID command 43/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 08 00 00 00 00 00
+📨 Sending HID command 44/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 1A 00 00 00 00 00
+📨 Sending HID command 45/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 0B 00 00 00 00 00
+📨 Sending HID command 46/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 08 00 00 00 00 00
+📨 Sending HID command 47/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 15 00 00 00 00 00
+📨 Sending HID command 48/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 08 00 00 00 00 00
+📨 Sending HID command 49/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 2C 00 00 00 00 00
+📨 Sending HID command 50/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 17 00 00 00 00 00
+📨 Sending HID command 51/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 0B 00 00 00 00 00
+📨 Sending HID command 52/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 04 00 00 00 00 00
+📨 Sending HID command 53/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 17 00 00 00 00 00
+📨 Sending HID command 54/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 2C 00 00 00 00 00
+📨 Sending HID command 55/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 04 00 00 00 00 00
+📨 Sending HID command 56/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 15 00 00 00 00 00
+📨 Sending HID command 57/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 08 00 00 00 00 00
+📨 Sending HID command 58/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 2C 00 00 00 00 00
+📨 Sending HID command 59/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 05 00 00 00 00 00
+📨 Sending HID command 60/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 0F 00 00 00 00 00
+📨 Sending HID command 61/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 12 00 00 00 00 00
+📨 Sending HID command 62/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 06 00 00 00 00 00
+📨 Sending HID command 63/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 0E 00 00 00 00 00
+📨 Sending HID command 64/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 0C 00 00 00 00 00
+📨 Sending HID command 65/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 11 00 00 00 00 00
+📨 Sending HID command 66/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 0A 00 00 00 00 00
+📨 Sending HID command 67/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 2C 00 00 00 00 00
+📨 Sending HID command 68/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 13 00 00 00 00 00
+📨 Sending HID command 69/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 15 00 00 00 00 00
+📨 Sending HID command 70/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 08 00 00 00 00 00
+📨 Sending HID command 71/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 19 00 00 00 00 00
+📨 Sending HID command 72/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 0C 00 00 00 00 00
+📨 Sending HID command 73/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 08 00 00 00 00 00
+📨 Sending HID command 74/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 1A 00 00 00 00 00
+📨 Sending HID command 75/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 16 00 00 00 00 00
+📨 Sending HID command 76/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 37 00 00 00 00 00
+✅ HID sequence completed for text: '   • Make sure you h...'
+🔄 Executing action: Key Press - ''
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 2B 00 00 00 00 00
+✅ HID command sent successfully: Key Press
+🎉 Workflow execution completed successfully!
+🔄 Resetting workflow execution state
+🔄 Executing action: Type Text - 'leandro'
+🔤 Converting text 'leandro...' to 7 HID commands
+📨 Sending HID command 1/7
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 0F 00 00 00 00 00
+📨 Sending HID command 2/7
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 08 00 00 00 00 00
+📨 Sending HID command 3/7
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 04 00 00 00 00 00
+📨 Sending HID command 4/7
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 11 00 00 00 00 00
+📨 Sending HID command 5/7
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 07 00 00 00 00 00
+📨 Sending HID command 6/7
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 15 00 00 00 00 00
+📨 Sending HID command 7/7
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 12 00 00 00 00 00
+✅ HID sequence completed for text: 'leandro...'
+🎉 Workflow execution completed successfully!
+🔄 Resetting workflow execution state
+🔄 Executing action: Select All (Ctrl+A) - ''
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 01 00 04 00 00 00 00 00
+✅ HID command sent successfully: Select All (Ctrl+A)
+🔄 Executing action: Paste (Ctrl+V) - ''
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 01 00 19 00 00 00 00 00
+✅ HID command sent successfully: Paste (Ctrl+V)
+🔄 Executing action: Tab (Next Field) - ''
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 2B 00 00 00 00 00
+✅ HID command sent successfully: Tab (Next Field)
+🎉 Workflow execution completed successfully!
+🔄 Resetting workflow execution state
+🔄 Executing action: Paste (Ctrl+V) - ''
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 01 00 19 00 00 00 00 00
+✅ HID command sent successfully: Paste (Ctrl+V)
+🎉 Workflow execution completed successfully!
+🔄 Resetting workflow execution state
+🔄 Executing action: Select All (Ctrl+A) - ''
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 01 00 04 00 00 00 00 00
+✅ HID command sent successfully: Select All (Ctrl+A)
+🔄 Executing action: Paste (Ctrl+V) - ''
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 01 00 19 00 00 00 00 00
+✅ HID command sent successfully: Paste (Ctrl+V)
+🔄 Executing action: Tab (Next Field) - ''
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 2B 00 00 00 00 00
+✅ HID command sent successfully: Tab (Next Field)
+🎉 Workflow execution completed successfully!
+🔄 Resetting workflow execution state
+void * _Nullable NSMapGet(NSMapTable * _Nonnull, const void * _Nullable): map table argument is NULL
+void NSMapRemove(NSMapTable * _Nonnull, const void * _Nullable): map table argument is NULL
+🔄 Executing action: Direct Text Input - 'CLIPBOARD_CONTENT'
+📋 Using clipboard content: '   • Make sure you have no build errors elsewhere ...'
+⚠️ Unsupported character: '•'
+🔤 Converting text '   • Make sure you h...' to 76 HID commands
+📨 Sending HID command 1/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 2C 00 00 00 00 00
+📨 Sending HID command 2/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 2C 00 00 00 00 00
+📨 Sending HID command 3/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 2C 00 00 00 00 00
+📨 Sending HID command 4/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 2C 00 00 00 00 00
+📨 Sending HID command 5/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 02 00 10 00 00 00 00 00
+📨 Sending HID command 6/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 04 00 00 00 00 00
+📨 Sending HID command 7/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 0E 00 00 00 00 00
+📨 Sending HID command 8/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 08 00 00 00 00 00
+📨 Sending HID command 9/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 2C 00 00 00 00 00
+📨 Sending HID command 10/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 16 00 00 00 00 00
+📨 Sending HID command 11/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 18 00 00 00 00 00
+📨 Sending HID command 12/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 15 00 00 00 00 00
+📨 Sending HID command 13/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 08 00 00 00 00 00
+📨 Sending HID command 14/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 2C 00 00 00 00 00
+📨 Sending HID command 15/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 1C 00 00 00 00 00
+📨 Sending HID command 16/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 12 00 00 00 00 00
+📨 Sending HID command 17/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 18 00 00 00 00 00
+📨 Sending HID command 18/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 2C 00 00 00 00 00
+📨 Sending HID command 19/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 0B 00 00 00 00 00
+📨 Sending HID command 20/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 04 00 00 00 00 00
+📨 Sending HID command 21/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 19 00 00 00 00 00
+📨 Sending HID command 22/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 08 00 00 00 00 00
+📨 Sending HID command 23/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 2C 00 00 00 00 00
+📨 Sending HID command 24/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 11 00 00 00 00 00
+📨 Sending HID command 25/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 12 00 00 00 00 00
+📨 Sending HID command 26/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 2C 00 00 00 00 00
+📨 Sending HID command 27/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 05 00 00 00 00 00
+📨 Sending HID command 28/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 18 00 00 00 00 00
+📨 Sending HID command 29/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 0C 00 00 00 00 00
+📨 Sending HID command 30/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 0F 00 00 00 00 00
+📨 Sending HID command 31/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 07 00 00 00 00 00
+📨 Sending HID command 32/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 2C 00 00 00 00 00
+📨 Sending HID command 33/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 08 00 00 00 00 00
+📨 Sending HID command 34/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 15 00 00 00 00 00
+📨 Sending HID command 35/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 15 00 00 00 00 00
+📨 Sending HID command 36/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 12 00 00 00 00 00
+📨 Sending HID command 37/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 15 00 00 00 00 00
+📨 Sending HID command 38/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 16 00 00 00 00 00
+📨 Sending HID command 39/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 2C 00 00 00 00 00
+📨 Sending HID command 40/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 08 00 00 00 00 00
+📨 Sending HID command 41/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 0F 00 00 00 00 00
+📨 Sending HID command 42/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 16 00 00 00 00 00
+📨 Sending HID command 43/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 08 00 00 00 00 00
+📨 Sending HID command 44/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 1A 00 00 00 00 00
+📨 Sending HID command 45/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 0B 00 00 00 00 00
+📨 Sending HID command 46/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 08 00 00 00 00 00
+📨 Sending HID command 47/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 15 00 00 00 00 00
+📨 Sending HID command 48/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 08 00 00 00 00 00
+📨 Sending HID command 49/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 2C 00 00 00 00 00
+📨 Sending HID command 50/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 17 00 00 00 00 00
+📨 Sending HID command 51/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 0B 00 00 00 00 00
+📨 Sending HID command 52/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 04 00 00 00 00 00
+📨 Sending HID command 53/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 17 00 00 00 00 00
+📨 Sending HID command 54/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 2C 00 00 00 00 00
+📨 Sending HID command 55/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 04 00 00 00 00 00
+📨 Sending HID command 56/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 15 00 00 00 00 00
+📨 Sending HID command 57/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 08 00 00 00 00 00
+📨 Sending HID command 58/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 2C 00 00 00 00 00
+📨 Sending HID command 59/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 05 00 00 00 00 00
+📨 Sending HID command 60/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 0F 00 00 00 00 00
+📨 Sending HID command 61/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 12 00 00 00 00 00
+📨 Sending HID command 62/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 06 00 00 00 00 00
+📨 Sending HID command 63/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 0E 00 00 00 00 00
+📨 Sending HID command 64/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 0C 00 00 00 00 00
+📨 Sending HID command 65/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 11 00 00 00 00 00
+📨 Sending HID command 66/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 0A 00 00 00 00 00
+📨 Sending HID command 67/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 2C 00 00 00 00 00
+📨 Sending HID command 68/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 13 00 00 00 00 00
+📨 Sending HID command 69/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 15 00 00 00 00 00
+📨 Sending HID command 70/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 08 00 00 00 00 00
+📨 Sending HID command 71/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 19 00 00 00 00 00
+📨 Sending HID command 72/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 0C 00 00 00 00 00
+📨 Sending HID command 73/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 08 00 00 00 00 00
+📨 Sending HID command 74/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 1A 00 00 00 00 00
+📨 Sending HID command 75/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 16 00 00 00 00 00
+📨 Sending HID command 76/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 37 00 00 00 00 00
+✅ HID sequence completed for text: '   • Make sure you h...'
+🎉 Workflow execution completed successfully!
+🔄 Resetting workflow execution state
+🔄 Executing action: Direct Text Input - 'CLIPBOARD_CONTENT'
+📋 Using clipboard content: '   • Make sure you have no build errors elsewhere ...'
+⚠️ Unsupported character: '•'
+🔤 Converting text '   • Make sure you h...' to 76 HID commands
+📨 Sending HID command 1/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 2C 00 00 00 00 00
+📨 Sending HID command 2/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 2C 00 00 00 00 00
+📨 Sending HID command 3/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 2C 00 00 00 00 00
+📨 Sending HID command 4/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 2C 00 00 00 00 00
+📨 Sending HID command 5/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 02 00 10 00 00 00 00 00
+📨 Sending HID command 6/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 04 00 00 00 00 00
+📨 Sending HID command 7/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 0E 00 00 00 00 00
+📨 Sending HID command 8/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 08 00 00 00 00 00
+📨 Sending HID command 9/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 2C 00 00 00 00 00
+📨 Sending HID command 10/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 16 00 00 00 00 00
+📨 Sending HID command 11/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 18 00 00 00 00 00
+📨 Sending HID command 12/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 15 00 00 00 00 00
+📨 Sending HID command 13/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 08 00 00 00 00 00
+📨 Sending HID command 14/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 2C 00 00 00 00 00
+📨 Sending HID command 15/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 1C 00 00 00 00 00
+📨 Sending HID command 16/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 12 00 00 00 00 00
+📨 Sending HID command 17/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 18 00 00 00 00 00
+📨 Sending HID command 18/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 2C 00 00 00 00 00
+📨 Sending HID command 19/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 0B 00 00 00 00 00
+📨 Sending HID command 20/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 04 00 00 00 00 00
+📨 Sending HID command 21/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 19 00 00 00 00 00
+📨 Sending HID command 22/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 08 00 00 00 00 00
+📨 Sending HID command 23/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 2C 00 00 00 00 00
+📨 Sending HID command 24/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 11 00 00 00 00 00
+📨 Sending HID command 25/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 12 00 00 00 00 00
+📨 Sending HID command 26/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 2C 00 00 00 00 00
+📨 Sending HID command 27/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 05 00 00 00 00 00
+📨 Sending HID command 28/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 18 00 00 00 00 00
+📨 Sending HID command 29/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 0C 00 00 00 00 00
+📨 Sending HID command 30/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 0F 00 00 00 00 00
+📨 Sending HID command 31/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 07 00 00 00 00 00
+📨 Sending HID command 32/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 2C 00 00 00 00 00
+📨 Sending HID command 33/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 08 00 00 00 00 00
+📨 Sending HID command 34/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 15 00 00 00 00 00
+📨 Sending HID command 35/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 15 00 00 00 00 00
+📨 Sending HID command 36/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 12 00 00 00 00 00
+📨 Sending HID command 37/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 15 00 00 00 00 00
+📨 Sending HID command 38/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 16 00 00 00 00 00
+📨 Sending HID command 39/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 2C 00 00 00 00 00
+📨 Sending HID command 40/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 08 00 00 00 00 00
+📨 Sending HID command 41/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 0F 00 00 00 00 00
+📨 Sending HID command 42/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 16 00 00 00 00 00
+📨 Sending HID command 43/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 08 00 00 00 00 00
+📨 Sending HID command 44/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 1A 00 00 00 00 00
+📨 Sending HID command 45/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 0B 00 00 00 00 00
+📨 Sending HID command 46/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 08 00 00 00 00 00
+📨 Sending HID command 47/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 15 00 00 00 00 00
+📨 Sending HID command 48/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 08 00 00 00 00 00
+📨 Sending HID command 49/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 2C 00 00 00 00 00
+📨 Sending HID command 50/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 17 00 00 00 00 00
+📨 Sending HID command 51/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 0B 00 00 00 00 00
+📨 Sending HID command 52/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 04 00 00 00 00 00
+📨 Sending HID command 53/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 17 00 00 00 00 00
+📨 Sending HID command 54/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 2C 00 00 00 00 00
+📨 Sending HID command 55/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 04 00 00 00 00 00
+📨 Sending HID command 56/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 15 00 00 00 00 00
+📨 Sending HID command 57/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 08 00 00 00 00 00
+📨 Sending HID command 58/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 2C 00 00 00 00 00
+📨 Sending HID command 59/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 05 00 00 00 00 00
+📨 Sending HID command 60/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 0F 00 00 00 00 00
+📨 Sending HID command 61/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 12 00 00 00 00 00
+📨 Sending HID command 62/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 06 00 00 00 00 00
+📨 Sending HID command 63/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 0E 00 00 00 00 00
+📨 Sending HID command 64/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 0C 00 00 00 00 00
+📨 Sending HID command 65/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 11 00 00 00 00 00
+📨 Sending HID command 66/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 0A 00 00 00 00 00
+📨 Sending HID command 67/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 2C 00 00 00 00 00
+📨 Sending HID command 68/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 13 00 00 00 00 00
+📨 Sending HID command 69/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 15 00 00 00 00 00
+📨 Sending HID command 70/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 08 00 00 00 00 00
+📨 Sending HID command 71/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 19 00 00 00 00 00
+📨 Sending HID command 72/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 0C 00 00 00 00 00
+📨 Sending HID command 73/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 08 00 00 00 00 00
+📨 Sending HID command 74/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 1A 00 00 00 00 00
+📨 Sending HID command 75/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 16 00 00 00 00 00
+📨 Sending HID command 76/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 37 00 00 00 00 00
+✅ HID sequence completed for text: '   • Make sure you h...'
+🎉 Workflow execution completed successfully!
+🔄 Resetting workflow execution state
+void * _Nullable NSMapGet(NSMapTable * _Nonnull, const void * _Nullable): map table argument is NULL
+void NSMapRemove(NSMapTable * _Nonnull, const void * _Nullable): map table argument is NULL
+🔄 Executing action: Direct Text Input - 'CLIPBOARD_CONTENT'
+📋 Using clipboard content: '   • Make sure you have no build errors elsewhere ...'
+⚠️ Unsupported character: '•'
+🔤 Converting text '   • Make sure you h...' to 76 HID commands
+📨 Sending HID command 1/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 2C 00 00 00 00 00
+📨 Sending HID command 2/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 2C 00 00 00 00 00
+📨 Sending HID command 3/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 2C 00 00 00 00 00
+📨 Sending HID command 4/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 2C 00 00 00 00 00
+📨 Sending HID command 5/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 02 00 10 00 00 00 00 00
+📨 Sending HID command 6/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 04 00 00 00 00 00
+📨 Sending HID command 7/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 0E 00 00 00 00 00
+📨 Sending HID command 8/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 08 00 00 00 00 00
+📨 Sending HID command 9/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 2C 00 00 00 00 00
+📨 Sending HID command 10/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 16 00 00 00 00 00
+📨 Sending HID command 11/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 18 00 00 00 00 00
+📨 Sending HID command 12/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 15 00 00 00 00 00
+📨 Sending HID command 13/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 08 00 00 00 00 00
+📨 Sending HID command 14/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 2C 00 00 00 00 00
+📨 Sending HID command 15/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 1C 00 00 00 00 00
+📨 Sending HID command 16/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 12 00 00 00 00 00
+📨 Sending HID command 17/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 18 00 00 00 00 00
+📨 Sending HID command 18/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 2C 00 00 00 00 00
+📨 Sending HID command 19/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 0B 00 00 00 00 00
+📨 Sending HID command 20/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 04 00 00 00 00 00
+📨 Sending HID command 21/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 19 00 00 00 00 00
+📨 Sending HID command 22/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 08 00 00 00 00 00
+📨 Sending HID command 23/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 2C 00 00 00 00 00
+📨 Sending HID command 24/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 11 00 00 00 00 00
+📨 Sending HID command 25/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 12 00 00 00 00 00
+📨 Sending HID command 26/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 2C 00 00 00 00 00
+📨 Sending HID command 27/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 05 00 00 00 00 00
+📨 Sending HID command 28/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 18 00 00 00 00 00
+📨 Sending HID command 29/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 0C 00 00 00 00 00
+📨 Sending HID command 30/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 0F 00 00 00 00 00
+📨 Sending HID command 31/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 07 00 00 00 00 00
+📨 Sending HID command 32/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 2C 00 00 00 00 00
+📨 Sending HID command 33/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 08 00 00 00 00 00
+📨 Sending HID command 34/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 15 00 00 00 00 00
+📨 Sending HID command 35/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 15 00 00 00 00 00
+📨 Sending HID command 36/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 12 00 00 00 00 00
+📨 Sending HID command 37/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 15 00 00 00 00 00
+📨 Sending HID command 38/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 16 00 00 00 00 00
+📨 Sending HID command 39/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 2C 00 00 00 00 00
+📨 Sending HID command 40/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 08 00 00 00 00 00
+📨 Sending HID command 41/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 0F 00 00 00 00 00
+📨 Sending HID command 42/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 16 00 00 00 00 00
+📨 Sending HID command 43/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 08 00 00 00 00 00
+📨 Sending HID command 44/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 1A 00 00 00 00 00
+📨 Sending HID command 45/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 0B 00 00 00 00 00
+📨 Sending HID command 46/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 08 00 00 00 00 00
+📨 Sending HID command 47/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 15 00 00 00 00 00
+📨 Sending HID command 48/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 08 00 00 00 00 00
+📨 Sending HID command 49/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 2C 00 00 00 00 00
+📨 Sending HID command 50/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 17 00 00 00 00 00
+📨 Sending HID command 51/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 0B 00 00 00 00 00
+📨 Sending HID command 52/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 04 00 00 00 00 00
+📨 Sending HID command 53/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 17 00 00 00 00 00
+📨 Sending HID command 54/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 2C 00 00 00 00 00
+📨 Sending HID command 55/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 04 00 00 00 00 00
+📨 Sending HID command 56/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 15 00 00 00 00 00
+📨 Sending HID command 57/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 08 00 00 00 00 00
+📨 Sending HID command 58/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 2C 00 00 00 00 00
+📨 Sending HID command 59/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 05 00 00 00 00 00
+📨 Sending HID command 60/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 0F 00 00 00 00 00
+📨 Sending HID command 61/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 12 00 00 00 00 00
+📨 Sending HID command 62/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 06 00 00 00 00 00
+📨 Sending HID command 63/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 0E 00 00 00 00 00
+📨 Sending HID command 64/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 0C 00 00 00 00 00
+📨 Sending HID command 65/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 11 00 00 00 00 00
+📨 Sending HID command 66/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 0A 00 00 00 00 00
+📨 Sending HID command 67/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 2C 00 00 00 00 00
+📨 Sending HID command 68/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 13 00 00 00 00 00
+📨 Sending HID command 69/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 15 00 00 00 00 00
+📨 Sending HID command 70/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 08 00 00 00 00 00
+📨 Sending HID command 71/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 19 00 00 00 00 00
+📨 Sending HID command 72/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 0C 00 00 00 00 00
+📨 Sending HID command 73/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 08 00 00 00 00 00
+📨 Sending HID command 74/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 1A 00 00 00 00 00
+📨 Sending HID command 75/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 16 00 00 00 00 00
+📨 Sending HID command 76/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 37 00 00 00 00 00
+✅ HID sequence completed for text: '   • Make sure you h...'
+🎉 Workflow execution completed successfully!
+🔄 Resetting workflow execution state
+void * _Nullable NSMapGet(NSMapTable * _Nonnull, const void * _Nullable): map table argument is NULL
+void NSMapRemove(NSMapTable * _Nonnull, const void * _Nullable): map table argument is NULL
+🔄 Executing action: Direct Text Input - 'CLIPBOARD_CONTENT'
+📋 Using clipboard content: '   • Make sure you have no build errors elsewhere ...'
+⚠️ Unsupported character: '•'
+🔤 Converting text '   • Make sure you h...' to 76 HID commands
+📨 Sending HID command 1/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 2C 00 00 00 00 00
+📨 Sending HID command 2/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 2C 00 00 00 00 00
+📨 Sending HID command 3/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 2C 00 00 00 00 00
+📨 Sending HID command 4/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 2C 00 00 00 00 00
+📨 Sending HID command 5/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 02 00 10 00 00 00 00 00
+📨 Sending HID command 6/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 04 00 00 00 00 00
+📨 Sending HID command 7/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 0E 00 00 00 00 00
+📨 Sending HID command 8/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 08 00 00 00 00 00
+📨 Sending HID command 9/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 2C 00 00 00 00 00
+📨 Sending HID command 10/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 16 00 00 00 00 00
+📨 Sending HID command 11/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 18 00 00 00 00 00
+📨 Sending HID command 12/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 15 00 00 00 00 00
+📨 Sending HID command 13/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 08 00 00 00 00 00
+📨 Sending HID command 14/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 2C 00 00 00 00 00
+📨 Sending HID command 15/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 1C 00 00 00 00 00
+📨 Sending HID command 16/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 12 00 00 00 00 00
+📨 Sending HID command 17/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 18 00 00 00 00 00
+📨 Sending HID command 18/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 2C 00 00 00 00 00
+📨 Sending HID command 19/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 0B 00 00 00 00 00
+📨 Sending HID command 20/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 04 00 00 00 00 00
+📨 Sending HID command 21/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 19 00 00 00 00 00
+📨 Sending HID command 22/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 08 00 00 00 00 00
+📨 Sending HID command 23/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 2C 00 00 00 00 00
+📨 Sending HID command 24/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 11 00 00 00 00 00
+📨 Sending HID command 25/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 12 00 00 00 00 00
+📨 Sending HID command 26/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 2C 00 00 00 00 00
+📨 Sending HID command 27/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 05 00 00 00 00 00
+📨 Sending HID command 28/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 18 00 00 00 00 00
+📨 Sending HID command 29/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 0C 00 00 00 00 00
+📨 Sending HID command 30/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 0F 00 00 00 00 00
+📨 Sending HID command 31/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 07 00 00 00 00 00
+📨 Sending HID command 32/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 2C 00 00 00 00 00
+📨 Sending HID command 33/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 08 00 00 00 00 00
+📨 Sending HID command 34/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 15 00 00 00 00 00
+📨 Sending HID command 35/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 15 00 00 00 00 00
+📨 Sending HID command 36/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 12 00 00 00 00 00
+📨 Sending HID command 37/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 15 00 00 00 00 00
+📨 Sending HID command 38/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 16 00 00 00 00 00
+📨 Sending HID command 39/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 2C 00 00 00 00 00
+📨 Sending HID command 40/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 08 00 00 00 00 00
+📨 Sending HID command 41/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 0F 00 00 00 00 00
+📨 Sending HID command 42/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 16 00 00 00 00 00
+📨 Sending HID command 43/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 08 00 00 00 00 00
+📨 Sending HID command 44/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 1A 00 00 00 00 00
+📨 Sending HID command 45/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 0B 00 00 00 00 00
+📨 Sending HID command 46/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 08 00 00 00 00 00
+📨 Sending HID command 47/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 15 00 00 00 00 00
+📨 Sending HID command 48/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 08 00 00 00 00 00
+📨 Sending HID command 49/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 2C 00 00 00 00 00
+📨 Sending HID command 50/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 17 00 00 00 00 00
+📨 Sending HID command 51/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 0B 00 00 00 00 00
+📨 Sending HID command 52/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 04 00 00 00 00 00
+📨 Sending HID command 53/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 17 00 00 00 00 00
+📨 Sending HID command 54/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 2C 00 00 00 00 00
+📨 Sending HID command 55/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 04 00 00 00 00 00
+📨 Sending HID command 56/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 15 00 00 00 00 00
+📨 Sending HID command 57/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 08 00 00 00 00 00
+📨 Sending HID command 58/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 2C 00 00 00 00 00
+📨 Sending HID command 59/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 05 00 00 00 00 00
+📨 Sending HID command 60/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 0F 00 00 00 00 00
+📨 Sending HID command 61/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 12 00 00 00 00 00
+📨 Sending HID command 62/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 06 00 00 00 00 00
+📨 Sending HID command 63/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 0E 00 00 00 00 00
+📨 Sending HID command 64/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 0C 00 00 00 00 00
+📨 Sending HID command 65/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 11 00 00 00 00 00
+📨 Sending HID command 66/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 0A 00 00 00 00 00
+📨 Sending HID command 67/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 2C 00 00 00 00 00
+📨 Sending HID command 68/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 13 00 00 00 00 00
+📨 Sending HID command 69/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 15 00 00 00 00 00
+📨 Sending HID command 70/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 08 00 00 00 00 00
+📨 Sending HID command 71/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 19 00 00 00 00 00
+📨 Sending HID command 72/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 0C 00 00 00 00 00
+📨 Sending HID command 73/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 08 00 00 00 00 00
+📨 Sending HID command 74/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 1A 00 00 00 00 00
+📨 Sending HID command 75/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 16 00 00 00 00 00
+📨 Sending HID command 76/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 37 00 00 00 00 00
+✅ HID sequence completed for text: '   • Make sure you h...'
+🎉 Workflow execution completed successfully!
+🔄 Resetting workflow execution state
+void * _Nullable NSMapGet(NSMapTable * _Nonnull, const void * _Nullable): map table argument is NULL
+void NSMapRemove(NSMapTable * _Nonnull, const void * _Nullable): map table argument is NULL
+🔄 Executing action: Direct Text Input - 'CLIPBOARD_CONTENT'
+📋 Using clipboard content: '   • Make sure you have no build errors elsewhere ...'
+⚠️ Unsupported character: '•'
+🔤 Converting text '   • Make sure you h...' to 76 HID commands
+📨 Sending HID command 1/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 2C 00 00 00 00 00
+📨 Sending HID command 2/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 2C 00 00 00 00 00
+📨 Sending HID command 3/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 2C 00 00 00 00 00
+📨 Sending HID command 4/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 2C 00 00 00 00 00
+📨 Sending HID command 5/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 02 00 10 00 00 00 00 00
+📨 Sending HID command 6/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 04 00 00 00 00 00
+📨 Sending HID command 7/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 0E 00 00 00 00 00
+📨 Sending HID command 8/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 08 00 00 00 00 00
+📨 Sending HID command 9/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 2C 00 00 00 00 00
+📨 Sending HID command 10/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 16 00 00 00 00 00
+📨 Sending HID command 11/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 18 00 00 00 00 00
+📨 Sending HID command 12/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 15 00 00 00 00 00
+📨 Sending HID command 13/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 08 00 00 00 00 00
+📨 Sending HID command 14/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 2C 00 00 00 00 00
+📨 Sending HID command 15/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 1C 00 00 00 00 00
+📨 Sending HID command 16/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 12 00 00 00 00 00
+📨 Sending HID command 17/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 18 00 00 00 00 00
+📨 Sending HID command 18/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 2C 00 00 00 00 00
+📨 Sending HID command 19/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 0B 00 00 00 00 00
+📨 Sending HID command 20/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 04 00 00 00 00 00
+📨 Sending HID command 21/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 19 00 00 00 00 00
+📨 Sending HID command 22/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 08 00 00 00 00 00
+📨 Sending HID command 23/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 2C 00 00 00 00 00
+📨 Sending HID command 24/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 11 00 00 00 00 00
+📨 Sending HID command 25/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 12 00 00 00 00 00
+📨 Sending HID command 26/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 2C 00 00 00 00 00
+📨 Sending HID command 27/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 05 00 00 00 00 00
+📨 Sending HID command 28/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 18 00 00 00 00 00
+📨 Sending HID command 29/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 0C 00 00 00 00 00
+📨 Sending HID command 30/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 0F 00 00 00 00 00
+📨 Sending HID command 31/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 07 00 00 00 00 00
+📨 Sending HID command 32/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 2C 00 00 00 00 00
+📨 Sending HID command 33/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 08 00 00 00 00 00
+📨 Sending HID command 34/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 15 00 00 00 00 00
+📨 Sending HID command 35/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 15 00 00 00 00 00
+📨 Sending HID command 36/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 12 00 00 00 00 00
+📨 Sending HID command 37/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 15 00 00 00 00 00
+📨 Sending HID command 38/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 16 00 00 00 00 00
+📨 Sending HID command 39/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 2C 00 00 00 00 00
+📨 Sending HID command 40/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 08 00 00 00 00 00
+📨 Sending HID command 41/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 0F 00 00 00 00 00
+📨 Sending HID command 42/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 16 00 00 00 00 00
+📨 Sending HID command 43/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 08 00 00 00 00 00
+📨 Sending HID command 44/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 1A 00 00 00 00 00
+📨 Sending HID command 45/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 0B 00 00 00 00 00
+📨 Sending HID command 46/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 08 00 00 00 00 00
+📨 Sending HID command 47/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 15 00 00 00 00 00
+📨 Sending HID command 48/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 08 00 00 00 00 00
+📨 Sending HID command 49/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 2C 00 00 00 00 00
+📨 Sending HID command 50/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 17 00 00 00 00 00
+📨 Sending HID command 51/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 0B 00 00 00 00 00
+📨 Sending HID command 52/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 04 00 00 00 00 00
+📨 Sending HID command 53/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 17 00 00 00 00 00
+📨 Sending HID command 54/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 2C 00 00 00 00 00
+📨 Sending HID command 55/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 04 00 00 00 00 00
+📨 Sending HID command 56/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 15 00 00 00 00 00
+📨 Sending HID command 57/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 08 00 00 00 00 00
+📨 Sending HID command 58/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 2C 00 00 00 00 00
+📨 Sending HID command 59/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 05 00 00 00 00 00
+📨 Sending HID command 60/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 0F 00 00 00 00 00
+📨 Sending HID command 61/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 12 00 00 00 00 00
+📨 Sending HID command 62/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 06 00 00 00 00 00
+📨 Sending HID command 63/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 0E 00 00 00 00 00
+📨 Sending HID command 64/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 0C 00 00 00 00 00
+📨 Sending HID command 65/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 11 00 00 00 00 00
+📨 Sending HID command 66/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 0A 00 00 00 00 00
+📨 Sending HID command 67/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 2C 00 00 00 00 00
+📨 Sending HID command 68/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 13 00 00 00 00 00
+📨 Sending HID command 69/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 15 00 00 00 00 00
+📨 Sending HID command 70/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 08 00 00 00 00 00
+📨 Sending HID command 71/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 19 00 00 00 00 00
+📨 Sending HID command 72/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 0C 00 00 00 00 00
+📨 Sending HID command 73/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 08 00 00 00 00 00
+📨 Sending HID command 74/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 1A 00 00 00 00 00
+📨 Sending HID command 75/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 16 00 00 00 00 00
+📨 Sending HID command 76/76
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 37 00 00 00 00 00
+✅ HID sequence completed for text: '   • Make sure you h...'
+🎉 Workflow execution completed successfully!
+🔄 Resetting workflow execution state
+🔄 Executing action: Direct Text Input - 'CLIPBOARD_CONTENT'
+📋 Using clipboard content: 'version
+  - ✅ Sequential character transmission...'
+⚠️ Unsupported character: '✅'
+🔤 Converting text 'version
+  - ✅ Sequen...' to 46 HID commands
+📨 Sending HID command 1/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 19 00 00 00 00 00
+App is being debugged, do not track this hang
+Hang detected: 2.33s (debugger attached, not reporting)
+📨 Sending HID command 2/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 08 00 00 00 00 00
+📨 Sending HID command 3/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 15 00 00 00 00 00
+📨 Sending HID command 4/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 16 00 00 00 00 00
+📨 Sending HID command 5/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 0C 00 00 00 00 00
+📨 Sending HID command 6/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 12 00 00 00 00 00
+📨 Sending HID command 7/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 11 00 00 00 00 00
+📨 Sending HID command 8/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 28 00 00 00 00 00
+📨 Sending HID command 9/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 2C 00 00 00 00 00
+📨 Sending HID command 10/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 2C 00 00 00 00 00
+📨 Sending HID command 11/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 2D 00 00 00 00 00
+📨 Sending HID command 12/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 2C 00 00 00 00 00
+📨 Sending HID command 13/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 2C 00 00 00 00 00
+📨 Sending HID command 14/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 02 00 16 00 00 00 00 00
+📨 Sending HID command 15/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 08 00 00 00 00 00
+📨 Sending HID command 16/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 14 00 00 00 00 00
+📨 Sending HID command 17/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 18 00 00 00 00 00
+📨 Sending HID command 18/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 08 00 00 00 00 00
+📨 Sending HID command 19/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 11 00 00 00 00 00
+📨 Sending HID command 20/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 17 00 00 00 00 00
+📨 Sending HID command 21/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 0C 00 00 00 00 00
+📨 Sending HID command 22/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 04 00 00 00 00 00
+📨 Sending HID command 23/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 0F 00 00 00 00 00
+📨 Sending HID command 24/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 2C 00 00 00 00 00
+📨 Sending HID command 25/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 06 00 00 00 00 00
+📨 Sending HID command 26/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 0B 00 00 00 00 00
+📨 Sending HID command 27/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 04 00 00 00 00 00
+📨 Sending HID command 28/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 15 00 00 00 00 00
+📨 Sending HID command 29/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 04 00 00 00 00 00
+📨 Sending HID command 30/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 06 00 00 00 00 00
+📨 Sending HID command 31/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 17 00 00 00 00 00
+📨 Sending HID command 32/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 08 00 00 00 00 00
+📨 Sending HID command 33/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 15 00 00 00 00 00
+📨 Sending HID command 34/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 2C 00 00 00 00 00
+📨 Sending HID command 35/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 17 00 00 00 00 00
+📨 Sending HID command 36/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 15 00 00 00 00 00
+📨 Sending HID command 37/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 04 00 00 00 00 00
+📨 Sending HID command 38/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 11 00 00 00 00 00
+📨 Sending HID command 39/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 16 00 00 00 00 00
+📨 Sending HID command 40/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 10 00 00 00 00 00
+📨 Sending HID command 41/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 0C 00 00 00 00 00
+📨 Sending HID command 42/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 16 00 00 00 00 00
+📨 Sending HID command 43/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 16 00 00 00 00 00
+📨 Sending HID command 44/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 0C 00 00 00 00 00
+📨 Sending HID command 45/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 12 00 00 00 00 00
+📨 Sending HID command 46/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 11 00 00 00 00 00
+✅ HID sequence completed for text: 'version
+  - ✅ Sequen...'
+🎉 Workflow execution completed successfully!
+🔄 Resetting workflow execution state
+🔄 Executing action: Direct Text Input - 'CLIPBOARD_CONTENT'
+📋 Using clipboard content: 'version
+  - ✅ Sequential character transmission...'
+⚠️ Unsupported character: '✅'
+🔤 Converting text 'version
+  - ✅ Sequen...' to 46 HID commands
+📨 Sending HID command 1/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 19 00 00 00 00 00
+📨 Sending HID command 2/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 08 00 00 00 00 00
+📨 Sending HID command 3/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 15 00 00 00 00 00
+📨 Sending HID command 4/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 16 00 00 00 00 00
+📨 Sending HID command 5/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 0C 00 00 00 00 00
+📨 Sending HID command 6/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 12 00 00 00 00 00
+📨 Sending HID command 7/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 11 00 00 00 00 00
+📨 Sending HID command 8/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 28 00 00 00 00 00
+📨 Sending HID command 9/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 2C 00 00 00 00 00
+📨 Sending HID command 10/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 2C 00 00 00 00 00
+📨 Sending HID command 11/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 2D 00 00 00 00 00
+📨 Sending HID command 12/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 2C 00 00 00 00 00
+📨 Sending HID command 13/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 2C 00 00 00 00 00
+📨 Sending HID command 14/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 02 00 16 00 00 00 00 00
+📨 Sending HID command 15/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 08 00 00 00 00 00
+📨 Sending HID command 16/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 14 00 00 00 00 00
+📨 Sending HID command 17/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 18 00 00 00 00 00
+📨 Sending HID command 18/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 08 00 00 00 00 00
+📨 Sending HID command 19/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 11 00 00 00 00 00
+📨 Sending HID command 20/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 17 00 00 00 00 00
+📨 Sending HID command 21/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 0C 00 00 00 00 00
+📨 Sending HID command 22/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 04 00 00 00 00 00
+📨 Sending HID command 23/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 0F 00 00 00 00 00
+📨 Sending HID command 24/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 2C 00 00 00 00 00
+📨 Sending HID command 25/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 06 00 00 00 00 00
+📨 Sending HID command 26/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 0B 00 00 00 00 00
+📨 Sending HID command 27/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 04 00 00 00 00 00
+📨 Sending HID command 28/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 15 00 00 00 00 00
+📨 Sending HID command 29/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 04 00 00 00 00 00
+📨 Sending HID command 30/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 06 00 00 00 00 00
+📨 Sending HID command 31/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 17 00 00 00 00 00
+📨 Sending HID command 32/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 08 00 00 00 00 00
+📨 Sending HID command 33/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 15 00 00 00 00 00
+📨 Sending HID command 34/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 2C 00 00 00 00 00
+📨 Sending HID command 35/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 17 00 00 00 00 00
+📨 Sending HID command 36/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 15 00 00 00 00 00
+📨 Sending HID command 37/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 04 00 00 00 00 00
+📨 Sending HID command 38/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 11 00 00 00 00 00
+📨 Sending HID command 39/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 16 00 00 00 00 00
+📨 Sending HID command 40/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 10 00 00 00 00 00
+📨 Sending HID command 41/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 0C 00 00 00 00 00
+📨 Sending HID command 42/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 16 00 00 00 00 00
+📨 Sending HID command 43/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 16 00 00 00 00 00
+📨 Sending HID command 44/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 0C 00 00 00 00 00
+📨 Sending HID command 45/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 12 00 00 00 00 00
+📨 Sending HID command 46/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 11 00 00 00 00 00
+✅ HID sequence completed for text: 'version
+  - ✅ Sequen...'
+🎉 Workflow execution completed successfully!
+🔄 Resetting workflow execution state
+🔄 Executing action: Direct Text Input - 'CLIPBOARD_CONTENT'
+📋 Using clipboard content: 'version
+  - ✅ Sequential character transmission...'
+⚠️ Unsupported character: '✅'
+🔤 Converting text 'version
+  - ✅ Sequen...' to 46 HID commands
+📨 Sending HID command 1/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 19 00 00 00 00 00
+📨 Sending HID command 2/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 08 00 00 00 00 00
+📨 Sending HID command 3/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 15 00 00 00 00 00
+📨 Sending HID command 4/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 16 00 00 00 00 00
+📨 Sending HID command 5/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 0C 00 00 00 00 00
+📨 Sending HID command 6/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 12 00 00 00 00 00
+📨 Sending HID command 7/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 11 00 00 00 00 00
+📨 Sending HID command 8/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 28 00 00 00 00 00
+📨 Sending HID command 9/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 2C 00 00 00 00 00
+📨 Sending HID command 10/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 2C 00 00 00 00 00
+📨 Sending HID command 11/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 2D 00 00 00 00 00
+📨 Sending HID command 12/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 2C 00 00 00 00 00
+📨 Sending HID command 13/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 2C 00 00 00 00 00
+📨 Sending HID command 14/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 02 00 16 00 00 00 00 00
+📨 Sending HID command 15/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 08 00 00 00 00 00
+📨 Sending HID command 16/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 14 00 00 00 00 00
+📨 Sending HID command 17/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 18 00 00 00 00 00
+📨 Sending HID command 18/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 08 00 00 00 00 00
+📨 Sending HID command 19/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 11 00 00 00 00 00
+📨 Sending HID command 20/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 17 00 00 00 00 00
+📨 Sending HID command 21/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 0C 00 00 00 00 00
+📨 Sending HID command 22/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 04 00 00 00 00 00
+📨 Sending HID command 23/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 0F 00 00 00 00 00
+📨 Sending HID command 24/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 2C 00 00 00 00 00
+📨 Sending HID command 25/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 06 00 00 00 00 00
+📨 Sending HID command 26/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 0B 00 00 00 00 00
+📨 Sending HID command 27/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 04 00 00 00 00 00
+📨 Sending HID command 28/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 15 00 00 00 00 00
+📨 Sending HID command 29/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 04 00 00 00 00 00
+📨 Sending HID command 30/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 06 00 00 00 00 00
+📨 Sending HID command 31/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 17 00 00 00 00 00
+📨 Sending HID command 32/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 08 00 00 00 00 00
+📨 Sending HID command 33/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 15 00 00 00 00 00
+📨 Sending HID command 34/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 2C 00 00 00 00 00
+📨 Sending HID command 35/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 17 00 00 00 00 00
+📨 Sending HID command 36/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 15 00 00 00 00 00
+📨 Sending HID command 37/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 04 00 00 00 00 00
+📨 Sending HID command 38/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 11 00 00 00 00 00
+📨 Sending HID command 39/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 16 00 00 00 00 00
+📨 Sending HID command 40/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 10 00 00 00 00 00
+📨 Sending HID command 41/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 0C 00 00 00 00 00
+📨 Sending HID command 42/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 16 00 00 00 00 00
+📨 Sending HID command 43/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 16 00 00 00 00 00
+📨 Sending HID command 44/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 0C 00 00 00 00 00
+📨 Sending HID command 45/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 12 00 00 00 00 00
+📨 Sending HID command 46/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 11 00 00 00 00 00
+✅ HID sequence completed for text: 'version
+  - ✅ Sequen...'
+🎉 Workflow execution completed successfully!
+🔄 Resetting workflow execution state
+🔄 Executing action: Paste (Ctrl+V) - ''
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 01 00 19 00 00 00 00 00
+✅ HID command sent successfully: Paste (Ctrl+V)
+🎉 Workflow execution completed successfully!
+🔄 Resetting workflow execution state
+🔄 Executing action: Direct Text Input - 'CLIPBOARD_CONTENT'
+📋 Using clipboard content: 'version
+  - ✅ Sequential character transmission...'
+⚠️ Unsupported character: '✅'
+🔤 Converting text 'version
+  - ✅ Sequen...' to 46 HID commands
+📨 Sending HID command 1/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 19 00 00 00 00 00
+📨 Sending HID command 2/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 08 00 00 00 00 00
+📨 Sending HID command 3/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 15 00 00 00 00 00
+📨 Sending HID command 4/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 16 00 00 00 00 00
+📨 Sending HID command 5/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 0C 00 00 00 00 00
+📨 Sending HID command 6/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 12 00 00 00 00 00
+📨 Sending HID command 7/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 11 00 00 00 00 00
+📨 Sending HID command 8/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 28 00 00 00 00 00
+📨 Sending HID command 9/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 2C 00 00 00 00 00
+📨 Sending HID command 10/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 2C 00 00 00 00 00
+📨 Sending HID command 11/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 2D 00 00 00 00 00
+📨 Sending HID command 12/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 2C 00 00 00 00 00
+📨 Sending HID command 13/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 2C 00 00 00 00 00
+📨 Sending HID command 14/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 02 00 16 00 00 00 00 00
+📨 Sending HID command 15/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 08 00 00 00 00 00
+📨 Sending HID command 16/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 14 00 00 00 00 00
+📨 Sending HID command 17/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 18 00 00 00 00 00
+📨 Sending HID command 18/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 08 00 00 00 00 00
+📨 Sending HID command 19/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 11 00 00 00 00 00
+📨 Sending HID command 20/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 17 00 00 00 00 00
+📨 Sending HID command 21/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 0C 00 00 00 00 00
+📨 Sending HID command 22/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 04 00 00 00 00 00
+📨 Sending HID command 23/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 0F 00 00 00 00 00
+📨 Sending HID command 24/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 2C 00 00 00 00 00
+📨 Sending HID command 25/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 06 00 00 00 00 00
+📨 Sending HID command 26/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 0B 00 00 00 00 00
+📨 Sending HID command 27/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 04 00 00 00 00 00
+📨 Sending HID command 28/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 15 00 00 00 00 00
+📨 Sending HID command 29/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 04 00 00 00 00 00
+📨 Sending HID command 30/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 06 00 00 00 00 00
+📨 Sending HID command 31/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 17 00 00 00 00 00
+📨 Sending HID command 32/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 08 00 00 00 00 00
+📨 Sending HID command 33/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 15 00 00 00 00 00
+📨 Sending HID command 34/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 2C 00 00 00 00 00
+📨 Sending HID command 35/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 17 00 00 00 00 00
+📨 Sending HID command 36/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 15 00 00 00 00 00
+📨 Sending HID command 37/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 04 00 00 00 00 00
+📨 Sending HID command 38/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 11 00 00 00 00 00
+📨 Sending HID command 39/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 16 00 00 00 00 00
+📨 Sending HID command 40/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 10 00 00 00 00 00
+📨 Sending HID command 41/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 0C 00 00 00 00 00
+📨 Sending HID command 42/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 16 00 00 00 00 00
+📨 Sending HID command 43/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 16 00 00 00 00 00
+📨 Sending HID command 44/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 0C 00 00 00 00 00
+📨 Sending HID command 45/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 12 00 00 00 00 00
+📨 Sending HID command 46/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 11 00 00 00 00 00
+✅ HID sequence completed for text: 'version
+  - ✅ Sequen...'
+🔄 Executing action: Key Press - ''
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 2B 00 00 00 00 00
+✅ HID command sent successfully: Key Press
+🎉 Workflow execution completed successfully!
+🔄 Resetting workflow execution state
+🔄 Executing action: Direct Text Input - 'CLIPBOARD_CONTENT'
+📋 Using clipboard content: 'version
+  - ✅ Sequential character transmission...'
+⚠️ Unsupported character: '✅'
+🔤 Converting text 'version
+  - ✅ Sequen...' to 46 HID commands
+📨 Sending HID command 1/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 19 00 00 00 00 00
+📨 Sending HID command 2/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 08 00 00 00 00 00
+📨 Sending HID command 3/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 15 00 00 00 00 00
+📨 Sending HID command 4/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 16 00 00 00 00 00
+📨 Sending HID command 5/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 0C 00 00 00 00 00
+📨 Sending HID command 6/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 12 00 00 00 00 00
+📨 Sending HID command 7/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 11 00 00 00 00 00
+📨 Sending HID command 8/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 28 00 00 00 00 00
+📨 Sending HID command 9/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 2C 00 00 00 00 00
+📨 Sending HID command 10/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 2C 00 00 00 00 00
+📨 Sending HID command 11/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 2D 00 00 00 00 00
+📨 Sending HID command 12/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 2C 00 00 00 00 00
+📨 Sending HID command 13/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 2C 00 00 00 00 00
+📨 Sending HID command 14/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 02 00 16 00 00 00 00 00
+📨 Sending HID command 15/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 08 00 00 00 00 00
+📨 Sending HID command 16/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 14 00 00 00 00 00
+📨 Sending HID command 17/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 18 00 00 00 00 00
+📨 Sending HID command 18/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 08 00 00 00 00 00
+📨 Sending HID command 19/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 11 00 00 00 00 00
+📨 Sending HID command 20/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 17 00 00 00 00 00
+📨 Sending HID command 21/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 0C 00 00 00 00 00
+📨 Sending HID command 22/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 04 00 00 00 00 00
+📨 Sending HID command 23/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 0F 00 00 00 00 00
+📨 Sending HID command 24/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 2C 00 00 00 00 00
+📨 Sending HID command 25/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 06 00 00 00 00 00
+📨 Sending HID command 26/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 0B 00 00 00 00 00
+📨 Sending HID command 27/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 04 00 00 00 00 00
+📨 Sending HID command 28/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 15 00 00 00 00 00
+📨 Sending HID command 29/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 04 00 00 00 00 00
+📨 Sending HID command 30/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 06 00 00 00 00 00
+📨 Sending HID command 31/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 17 00 00 00 00 00
+📨 Sending HID command 32/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 08 00 00 00 00 00
+📨 Sending HID command 33/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 15 00 00 00 00 00
+📨 Sending HID command 34/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 2C 00 00 00 00 00
+📨 Sending HID command 35/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 17 00 00 00 00 00
+📨 Sending HID command 36/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 15 00 00 00 00 00
+📨 Sending HID command 37/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 04 00 00 00 00 00
+📨 Sending HID command 38/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 11 00 00 00 00 00
+📨 Sending HID command 39/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 16 00 00 00 00 00
+📨 Sending HID command 40/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 10 00 00 00 00 00
+📨 Sending HID command 41/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 0C 00 00 00 00 00
+📨 Sending HID command 42/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 16 00 00 00 00 00
+📨 Sending HID command 43/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 16 00 00 00 00 00
+📨 Sending HID command 44/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 0C 00 00 00 00 00
+📨 Sending HID command 45/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 12 00 00 00 00 00
+📨 Sending HID command 46/46
+Sending 14 bytes via fast channel
+Data: FF 03 00 00 09 03 00 00 11 00 00 00 00 00
+✅ HID sequence completed for text: 'version
+  - ✅ Sequen...'
+🎉 Workflow execution completed successfully!
+🔄 Resetting workflow execution state
+Disconnected from FMA100
+com.yourcompany.fma100workflowautomation.refresh is not advertised in the application's Info.plist
+Could not schedule app refresh: Error Domain=BGTaskSchedulerErrorDomain Code=3 "(null)" UserInfo={Unrecognized Identifier=com.yourcompany.fma100workflowautomation.refresh}
+com.yourcompany.fma100workflowautomation.refresh is not advertised in the application's Info.plist
+Could not schedule app refresh: Error Domain=BGTaskSchedulerErrorDomain Code=3 "(null)" UserInfo={Unrecognized Identifier=com.yourcompany.fma100workflowautomation.refresh}

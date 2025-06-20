@@ -36,7 +36,7 @@ class DICOMServiceManager {
         setupServiceDependencies()
         
         // Initialize all services
-        // try await initializeAllServices()
+        try await initializeAllServices()
         
         isInitialized = true
         
@@ -57,6 +57,19 @@ class DICOMServiceManager {
         
         // Connect image loader to rendering engine
         // imageLoader.renderingEngine = renderingEngine
+        
+        print("✅ DICOM Service dependencies set up successfully")
+        print("📦 File importer delegate: \(String(describing: fileImporter.delegate))")
+    }
+    
+    private func initializeAllServices() async throws {
+        // Initialize metadata store
+        try await metadataStore.initialize()
+        
+        // Initialize file importer
+        try await fileImporter.initialize()
+        
+        print("✅ All DICOM services initialized successfully")
     }
     
     /// Reset all services (useful for testing or cleanup)

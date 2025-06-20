@@ -93,6 +93,15 @@ else
     print_status "GitHub Copilot medical iOS MCP already built"
 fi
 
+# Build CoreML conversion MCP
+if [ ! -f "$MCP_DIR/coreml-conversion-mcp/dist/index.js" ]; then
+    print_warning "Building CoreML conversion MCP..."
+    cd "$MCP_DIR/coreml-conversion-mcp" && npm install && npm run build
+    print_status "CoreML conversion MCP built"
+else
+    print_status "CoreML conversion MCP already built"
+fi
+
 cd "$PROJECT_ROOT"
 
 echo -e "\n${BLUE}Configuring MCP servers...${NC}"
@@ -107,6 +116,7 @@ check_and_add_mcp "XcodeBuildMCP" "npx -y xcodebuildmcp@latest"
 check_and_add_mcp "custom-dicom-mcp" "$MCP_DIR/custom-dicom-mcp/dist/index.js"
 check_and_add_mcp "swift-tools-mcp" "$MCP_DIR/swift-tools-mcp/dist/index.js"
 check_and_add_mcp "github-copilot-medical-ios" "$MCP_DIR/github-copilot-medical-ios/dist/index.js"
+check_and_add_mcp "coreml-conversion-mcp" "$MCP_DIR/coreml-conversion-mcp/dist/index.js"
 
 echo -e "\n${BLUE}Verifying configuration...${NC}"
 

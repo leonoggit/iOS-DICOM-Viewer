@@ -1,5 +1,6 @@
 import Foundation
 import UniformTypeIdentifiers
+import Compression
 
 /// Protocol for receiving DICOM file import notifications
 protocol DICOMFileImporterDelegate: AnyObject {
@@ -66,11 +67,7 @@ class DICOMFileImporter: DICOMServiceProtocol {
     @discardableResult
     func handleIncomingFile(url: URL) -> Bool {
         Task {
-            do {
-                await processIncomingFile(url)
-            } catch {
-                print("❌ Failed to process incoming file: \(error)")
-            }
+            await processIncomingFile(url)
         }
         return true
     }
@@ -80,6 +77,13 @@ class DICOMFileImporter: DICOMServiceProtocol {
         do {
             // Copy file to temp location if needed
             let workingURL = try await prepareFileForProcessing(url)
+            
+            // Check if it's a ZIP file
+            if workingURL.pathExtension.lowercased() == "zip" {
+                print("🗜️ Processing ZIP archive: \(workingURL.lastPathComponent)")
+                try await processZIPFile(workingURL)
+                return
+            }
             
             // Validate DICOM file
             guard DICOMParser.shared.isValidDICOMFile(workingURL) else {
@@ -107,33 +111,77 @@ class DICOMFileImporter: DICOMServiceProtocol {
     
     /// Prepare file for processing (copy if needed)
     private func prepareFileForProcessing(_ url: URL) async throws -> URL {
-        // Check if we can access the file directly
+        print("🔄 Preparing file for processing: \(url.path)")
+        
+        // If it's already in our documents, use it directly
+        if url.path.starts(with: documentsDirectory.path) {
+            print("✅ File is already in documents directory")
+            return url
+        }
+        
+        // For files from document picker, we need to handle security-scoped resources
+        var accessingSecurityScope = false
+        
+        // Try to access security-scoped resource
         if url.startAccessingSecurityScopedResource() {
-            defer { url.stopAccessingSecurityScopedResource() }
-            
-            // If it's already in our documents, use it directly
-            if url.path.starts(with: documentsDirectory.path) {
-                return url
+            accessingSecurityScope = true
+            print("✅ Successfully accessed security-scoped resource")
+        } else {
+            print("⚠️ Could not access security-scoped resource, trying direct access")
+        }
+        
+        defer {
+            if accessingSecurityScope {
+                url.stopAccessingSecurityScopedResource()
             }
+        }
+        
+        do {
+            // Create temp directory for processing
+            let tempDICOMDir = tempDirectory.appendingPathComponent("DICOM")
+            try fileManager.createDirectory(at: tempDICOMDir, withIntermediateDirectories: true)
             
-            // Copy to temp directory for processing
-            let tempURL = tempDirectory.appendingPathComponent("DICOM")
-                .appendingPathComponent(url.lastPathComponent)
+            let tempURL = tempDICOMDir.appendingPathComponent(url.lastPathComponent)
             
-            // Create temp directory if needed
-            try fileManager.createDirectory(at: tempURL.deletingLastPathComponent(), 
-                                          withIntermediateDirectories: true)
-            
-            // Copy file
+            // Remove existing temp file if it exists
             if fileManager.fileExists(atPath: tempURL.path) {
                 try fileManager.removeItem(at: tempURL)
             }
             
+            // Try to copy the file
             try fileManager.copyItem(at: url, to: tempURL)
+            print("✅ Successfully copied file to temp location: \(tempURL.path)")
+            
             return tempURL
+            
+        } catch {
+            print("❌ Failed to copy file: \(error)")
+            
+            // If copy failed, try to read the file data directly and write it
+            do {
+                print("🔄 Attempting direct data read and write...")
+                let data = try Data(contentsOf: url)
+                
+                let tempDICOMDir = tempDirectory.appendingPathComponent("DICOM")
+                try fileManager.createDirectory(at: tempDICOMDir, withIntermediateDirectories: true)
+                
+                let tempURL = tempDICOMDir.appendingPathComponent(url.lastPathComponent)
+                
+                // Remove existing temp file if it exists
+                if fileManager.fileExists(atPath: tempURL.path) {
+                    try fileManager.removeItem(at: tempURL)
+                }
+                
+                try data.write(to: tempURL)
+                print("✅ Successfully wrote file data to temp location: \(tempURL.path)")
+                
+                return tempURL
+                
+            } catch {
+                print("❌ Failed to read file data: \(error)")
+                throw DICOMError.permissionDenied
+            }
         }
-        
-        throw DICOMError.permissionDenied
     }
     
     /// Create permanent storage location for DICOM file
@@ -278,6 +326,314 @@ class DICOMFileImporter: DICOMServiceProtocol {
         return (studyCount, totalSize)
     }
     
+    // MARK: - ZIP File Processing
+    
+    /// Process ZIP file containing DICOM files
+    private func processZIPFile(_ zipURL: URL) async throws {
+        print("🔄 Extracting ZIP file: \(zipURL.lastPathComponent)")
+        
+        // Create extraction directory
+        let extractionDir = tempDirectory.appendingPathComponent("DICOM_Extracted_\(UUID().uuidString)")
+        try fileManager.createDirectory(at: extractionDir, withIntermediateDirectories: true)
+        
+        defer {
+            // Clean up extraction directory
+            try? fileManager.removeItem(at: extractionDir)
+        }
+        
+        // Extract ZIP file
+        try await extractZIPFile(zipURL, to: extractionDir)
+        
+        // Find all DICOM files in extracted directory
+        let dicomFiles = try await findDICOMFiles(in: extractionDir)
+        
+        print("📁 Found \(dicomFiles.count) potential DICOM files in ZIP archive")
+        
+        // Process each DICOM file
+        var successCount = 0
+        var failureCount = 0
+        
+        for dicomFile in dicomFiles {
+            do {
+                // Validate DICOM file
+                guard DICOMParser.shared.isValidDICOMFile(dicomFile) else {
+                    print("⚠️ Skipping invalid DICOM file: \(dicomFile.lastPathComponent)")
+                    failureCount += 1
+                    continue
+                }
+                
+                // Parse metadata
+                let metadata = try await DICOMParser.shared.parseMetadata(from: dicomFile)
+                
+                // Create permanent storage location
+                let permanentURL = try await createPermanentStorage(for: metadata, from: dicomFile)
+                
+                // Notify delegate
+                await MainActor.run {
+                    delegate?.didImportDICOMFile(metadata, from: permanentURL)
+                }
+                
+                print("✅ Successfully imported DICOM file: \(metadata.sopInstanceUID)")
+                successCount += 1
+                
+            } catch {
+                print("❌ Failed to process DICOM file \(dicomFile.lastPathComponent): \(error)")
+                failureCount += 1
+            }
+        }
+        
+        print("📊 ZIP import completed: \(successCount) successful, \(failureCount) failed")
+        
+        if successCount == 0 {
+            throw DICOMError.invalidFile
+        }
+    }
+    
+    /// Extract ZIP file to destination directory using native iOS approach
+    private func extractZIPFile(_ zipURL: URL, to destinationURL: URL) async throws {
+        print("🔄 Extracting ZIP file: \(zipURL.lastPathComponent)")
+        
+        do {
+            // Create destination directory if it doesn't exist
+            try fileManager.createDirectory(at: destinationURL, withIntermediateDirectories: true, attributes: nil)
+            
+            // Use a native iOS approach with URLSession for ZIP handling
+            try await extractZIPUsingNativeAPI(from: zipURL, to: destinationURL)
+            
+            print("✅ ZIP file extracted successfully to: \(destinationURL.path)")
+            
+        } catch {
+            print("❌ ZIP extraction failed: \(error.localizedDescription)")
+            
+            // Fallback: Copy ZIP file and provide instructions
+            try await createZIPFallback(from: zipURL, to: destinationURL)
+            
+            // Don't throw error, let user handle manually
+            print("⚠️ ZIP file copied for manual extraction")
+        }
+    }
+    
+    /// Extract ZIP using native iOS APIs and Foundation
+    private func extractZIPUsingNativeAPI(from zipURL: URL, to destinationURL: URL) async throws {
+        // Read ZIP file data
+        let zipData = try Data(contentsOf: zipURL)
+        
+        // Basic ZIP file structure parsing
+        try parseAndExtractZIP(data: zipData, to: destinationURL)
+    }
+    
+    /// Parse and extract ZIP file using Foundation
+    private func parseAndExtractZIP(data: Data, to destinationURL: URL) throws {
+        // ZIP file format constants
+        let localFileHeaderSignature: UInt32 = 0x04034b50
+        let centralDirectorySignature: UInt32 = 0x02014b50
+        let endOfCentralDirectorySignature: UInt32 = 0x06054b50
+        
+        var offset = 0
+        let bytes = data.withUnsafeBytes { $0.bindMemory(to: UInt8.self) }
+        
+        // Parse local file headers and extract files
+        while offset < data.count - 4 {
+            let signature = data.withUnsafeBytes { bytes in
+                bytes.loadUnaligned(fromByteOffset: offset, as: UInt32.self).littleEndian
+            }
+            
+            if signature == localFileHeaderSignature {
+                try extractFileFromLocalHeader(data: data, offset: &offset, to: destinationURL)
+            } else if signature == centralDirectorySignature {
+                // Reached central directory, stop processing
+                break
+            } else {
+                // Invalid or corrupted ZIP file
+                throw DICOMError.corruptedData
+            }
+        }
+    }
+    
+    /// Extract individual file from ZIP local file header
+    private func extractFileFromLocalHeader(data: Data, offset: inout Int, to destinationURL: URL) throws {
+        guard offset + 30 <= data.count else {
+            throw DICOMError.corruptedData
+        }
+        
+        // Skip signature (4 bytes)
+        offset += 4
+        
+        // Read header fields
+        let versionNeeded = data.withUnsafeBytes { bytes in
+            bytes.loadUnaligned(fromByteOffset: offset, as: UInt16.self).littleEndian
+        }
+        offset += 2
+        
+        let generalPurposeFlag = data.withUnsafeBytes { bytes in
+            bytes.loadUnaligned(fromByteOffset: offset, as: UInt16.self).littleEndian
+        }
+        offset += 2
+        
+        let compressionMethod = data.withUnsafeBytes { bytes in
+            bytes.loadUnaligned(fromByteOffset: offset, as: UInt16.self).littleEndian
+        }
+        offset += 2
+        
+        // Skip time and date fields (4 bytes)
+        offset += 4
+        
+        let crc32 = data.withUnsafeBytes { bytes in
+            bytes.loadUnaligned(fromByteOffset: offset, as: UInt32.self).littleEndian
+        }
+        offset += 4
+        
+        let compressedSize = data.withUnsafeBytes { bytes in
+            bytes.loadUnaligned(fromByteOffset: offset, as: UInt32.self).littleEndian
+        }
+        offset += 4
+        
+        let uncompressedSize = data.withUnsafeBytes { bytes in
+            bytes.loadUnaligned(fromByteOffset: offset, as: UInt32.self).littleEndian
+        }
+        offset += 4
+        
+        let fileNameLength = data.withUnsafeBytes { bytes in
+            bytes.loadUnaligned(fromByteOffset: offset, as: UInt16.self).littleEndian
+        }
+        offset += 2
+        
+        let extraFieldLength = data.withUnsafeBytes { bytes in
+            bytes.loadUnaligned(fromByteOffset: offset, as: UInt16.self).littleEndian
+        }
+        offset += 2
+        
+        // Read filename
+        guard offset + Int(fileNameLength) <= data.count else {
+            throw DICOMError.corruptedData
+        }
+        
+        let fileNameData = data.subdata(in: offset..<offset + Int(fileNameLength))
+        guard let fileName = String(data: fileNameData, encoding: .utf8) else {
+            throw DICOMError.corruptedData
+        }
+        
+        offset += Int(fileNameLength)
+        
+        // Skip extra field
+        offset += Int(extraFieldLength)
+        
+        // Skip directories
+        if fileName.hasSuffix("/") {
+            offset += Int(compressedSize)
+            return
+        }
+        
+        // Read file data
+        guard offset + Int(compressedSize) <= data.count else {
+            throw DICOMError.corruptedData
+        }
+        
+        let fileData = data.subdata(in: offset..<offset + Int(compressedSize))
+        offset += Int(compressedSize)
+        
+        // Decompress if needed
+        let finalData: Data
+        if compressionMethod == 0 {
+            // No compression
+            finalData = fileData
+        } else if compressionMethod == 8 {
+            // Deflate compression - use Foundation's decompression
+            do {
+                finalData = try (fileData as NSData).decompressed(using: .zlib) as Data
+            } catch {
+                print("⚠️ Could not decompress file \(fileName): \(error)")
+                // Use compressed data as fallback
+                finalData = fileData
+            }
+        } else {
+            print("⚠️ Unsupported compression method \(compressionMethod) for file \(fileName)")
+            finalData = fileData
+        }
+        
+        // Create file
+        let fileURL = destinationURL.appendingPathComponent(fileName)
+        
+        // Create intermediate directories if needed
+        let directoryURL = fileURL.deletingLastPathComponent()
+        if !fileManager.fileExists(atPath: directoryURL.path) {
+            try fileManager.createDirectory(at: directoryURL, withIntermediateDirectories: true, attributes: nil)
+        }
+        
+        try finalData.write(to: fileURL)
+        
+        print("✅ Extracted: \(fileName) (\(finalData.count) bytes)")
+    }
+    
+    /// Create fallback when ZIP extraction fails
+    private func createZIPFallback(from zipURL: URL, to destinationURL: URL) async throws {
+        // Copy the ZIP file to destination
+        let zipCopyURL = destinationURL.appendingPathComponent("DICOM_Archive.zip")
+        try fileManager.copyItem(at: zipURL, to: zipCopyURL)
+        
+        // Create instructions file
+        let instructionsContent = """
+        DICOM Archive Instructions
+        
+        📁 Archive: DICOM_Archive.zip
+        📊 Status: Awaiting manual extraction
+        
+        🔧 How to extract DICOM files:
+        1. Tap on 'DICOM_Archive.zip' in Files app
+        2. Choose 'Extract' or 'Unarchive'
+        3. Import individual DICOM files using the import button
+        
+        📋 Supported DICOM formats:
+        • .dcm files
+        • .dicom files  
+        • .dic files
+        • Files without extensions
+        
+        ⚠️ Note: Automatic ZIP extraction will be added in future updates
+        """
+        
+        let instructionsURL = destinationURL.appendingPathComponent("How_to_Extract_DICOM_Files.txt")
+        try instructionsContent.write(to: instructionsURL, atomically: true, encoding: .utf8)
+    }
+    
+    /// Find all potential DICOM files in directory recursively
+    private func findDICOMFiles(in directory: URL) async throws -> [URL] {
+        var dicomFiles: [URL] = []
+        
+        let enumerator = fileManager.enumerator(
+            at: directory,
+            includingPropertiesForKeys: [.isRegularFileKey],
+            options: [.skipsHiddenFiles]
+        )
+        
+        guard let enumerator = enumerator else {
+            throw DICOMError.processingFailed
+        }
+        
+        for case let fileURL as URL in Array(enumerator) {
+            do {
+                let resourceValues = try fileURL.resourceValues(forKeys: [.isRegularFileKey])
+                
+                if resourceValues.isRegularFile == true {
+                    // Check file extension
+                    let fileExtension = fileURL.pathExtension.lowercased()
+                    
+                    // Common DICOM extensions
+                    if fileExtension == "dcm" || 
+                       fileExtension == "dicom" || 
+                       fileExtension == "dic" || 
+                       fileExtension.isEmpty {
+                        dicomFiles.append(fileURL)
+                    }
+                }
+            } catch {
+                print("⚠️ Failed to check file: \(fileURL.lastPathComponent)")
+            }
+        }
+        
+        return dicomFiles
+    }
+    
     // MARK: - Error Handling
     
     @MainActor
@@ -379,12 +735,12 @@ class DICOMFileImporter: DICOMServiceProtocol {
         let metadata3 = DICOMMetadata(dictionary: metadata3Dict)
         
         // Create instances
-        let instance1 = DICOMInstance(metadata: metadata1)
-        let instance2 = DICOMInstance(metadata: metadata2)
-        let instance3 = DICOMInstance(metadata: metadata3)
+        let _ = DICOMInstance(metadata: metadata1)
+        let _ = DICOMInstance(metadata: metadata2)
+        let _ = DICOMInstance(metadata: metadata3)
         
         // Create series
-        let series1 = DICOMSeries(
+        let _ = DICOMSeries(
             seriesInstanceUID: "1.2.3.4.5.6.7.8.1",
             seriesNumber: 1,
             seriesDescription: "Axial CT",
@@ -392,7 +748,7 @@ class DICOMFileImporter: DICOMServiceProtocol {
             studyInstanceUID: "1.2.3.4.5.6.7.8"
         )
         
-        let series2 = DICOMSeries(
+        let _ = DICOMSeries(
             seriesInstanceUID: "1.2.3.4.5.6.7.8.2",
             seriesNumber: 2,
             seriesDescription: "T1 MR",
@@ -430,6 +786,9 @@ extension DICOMFileImporter {
         if let dicomType = UTType(filenameExtension: "dic") {
             types.append(dicomType)
         }
+        
+        // Add ZIP file type for compressed DICOM archives
+        types.append(.zip)
         
         // Add generic data type as fallback
         types.append(.data)

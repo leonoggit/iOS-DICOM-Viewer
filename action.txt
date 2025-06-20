@@ -1,0 +1,109 @@
+[T[K2:_nV18:ActivityLogSection]K10:domainType[T[K2:_nV6:String]K2:_vV40:Xcode.IDEActivityLogDomainType.LaunchLog]K8:duration[T[K2:_nV6:Double]K2:_vV18:1285.9405629634857]K6:result[S6:StringK2:_vV9:succeeded]K9:startTime[T[K2:_nV4:Date]K2:_vV28:2025-06-13T19:09:19.682-0300]K11:subsections[T[K2:_nV5:Array][S18:ActivityLogSectionK10:domainType[S6:StringK2:_vV27:com.apple.dt.IDE.LogSection]K8:duration[S6:DoubleK2:_vV18:1275.9511100053787]K8:messages[S5:Array[T[K2:_nV18:ActivityLogMessage]K10:shortTitle[S6:StringK2:_vV13:Platform: iOS]K5:title[S6:StringK2:_vV13:Platform: iOS]K4:type[S6:StringK2:_vV6:notice]][S18:ActivityLogMessageK10:shortTitle[S6:StringK2:_vV44:Device Identifier: 00008140-001664420413C01C]K5:title[S6:StringK2:_vV44:Device Identifier: 00008140-001664420413C01C]K4:type[S6:StringK2:_vV6:notice]][S18:ActivityLogMessageK10:shortTitle[S6:StringK2:_vV41:Operating System Version: 26.0 (23A5260n)]K5:title[S6:StringK2:_vV41:Operating System Version: 26.0 (23A5260n)]K4:type[S6:StringK2:_vV6:notice]][S18:ActivityLogMessageK10:shortTitle[S6:StringK2:_vV37:Model: iPhone 16 Pro Max (iPhone17,2)]K5:title[S6:StringK2:_vV37:Model: iPhone 16 Pro Max (iPhone17,2)]K4:type[S6:StringK2:_vV6:notice]][S18:ActivityLogMessageK10:shortTitle[S6:StringK2:_vV26:Target Architecture: arm64]K5:title[S6:StringK2:_vV26:Target Architecture: arm64]K4:type[S6:StringK2:_vV6:notice]]]K6:result[S6:StringK2:_vV6:failed]K9:startTime[S4:DateK2:_vV28:2025-06-13T19:09:29.453-0300]K11:subsections[S5:Array[T[K2:_nV35:ActivityLogCommandInvocationSectionK2:_s[K2:_nV18:ActivityLogSection]]K10:domainType[S6:StringK2:_vV27:com.apple.dt.IDE.LogSection]K8:duration[S6:DoubleK2:_vV17:4.799789905548096]K8:exitCode[T[K2:_nV3:Int]K2:_vV1:0]K8:messages[S5:Array[S18:ActivityLogMessageK10:shortTitle[S6:StringK2:_vV32:Installing on Leandro’s iPhone]K5:title[S6:StringK2:_vV32:Installing on Leandro’s iPhone]K4:type[S6:StringK2:_vV6:notice]][S18:ActivityLogMessageK10:shortTitle[S6:StringK2:_vV22:Successfully installed]K5:title[S6:StringK2:_vV22:Successfully installed]K4:type[S6:StringK2:_vV6:notice]]]K6:result[S6:StringK2:_vV9:succeeded]K9:startTime[S4:DateK2:_vV28:2025-06-13T19:09:29.454-0300]K5:title[S6:StringK2:_vV48:Installing iOS_DICOMViewer on Leandro’s iPhone]][S35:ActivityLogCommandInvocationSectionK14:commandDetails[S6:StringK2:_vV1335:Environment variables:
+CA_ASSERT_MAIN_THREAD_TRANSACTIONS=0
+SWIFTUI_VIEW_DEBUG=287
+LLVM_PROFILE_FILE=/dev/null
+IDE_DISABLED_OS_ACTIVITY_DT_MODE=1
+OS_ACTIVITY_TOOLS_OVERSIZE=YES
+METAL_DEBUG_ERROR_MODE=0
+OS_ACTIVITY_TOOLS_PRIVACY=YES
+CA_DEBUG_TRANSACTIONS=0
+CFLOG_FORCE_DISABLE_STDERR=1
+OS_LOG_DT_HOOK_MODE=0x07
+DYLD_INSERT_LIBRARIES=/usr/lib/libLogRedirect.dylib:/usr/lib/libBacktraceRecording.dylib:/usr/lib/libMainThreadChecker.dylib:/usr/lib/libRPAC.dylib:/usr/lib/libViewDebuggerSupport.dylib:/System/Library/PrivateFrameworks/GPUToolsCapture.framework/GPUToolsCapture
+GPUTOOLS_XCODE_DEVELOPER_PATH=/Applications/Xcode.app/Contents/Developer
+MTLREPLAYER_ALLOW_PROGRAM_ADDRESS_TABLES=1
+PERFC_ENABLE_AGPC_CHECKS=1
+PERFC_SUPPRESS_SYSTEM_REPORTS=1
+DYLD_LIBRARY_PATH=/usr/lib/system/introspection
+SQLITE_ENABLE_THREAD_ASSERTIONS=1
+NSUnbufferedIO=YES
+PERFC_ENABLE_AGPC_DISKWRITES_LAUNCH_CHECKS=1
+OS_LOG_DT_HOOK_PREFIX=OSLOG-0639D2FB-B477-4CFD-B9CD-F47A5E548C47
+OS_LOG_TRANSLATE_PRINT_MODE=0x80
+GPUTOOLS_LOAD_GTMTLCAPTURE=1
+DYMTL_TOOLS_DYLIB_PATH=/System/Library/PrivateFrameworks/GPUToolsCapture.framework/GPUToolsCapture
+__XPC_LLVM_PROFILE_FILE=/dev/null
+METAL_LOAD_INTERPOSER=1
+GT_LAUNCH_UUID=105553168698176
+TERM=dumb
+METAL_DEVICE_WRAPPER_TYPE=1
+MTLCAPTURE_DESTINATION_DEVELOPER_TOOLS_ENABLE=1
+PERFC_ENABLE_EXTENDED_DIAGNOSTIC_FORMAT=1]K10:domainType[S6:StringK2:_vV27:com.apple.dt.IDE.LogSection]K8:duration[S6:DoubleK2:_vV19:0.42721402645111084]K8:exitCode[S3:IntK2:_vV1:0]K8:messages[S5:Array[S18:ActivityLogMessageK10:shortTitle[S6:StringK2:_vV79:Launching debugserver and waiting for com.dicomviewer.iOS-DICOMViewer to attach]K5:title[S6:StringK2:_vV79:Launching debugserver and waiting for com.dicomviewer.iOS-DICOMViewer to attach]K4:type[S6:StringK2:_vV6:notice]][S18:ActivityLogMessageK10:shortTitle[S6:StringK2:_vV65:Launching suspended and the debugger is responsible for resuming.]K5:title[S6:StringK2:_vV65:Launching suspended and the debugger is responsible for resuming.]K4:type[S6:StringK2:_vV6:notice]][S18:ActivityLogMessageK11:annotations[S5:Array[T[K2:_nV28:ActivityLogMessageAnnotation]K5:title[S6:StringK2:_vV29:LaunchSessionToken: 12e05c5c0]][S28:ActivityLogMessageAnnotationK5:title[S6:StringK2:_vV111:RemotePath: /private/var/containers/Bundle/Application/3F8B8D8F-1CF1-42F3-8F36-BE9E1903D89D/iOS_DICOMViewer.app]][S28:ActivityLogMessageAnnotationK5:title[S6:StringK2:_vV318:AppInstallationResult(applicationBundleId: "com.dicomviewer.iOS-DICOMViewer", installationURL: file:///private/var/containers/Bundle/Application/3F8B8D8F-1CF1-42F3-8F36-BE9E1903D89D/iOS_DICOMViewer.app/, databaseUUID: 93D79EB8-BB6F-410E-B0C0-269BD9E8150C, databaseSequenceNumber: 3808, _persistentIdentifier: 36 bytes)]][S28:ActivityLogMessageAnnotationK5:title[S6:StringK2:_vV21:Set in Launch Options]]]K10:shortTitle[S6:StringK2:_vV29:Configure with Install Result]K5:title[S6:StringK2:_vV29:Configure with Install Result]K4:type[S6:StringK2:_vV6:notice]][S18:ActivityLogMessageK10:shortTitle[S6:StringK2:_vV79:Requested the device's screen to stay on for the duration of the launch session]K5:title[S6:StringK2:_vV79:Requested the device's screen to stay on for the duration of the launch session]K4:type[S6:StringK2:_vV6:notice]][S18:ActivityLogMessageK10:shortTitle[S6:StringK2:_vV109:Console logging policy: Synchronously obtain os_logs via libLogRedirect, and read stdio from File Descriptors]K5:title[S6:StringK2:_vV109:Console logging policy: Synchronously obtain os_logs via libLogRedirect, and read stdio from File Descriptors]K4:type[S6:StringK2:_vV6:notice]][S18:ActivityLogMessageK10:shortTitle[S6:StringK2:_vV37:Successfully launched iOS_DICOMViewer]K5:title[S6:StringK2:_vV37:Successfully launched iOS_DICOMViewer]K4:type[S6:StringK2:_vV6:notice]]]K6:result[S6:StringK2:_vV9:succeeded]K9:startTime[S4:DateK2:_vV28:2025-06-13T19:09:34.260-0300]K5:title[S6:StringK2:_vV22:Launch iOS_DICOMViewer]][S35:ActivityLogCommandInvocationSectionK14:commandDetails[S6:StringK2:_vV196:View debugging: enabled
+Insert view debugging dylib on launch: enabled
+Queue debugging: enabled
+Memory graph on resource exception: disabled
+Address sanitizer: disabled
+Thread sanitizer: disabled
+]K10:domainType[S6:StringK2:_vV27:com.apple.dt.IDE.LogSection]K8:duration[S6:DoubleK2:_vV18:1275.9511100053787]K8:exitCode[S3:IntK2:_vV1:1]K8:messages[S5:Array[S18:ActivityLogMessageK10:shortTitle[S6:StringK2:_vV91:Using LLDBRPC. The LLDB framework is from /Applications/Xcode.app/Contents/SharedFrameworks]K5:title[S6:StringK2:_vV91:Using LLDBRPC. The LLDB framework is from /Applications/Xcode.app/Contents/SharedFrameworks]K4:type[S6:StringK2:_vV6:notice]][S18:ActivityLogMessageK10:shortTitle[S6:StringK2:_vV124:Device support directory: /Users/leandroalmeida/Library/Developer/Xcode/iOS DeviceSupport/iPhone17,2 26.0 (23A5260n)/Symbols]K5:title[S6:StringK2:_vV124:Device support directory: /Users/leandroalmeida/Library/Developer/Xcode/iOS DeviceSupport/iPhone17,2 26.0 (23A5260n)/Symbols]K4:type[S6:StringK2:_vV6:notice]][S18:ActivityLogMessageK10:shortTitle[S6:StringK2:_vV34:Attached to process with pid 13935]K5:title[S6:StringK2:_vV34:Attached to process with pid 13935]K4:type[S6:StringK2:_vV6:notice]]]K6:result[S6:StringK2:_vV6:failed]K9:startTime[S4:DateK2:_vV28:2025-06-13T19:09:35.133-0300]K5:title[S6:StringK2:_vV21:Debug iOS_DICOMViewer]][S35:ActivityLogCommandInvocationSectionK14:commandDetails[S6:StringK2:_vV3113:Lost connection to the debugger on “Leandro’s iPhone”.
+Domain: IDEDebugSessionErrorDomain
+Code: 22
+Recovery Suggestion: Restore the connection to “Leandro’s iPhone” and run “iOS_DICOMViewer” again, or if “iOS_DICOMViewer” is still running, you can attach to it by selecting Debug > Attach to Process > iOS_DICOMViewer.
+User Info: {
+    DVTErrorCreationDateKey = "2025-06-13 22:30:45 +0000";
+    IDERunOperationFailingWorker = DBGLLDBLauncher;
+}
+--
+
+Event Metadata: com.apple.dt.IDERunOperationWorkerFinished : {
+    "device_identifier" = "00008140-001664420413C01C";
+    "device_isCoreDevice" = 1;
+    "device_model" = "iPhone17,2";
+    "device_osBuild" = "26.0 (23A5260n)";
+    "device_platform" = "com.apple.platform.iphoneos";
+    "device_thinningType" = "iPhone17,2";
+    "dvt_coredevice_version" = "397.30";
+    "dvt_coresimulator_version" = "993.9";
+    "dvt_mobiledevice_version" = "1784.102.1";
+    "launchSession_schemeCommand" = Run;
+    "launchSession_state" = 2;
+    "launchSession_targetArch" = arm64;
+    "operation_duration_ms" = 1275947;
+    "operation_errorCode" = 22;
+    "operation_errorDomain" = IDEDebugSessionErrorDomain;
+    "operation_errorWorker" = DBGLLDBLauncher;
+    "operation_name" = IDERunOperationWorkerGroup;
+    "param_debugger_attachToExtensions" = 0;
+    "param_debugger_attachToXPC" = 1;
+    "param_debugger_type" = 3;
+    "param_destination_isProxy" = 0;
+    "param_destination_platform" = "com.apple.platform.iphoneos";
+    "param_diag_113575882_enable" = 0;
+    "param_diag_MainThreadChecker_stopOnIssue" = 0;
+    "param_diag_MallocStackLogging_enableDuringAttach" = 0;
+    "param_diag_MallocStackLogging_enableForXPC" = 1;
+    "param_diag_allowLocationSimulation" = 1;
+    "param_diag_checker_tpc_enable" = 1;
+    "param_diag_gpu_frameCapture_enable" = 0;
+    "param_diag_gpu_shaderValidation_enable" = 0;
+    "param_diag_gpu_validation_enable" = 0;
+    "param_diag_guardMalloc_enable" = 0;
+    "param_diag_memoryGraphOnResourceException" = 0;
+    "param_diag_mtc_enable" = 1;
+    "param_diag_queueDebugging_enable" = 1;
+    "param_diag_runtimeProfile_generate" = 0;
+    "param_diag_sanitizer_asan_enable" = 0;
+    "param_diag_sanitizer_tsan_enable" = 0;
+    "param_diag_sanitizer_tsan_stopOnIssue" = 0;
+    "param_diag_sanitizer_ubsan_enable" = 0;
+    "param_diag_sanitizer_ubsan_stopOnIssue" = 0;
+    "param_diag_showNonLocalizedStrings" = 0;
+    "param_diag_viewDebugging_enabled" = 1;
+    "param_diag_viewDebugging_insertDylibOnLaunch" = 1;
+    "param_install_style" = 2;
+    "param_launcher_UID" = 2;
+    "param_launcher_allowDeviceSensorReplayData" = 0;
+    "param_launcher_kind" = 0;
+    "param_launcher_style" = 99;
+    "param_launcher_substyle" = 0;
+    "param_runnable_appExtensionHostRunMode" = 0;
+    "param_runnable_productType" = "com.apple.product-type.application";
+    "param_structuredConsoleMode" = 1;
+    "param_testing_launchedForTesting" = 0;
+    "param_testing_suppressSimulatorApp" = 0;
+    "param_testing_usingCLI" = 0;
+    "sdk_canonicalName" = "iphoneos18.2";
+    "sdk_osVersion" = "18.2";
+    "sdk_variant" = iphoneos;
+}
+--
+]K10:domainType[S6:StringK2:_vV27:com.apple.dt.IDE.LogSection]K8:duration[S6:DoubleK2:_vV21:0.0009300708770751953]K8:exitCode[S3:IntK2:_vV1:1]K8:messages[S5:Array[S18:ActivityLogMessageK10:shortTitle[S6:StringK2:_vV60:Lost connection to the debugger on “Leandro’s iPhone”.]K5:title[S6:StringK2:_vV60:Lost connection to the debugger on “Leandro’s iPhone”.]K4:type[S6:StringK2:_vV5:error]]]K6:result[S6:StringK2:_vV6:failed]K9:startTime[S4:DateK2:_vV28:2025-06-13T19:30:45.404-0300]K5:title[S6:StringK2:_vV16:Operation failed]]]K5:title[S6:StringK2:_vV22:Launch iOS_DICOMViewer]]]K5:title[S6:StringK2:_vV19:Run iOS_DICOMViewer]]

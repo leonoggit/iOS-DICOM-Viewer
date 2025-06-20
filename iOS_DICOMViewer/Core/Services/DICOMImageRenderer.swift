@@ -79,16 +79,89 @@ class DICOMImageRenderer {
     private func loadPixelData(from filePath: String) async throws -> PixelData {
         return try await withCheckedThrowingContinuation { continuation in
             DispatchQueue.global(qos: .userInitiated).async {
-                do {
-                    // This would use the DCMTK bridge to load pixel data
-                    // For now, create sample data
-                    let sampleData = self.createSamplePixelData()
-                    continuation.resume(returning: sampleData)
-                } catch {
-                    continuation.resume(throwing: error)
-                }
+                    print("🖼️ DICOMImageRenderer: Loading pixel data from: \(filePath)")
+                    
+                    // Use DCMTK bridge to load actual pixel data
+                    var width: Int32 = 0
+                    var height: Int32 = 0
+                    var bitsStored: Int32 = 0
+                    var isSigned: ObjCBool = false
+                    var windowCenter: Double = 0
+                    var windowWidth: Double = 0
+                    var numberOfFrames: Int32 = 0
+                    
+                    guard let rawPixelData = DCMTKBridge.parsePixelData(
+                        fromFile: filePath,
+                        width: &width,
+                        height: &height,
+                        bitsStored: &bitsStored,
+                        isSigned: &isSigned,
+                        windowCenter: &windowCenter,
+                        windowWidth: &windowWidth,
+                        numberOfFrames: &numberOfFrames
+                    ) else {
+                        print("❌ DICOMImageRenderer: Failed to load pixel data from DCMTK bridge")
+                        // Fallback to sample data for now
+                        let sampleData = self.createSamplePixelData()
+                        continuation.resume(returning: sampleData)
+                        return
+                    }
+                    
+                    print("✅ DICOMImageRenderer: Loaded pixel data - \(width)x\(height), \(bitsStored) bits, \(rawPixelData.count) bytes")
+                    
+                    // Convert raw bytes to UInt16 array
+                    let pixelArray = self.convertRawDataToUInt16Array(rawPixelData, bitsStored: Int(bitsStored), isSigned: isSigned.boolValue)
+                    
+                    let pixelData = PixelData(
+                        data: pixelArray,
+                        width: Int(width),
+                        height: Int(height),
+                        bitsAllocated: 16,
+                        bitsStored: Int(bitsStored),
+                        highBit: Int(bitsStored) - 1,
+                        pixelRepresentation: isSigned.boolValue ? 1 : 0,
+                        rescaleIntercept: -1024, // Standard CT values
+                        rescaleSlope: 1,
+                        windowCenter: Float(windowCenter),
+                        windowWidth: Float(windowWidth)
+                    )
+                    
+                    print("✅ DICOMImageRenderer: Created PixelData object")
+                    continuation.resume(returning: pixelData)
             }
         }
+    }
+    
+    private func convertRawDataToUInt16Array(_ data: Data, bitsStored: Int, isSigned: Bool) -> [UInt16] {
+        let bytesPerPixel = (bitsStored + 7) / 8
+        let pixelCount = data.count / bytesPerPixel
+        var pixelArray = [UInt16](repeating: 0, count: pixelCount)
+        
+        data.withUnsafeBytes { bytes in
+            let buffer = bytes.bindMemory(to: UInt8.self)
+            
+            for i in 0..<pixelCount {
+                let offset = i * bytesPerPixel
+                var pixelValue: UInt16 = 0
+                
+                if bytesPerPixel == 1 {
+                    pixelValue = UInt16(buffer[offset])
+                } else if bytesPerPixel == 2 {
+                    // Little endian 16-bit
+                    pixelValue = UInt16(buffer[offset]) | (UInt16(buffer[offset + 1]) << 8)
+                }
+                
+                // Handle signed values
+                if isSigned && bitsStored == 16 && pixelValue > 32767 {
+                    let signedValue = Int32(pixelValue) - 65536
+                    pixelValue = UInt16(max(0, signedValue + 32768))
+                }
+                
+                pixelArray[i] = pixelValue
+            }
+        }
+        
+        return pixelArray
     }
     
     private func createSamplePixelData() -> PixelData {
@@ -249,35 +322,3 @@ class DICOMImageRenderer {
     }
 }
 
-// MARK: - DICOM Image Cache
-class DICOMImageCache {
-    private let cache = NSCache<NSString, UIImage>()
-    private let maxMemoryUsage: Int = 100 * 1024 * 1024 // 100MB
-    
-    init() {
-        cache.totalCostLimit = maxMemoryUsage
-    }
-    
-    func setImage(_ image: UIImage, forKey key: String, windowLevel: DICOMImageRenderer.WindowLevel) {
-        let cacheKey = "\(key)_\(windowLevel.window)_\(windowLevel.level)" as NSString
-        
-        // Estimate memory cost (width * height * 4 bytes per pixel)
-        let cost = Int(image.size.width * image.size.height * 4)
-        cache.setObject(image, forKey: cacheKey, cost: cost)
-    }
-    
-    func image(forKey key: String, windowLevel: DICOMImageRenderer.WindowLevel) -> UIImage? {
-        let cacheKey = "\(key)_\(windowLevel.window)_\(windowLevel.level)" as NSString
-        return cache.object(forKey: cacheKey)
-    }
-    
-    func removeImage(forKey key: String) {
-        // Remove all window/level variations for this key
-        let allKeys = cache.description // This is a hack, in production you'd track keys properly
-        // Implementation would iterate through tracked keys and remove matching ones
-    }
-    
-    func clearCache() {
-        cache.removeAllObjects()
-    }
-}

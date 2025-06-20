@@ -1,0 +1,4 @@
+An error was encountered processing the command (domain=FBSOpenApplicationServiceErrorDomain, code=4):
+Simulator device failed to launch com.yourcompany.iOS-DICOMViewer.
+Underlying error (domain=FBSOpenApplicationServiceErrorDomain, code=4):
+	The request to open "com.yourcompany.iOS-DICOMViewer" failed.

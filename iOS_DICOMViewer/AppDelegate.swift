@@ -10,8 +10,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         NSLog("🚀 AppDelegate: didFinishLaunchingWithOptions called")
         print("🚀 AppDelegate: Launch options: \(String(describing: launchOptions))")
         
-        // Set up window manually
-        setupWindow()
+        // DISABLED: Let SceneDelegate handle window setup instead
+        // setupWindow()
+        print("🎯 AppDelegate: Skipping window setup - letting SceneDelegate handle it")
         
         // Register for file type handling
         setupFileTypeHandling()
@@ -19,6 +20,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         print("✅ AppDelegate: Initialization completed")
         NSLog("✅ AppDelegate: Initialization completed")
         return true
+    }
+    
+    // MARK: - UISceneSession Lifecycle
+
+    func application(_ application: UIApplication, configurationForConnecting connectingSceneSession: UISceneSession, options: UIScene.ConnectionOptions) -> UISceneConfiguration {
+        print("🎯 AppDelegate: Creating scene configuration")
+        return UISceneConfiguration(name: "Default Configuration", sessionRole: connectingSceneSession.role)
+    }
+
+    func application(_ application: UIApplication, didDiscardSceneSessions sceneSessions: Set<UISceneSession>) {
+        print("🎯 AppDelegate: Scene sessions discarded")
     }
     
     private func setupWindow() {
