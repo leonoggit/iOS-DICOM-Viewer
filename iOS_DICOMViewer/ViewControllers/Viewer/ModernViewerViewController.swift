@@ -207,6 +207,11 @@ class ModernViewerViewController: UIViewController {
         setupGestures()
         setupEmptyState()
         updateUIForStudy()
+        
+        // Add revolutionary AI features
+        addAIAnalysisButtons()
+        addReportGenerationButton()
+        enableQuantumFeatures()
     }
     
     // MARK: - Setup Methods
@@ -626,6 +631,14 @@ class ModernViewerViewController: UIViewController {
     private func showImageLoadError() {
         let placeholderImage = createPlaceholderImage()
         imageView.image = placeholderImage
+        
+        // Run diagnostic if in debug mode
+        #if DEBUG
+        if let filePath = currentInstance?.filePath {
+            print("🔍 Running DICOM diagnostic for failed image...")
+            DCMTKBridge.diagnosePixelDataIssue(filePath)
+        }
+        #endif
     }
     
     private func createPlaceholderImage() -> UIImage {
@@ -658,20 +671,24 @@ class ModernViewerViewController: UIViewController {
     }
     
     private func loadDICOMImage(from instance: DICOMInstance) async throws -> UIImage {
-        // Use existing image rendering logic
-        return try await withCheckedThrowingContinuation { continuation in
-            DispatchQueue.global(qos: .userInitiated).async {
-                do {
-                    let image = try self.imageRenderer.renderImage(
-                        from: instance,
-                        window: self.currentWindow,
-                        level: self.currentLevel
-                    )
-                    continuation.resume(returning: image)
-                } catch {
-                    continuation.resume(throwing: error)
-                }
-            }
+        guard let filePath = instance.filePath else {
+            throw NSError(domain: "DICOMError", code: 1, userInfo: [NSLocalizedDescriptionKey: "No file path for DICOM instance"])
+        }
+        
+        print("🖼️ ModernViewerViewController: Loading DICOM image from: \(filePath)")
+        print("🖼️ Current window/level: W=\(currentWindow), L=\(currentLevel)")
+        
+        let windowLevel = DICOMImageRenderer.WindowLevel(
+            window: Float(currentWindow),
+            level: Float(currentLevel)
+        )
+        
+        if let image = try await imageRenderer.renderImage(from: filePath, windowLevel: windowLevel) {
+            print("✅ ModernViewerViewController: Successfully loaded image of size \(image.size)")
+            return image
+        } else {
+            print("❌ ModernViewerViewController: Failed to render DICOM image")
+            throw NSError(domain: "DICOMError", code: 2, userInfo: [NSLocalizedDescriptionKey: "Failed to render DICOM image"])
         }
     }
     
@@ -748,8 +765,8 @@ class ModernViewerViewController: UIViewController {
             break
         case .changed:
             // Horizontal pan adjusts window, vertical adjusts level
-            let windowDelta = translation.x * 2
-            let levelDelta = -translation.y * 1
+            let windowDelta = Float(translation.x * 2)
+            let levelDelta = Float(-translation.y * 1)
             
             currentWindow = max(1, currentWindow + windowDelta)
             currentLevel = max(-1000, min(3000, currentLevel + levelDelta))

@@ -102,6 +102,15 @@ else
     print_status "CoreML conversion MCP already built"
 fi
 
+# Build Python Poetry MCP
+if [ ! -f "$MCP_DIR/python-poetry-mcp/build/index.js" ]; then
+    print_warning "Building Python Poetry MCP..."
+    cd "$MCP_DIR/python-poetry-mcp" && npm install && npm run build
+    print_status "Python Poetry MCP built"
+else
+    print_status "Python Poetry MCP already built"
+fi
+
 cd "$PROJECT_ROOT"
 
 echo -e "\n${BLUE}Configuring MCP servers...${NC}"
@@ -117,6 +126,7 @@ check_and_add_mcp "custom-dicom-mcp" "$MCP_DIR/custom-dicom-mcp/dist/index.js"
 check_and_add_mcp "swift-tools-mcp" "$MCP_DIR/swift-tools-mcp/dist/index.js"
 check_and_add_mcp "github-copilot-medical-ios" "$MCP_DIR/github-copilot-medical-ios/dist/index.js"
 check_and_add_mcp "coreml-conversion-mcp" "$MCP_DIR/coreml-conversion-mcp/dist/index.js"
+check_and_add_mcp "python-poetry-mcp" "$MCP_DIR/python-poetry-mcp/build/index.js"
 
 echo -e "\n${BLUE}Verifying configuration...${NC}"
 

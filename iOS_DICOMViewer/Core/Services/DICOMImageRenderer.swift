@@ -101,9 +101,17 @@ class DICOMImageRenderer {
                         numberOfFrames: &numberOfFrames
                     ) else {
                         print("❌ DICOMImageRenderer: Failed to load pixel data from DCMTK bridge")
-                        // Fallback to sample data for now
-                        let sampleData = self.createSamplePixelData()
-                        continuation.resume(returning: sampleData)
+                        
+                        // Try to get more detailed error information
+                        if let metadata = DCMTKBridge.parseMetadata(fromFile: filePath) {
+                            print("🔍 DICOMImageRenderer: File has metadata but no pixel data")
+                            print("🔍 Modality: \(metadata["Modality"] ?? "Unknown")")
+                            print("🔍 Study: \(metadata["StudyDescription"] ?? "Unknown")")
+                        }
+                        
+                        // For now, return a placeholder image with text overlay
+                        let placeholderData = self.createPlaceholderPixelData(text: "DICOM Loading...")
+                        continuation.resume(returning: placeholderData)
                         return
                     }
                     
@@ -111,6 +119,27 @@ class DICOMImageRenderer {
                     
                     // Convert raw bytes to UInt16 array
                     let pixelArray = self.convertRawDataToUInt16Array(rawPixelData, bitsStored: Int(bitsStored), isSigned: isSigned.boolValue)
+                    
+                    // Get rescale values from metadata if available
+                    var rescaleIntercept: Float = 0
+                    var rescaleSlope: Float = 1
+                    
+                    // Try to get rescale values from DICOM metadata
+                    if let metadata = DCMTKBridge.parseMetadata(fromFile: filePath) {
+                        if let interceptValue = metadata["RescaleIntercept"] as? NSNumber {
+                            rescaleIntercept = Float(interceptValue.floatValue)
+                        }
+                        if let slopeValue = metadata["RescaleSlope"] as? NSNumber {
+                            rescaleSlope = Float(slopeValue.floatValue)
+                        }
+                    }
+                    
+                    // Use default CT values only if we have typical CT window values
+                    if windowCenter > 0 && windowCenter < 500 && rescaleIntercept == 0 {
+                        rescaleIntercept = -1024 // Standard CT Hounsfield units
+                    }
+                    
+                    print("🔍 DICOMImageRenderer: Using rescale - Slope: \(rescaleSlope), Intercept: \(rescaleIntercept)")
                     
                     let pixelData = PixelData(
                         data: pixelArray,
@@ -120,8 +149,8 @@ class DICOMImageRenderer {
                         bitsStored: Int(bitsStored),
                         highBit: Int(bitsStored) - 1,
                         pixelRepresentation: isSigned.boolValue ? 1 : 0,
-                        rescaleIntercept: -1024, // Standard CT values
-                        rescaleSlope: 1,
+                        rescaleIntercept: rescaleIntercept,
+                        rescaleSlope: rescaleSlope,
                         windowCenter: Float(windowCenter),
                         windowWidth: Float(windowWidth)
                     )
@@ -133,9 +162,11 @@ class DICOMImageRenderer {
     }
     
     private func convertRawDataToUInt16Array(_ data: Data, bitsStored: Int, isSigned: Bool) -> [UInt16] {
-        let bytesPerPixel = (bitsStored + 7) / 8
+        let bytesPerPixel = (bitsStored > 8) ? 2 : 1
         let pixelCount = data.count / bytesPerPixel
         var pixelArray = [UInt16](repeating: 0, count: pixelCount)
+        
+        print("🔍 DICOMImageRenderer: Converting \(pixelCount) pixels, \(bytesPerPixel) bytes per pixel, signed: \(isSigned)")
         
         data.withUnsafeBytes { bytes in
             let buffer = bytes.bindMemory(to: UInt8.self)
@@ -147,21 +178,74 @@ class DICOMImageRenderer {
                 if bytesPerPixel == 1 {
                     pixelValue = UInt16(buffer[offset])
                 } else if bytesPerPixel == 2 {
-                    // Little endian 16-bit
+                    // Little endian 16-bit (DICOM standard)
                     pixelValue = UInt16(buffer[offset]) | (UInt16(buffer[offset + 1]) << 8)
-                }
-                
-                // Handle signed values
-                if isSigned && bitsStored == 16 && pixelValue > 32767 {
-                    let signedValue = Int32(pixelValue) - 65536
-                    pixelValue = UInt16(max(0, signedValue + 32768))
                 }
                 
                 pixelArray[i] = pixelValue
             }
         }
         
+        // Log some sample values for debugging
+        if pixelArray.count > 100 {
+            let samples = (0..<10).map { pixelArray[$0 * pixelArray.count / 10] }
+            print("🔍 DICOMImageRenderer: Sample pixel values: \(samples)")
+        }
+        
         return pixelArray
+    }
+    
+    private func createPlaceholderPixelData(text: String) -> PixelData {
+        let width = 512
+        let height = 512
+        let size = width * height
+        
+        var data = [UInt16](repeating: 0, count: size)
+        
+        // Create a simple gradient background
+        for y in 0..<height {
+            for x in 0..<width {
+                let index = y * width + x
+                let gradient = Float(y) / Float(height) * 1000
+                data[index] = UInt16(gradient)
+            }
+        }
+        
+        // Add text overlay effect (simple pattern in center)
+        let centerX = width / 2
+        let centerY = height / 2
+        let boxWidth = 300
+        let boxHeight = 60
+        
+        // Draw a box for the text
+        for y in (centerY - boxHeight/2)..<(centerY + boxHeight/2) {
+            for x in (centerX - boxWidth/2)..<(centerX + boxWidth/2) {
+                if y >= 0 && y < height && x >= 0 && x < width {
+                    let index = y * width + x
+                    // Create border effect
+                    if y == centerY - boxHeight/2 || y == centerY + boxHeight/2 - 1 ||
+                       x == centerX - boxWidth/2 || x == centerX + boxWidth/2 - 1 {
+                        data[index] = 3000 // Bright border
+                    } else {
+                        data[index] = 500 // Dark background for text
+                    }
+                }
+            }
+        }
+        
+        return PixelData(
+            data: data,
+            width: width,
+            height: height,
+            bitsAllocated: 16,
+            bitsStored: 12,
+            highBit: 11,
+            pixelRepresentation: 0,
+            rescaleIntercept: 0,
+            rescaleSlope: 1,
+            windowCenter: 1500,
+            windowWidth: 3000
+        )
     }
     
     private func createSamplePixelData() -> PixelData {
@@ -234,6 +318,15 @@ class DICOMImageRenderer {
         
         let minValue = level - window / 2
         let maxValue = level + window / 2
+        
+        print("🔍 DICOMImageRenderer: Applying window/level - W: \(window), L: \(level), Range: [\(minValue), \(maxValue)]")
+        
+        // Find actual data range for debugging
+        if !data.isEmpty {
+            let minData = data.min() ?? 0
+            let maxData = data.max() ?? 0
+            print("🔍 DICOMImageRenderer: Actual data range: [\(minData), \(maxData)]")
+        }
         
         return data.map { value in
             if value <= minValue {

@@ -7,6 +7,14 @@
 
 import UIKit
 
+// MARK: - ViewerType Enum
+/// Types of viewers available in the DICOM viewer application
+enum ViewerType {
+    case viewer2D       // Standard 2D DICOM image viewer
+    case mpr           // Multi-planar reconstruction viewer
+    case segmentation  // 3D and AI segmentation viewer
+}
+
 class StudyListViewController: UIViewController {
     
     // MARK: - Properties
@@ -27,25 +35,34 @@ class StudyListViewController: UIViewController {
     }()
     
     private func createModernLayout() -> UICollectionViewLayout {
+        let deviceLayout = DeviceLayoutUtility.shared
+        
         let layout = UICollectionViewCompositionalLayout { sectionIndex, environment in
-            // Create item - increased height for thumbnail images
+            // Create item with device-specific height
+            let itemHeight = deviceLayout.scaled(220)
             let itemSize = NSCollectionLayoutSize(
                 widthDimension: .fractionalWidth(1.0),
-                heightDimension: .estimated(220)
+                heightDimension: .estimated(itemHeight)
             )
             let item = NSCollectionLayoutItem(layoutSize: itemSize)
             
             // Create group
             let groupSize = NSCollectionLayoutSize(
                 widthDimension: .fractionalWidth(1.0),
-                heightDimension: .estimated(220)
+                heightDimension: .estimated(itemHeight)
             )
             let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
             
-            // Create section
+            // Create section with device-specific spacing
             let section = NSCollectionLayoutSection(group: group)
-            section.interGroupSpacing = 16
-            section.contentInsets = NSDirectionalEdgeInsets(top: 16, leading: 20, bottom: 16, trailing: 20)
+            section.interGroupSpacing = deviceLayout.spacing(16)
+            let padding = deviceLayout.padding(horizontal: 20, vertical: 16)
+            section.contentInsets = NSDirectionalEdgeInsets(
+                top: padding.top,
+                leading: padding.left,
+                bottom: padding.bottom,
+                trailing: padding.right
+            )
             
             // Add header
             let headerSize = NSCollectionLayoutSize(
@@ -69,20 +86,21 @@ class StudyListViewController: UIViewController {
         view.backgroundColor = .clear
         view.translatesAutoresizingMaskIntoConstraints = false
         
-        // Modern empty state card
+        // Modern empty state card with device-specific styling
+        let deviceLayout = DeviceLayoutUtility.shared
         let cardView = UIView()
         cardView.backgroundColor = UIColor.systemBackground.withAlphaComponent(0.8)
-        cardView.layer.cornerRadius = 24
+        cardView.layer.cornerRadius = deviceLayout.cornerRadius(base: 24)
         cardView.layer.shadowColor = UIColor.black.cgColor
-        cardView.layer.shadowOffset = CGSize(width: 0, height: 8)
-        cardView.layer.shadowRadius = 16
+        cardView.layer.shadowOffset = CGSize(width: 0, height: deviceLayout.scaled(8))
+        cardView.layer.shadowRadius = deviceLayout.scaled(16)
         cardView.layer.shadowOpacity = 0.1
         cardView.translatesAutoresizingMaskIntoConstraints = false
         
-        // Medical icon with background
+        // Medical icon with background - device-specific sizing
         let iconBackground = UIView()
         iconBackground.backgroundColor = UIColor.systemBlue.withAlphaComponent(0.1)
-        iconBackground.layer.cornerRadius = 40
+        iconBackground.layer.cornerRadius = deviceLayout.scaled(40)
         iconBackground.translatesAutoresizingMaskIntoConstraints = false
         
         let imageView = UIImageView(image: UIImage(systemName: "heart.text.square.fill"))
@@ -90,29 +108,29 @@ class StudyListViewController: UIViewController {
         imageView.tintColor = .systemBlue
         imageView.translatesAutoresizingMaskIntoConstraints = false
         
-        // Title and subtitle
+        // Title and subtitle with device-specific fonts
         let titleLabel = UILabel()
         titleLabel.text = "No Medical Studies"
-        titleLabel.font = .systemFont(ofSize: 24, weight: .bold)
+        titleLabel.font = deviceLayout.scaledFont(size: 24, weight: .bold)
         titleLabel.textColor = .label
         titleLabel.textAlignment = .center
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         
         let subtitleLabel = UILabel()
         subtitleLabel.text = "Import DICOM files to begin medical imaging analysis"
-        subtitleLabel.font = .systemFont(ofSize: 16, weight: .medium)
+        subtitleLabel.font = deviceLayout.scaledFont(size: 16, weight: .medium)
         subtitleLabel.textColor = .secondaryLabel
         subtitleLabel.textAlignment = .center
         subtitleLabel.numberOfLines = 0
         subtitleLabel.translatesAutoresizingMaskIntoConstraints = false
         
-        // Action button
+        // Action button with device-specific styling
         let actionButton = UIButton(type: .system)
         actionButton.setTitle("Import Studies", for: .normal)
-        actionButton.titleLabel?.font = .systemFont(ofSize: 18, weight: .semibold)
+        actionButton.titleLabel?.font = deviceLayout.scaledFont(size: 18, weight: .semibold)
         actionButton.backgroundColor = .systemBlue
         actionButton.setTitleColor(.white, for: .normal)
-        actionButton.layer.cornerRadius = 12
+        actionButton.layer.cornerRadius = deviceLayout.cornerRadius(base: 12)
         actionButton.translatesAutoresizingMaskIntoConstraints = false
         actionButton.addTarget(self, action: #selector(importFiles), for: .touchUpInside)
         
@@ -124,41 +142,47 @@ class StudyListViewController: UIViewController {
         cardView.addSubview(actionButton)
         view.addSubview(cardView)
         
+        // Device-specific spacing values
+        let cardPadding = deviceLayout.padding(horizontal: 40, vertical: 40)
+        let iconSize = deviceLayout.iconSize(80)
+        let iconImageSize = deviceLayout.iconSize(48)
+        let spacing = deviceLayout.spacing(40)
+        
         NSLayoutConstraint.activate([
-            // Card view
+            // Card view with device-specific padding
             cardView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             cardView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-            cardView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 40),
-            cardView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -40),
+            cardView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: cardPadding.left),
+            cardView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -cardPadding.right),
             
-            // Icon background
-            iconBackground.topAnchor.constraint(equalTo: cardView.topAnchor, constant: 40),
+            // Icon background with device-specific sizing
+            iconBackground.topAnchor.constraint(equalTo: cardView.topAnchor, constant: spacing),
             iconBackground.centerXAnchor.constraint(equalTo: cardView.centerXAnchor),
-            iconBackground.widthAnchor.constraint(equalToConstant: 80),
-            iconBackground.heightAnchor.constraint(equalToConstant: 80),
+            iconBackground.widthAnchor.constraint(equalToConstant: iconSize),
+            iconBackground.heightAnchor.constraint(equalToConstant: iconSize),
             
             // Icon
             imageView.centerXAnchor.constraint(equalTo: iconBackground.centerXAnchor),
             imageView.centerYAnchor.constraint(equalTo: iconBackground.centerYAnchor),
-            imageView.widthAnchor.constraint(equalToConstant: 48),
-            imageView.heightAnchor.constraint(equalToConstant: 48),
+            imageView.widthAnchor.constraint(equalToConstant: iconImageSize),
+            imageView.heightAnchor.constraint(equalToConstant: iconImageSize),
             
-            // Title
-            titleLabel.topAnchor.constraint(equalTo: iconBackground.bottomAnchor, constant: 24),
-            titleLabel.leadingAnchor.constraint(equalTo: cardView.leadingAnchor, constant: 24),
-            titleLabel.trailingAnchor.constraint(equalTo: cardView.trailingAnchor, constant: -24),
+            // Title with device-specific spacing
+            titleLabel.topAnchor.constraint(equalTo: iconBackground.bottomAnchor, constant: deviceLayout.spacing(24)),
+            titleLabel.leadingAnchor.constraint(equalTo: cardView.leadingAnchor, constant: deviceLayout.spacing(24)),
+            titleLabel.trailingAnchor.constraint(equalTo: cardView.trailingAnchor, constant: -deviceLayout.spacing(24)),
             
             // Subtitle
-            subtitleLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 8),
-            subtitleLabel.leadingAnchor.constraint(equalTo: cardView.leadingAnchor, constant: 24),
-            subtitleLabel.trailingAnchor.constraint(equalTo: cardView.trailingAnchor, constant: -24),
+            subtitleLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: deviceLayout.spacing(8)),
+            subtitleLabel.leadingAnchor.constraint(equalTo: cardView.leadingAnchor, constant: deviceLayout.spacing(24)),
+            subtitleLabel.trailingAnchor.constraint(equalTo: cardView.trailingAnchor, constant: -deviceLayout.spacing(24)),
             
-            // Action button
-            actionButton.topAnchor.constraint(equalTo: subtitleLabel.bottomAnchor, constant: 32),
+            // Action button with device-specific sizing
+            actionButton.topAnchor.constraint(equalTo: subtitleLabel.bottomAnchor, constant: deviceLayout.spacing(32)),
             actionButton.centerXAnchor.constraint(equalTo: cardView.centerXAnchor),
-            actionButton.widthAnchor.constraint(equalToConstant: 160),
-            actionButton.heightAnchor.constraint(equalToConstant: 48),
-            actionButton.bottomAnchor.constraint(equalTo: cardView.bottomAnchor, constant: -40)
+            actionButton.widthAnchor.constraint(equalToConstant: deviceLayout.scaled(160)),
+            actionButton.heightAnchor.constraint(equalToConstant: deviceLayout.buttonHeight()),
+            actionButton.bottomAnchor.constraint(equalTo: cardView.bottomAnchor, constant: -spacing)
         ])
         
         return view
@@ -416,8 +440,8 @@ extension StudyListViewController: UICollectionViewDelegate {
         let impactGenerator = UIImpactFeedbackGenerator(style: .medium)
         impactGenerator.impactOccurred()
         
-        let viewerVC = ViewerViewController(study: study)
-        navigationController?.pushViewController(viewerVC, animated: true)
+        // Show viewer selection options using action sheet
+        showViewerSelection(for: study)
     }
     
     func collectionView(_ collectionView: UICollectionView, contextMenuConfigurationForItemAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
@@ -473,6 +497,110 @@ extension StudyListViewController: UICollectionViewDelegate {
         let alert = UIAlertController(title: "Study Information", message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default))
         present(alert, animated: true)
+    }
+    
+    private func showViewerSelection(for study: DICOMStudy) {
+        let actionSheet = UIAlertController(title: "Select Viewer", message: "Choose how to view this study", preferredStyle: .actionSheet)
+        
+        // 2D Viewer option
+        actionSheet.addAction(UIAlertAction(title: "2D Viewer", style: .default) { _ in
+            self.openStudyInViewer(study, viewerType: .viewer2D)
+        })
+        
+        // MPR Viewer option
+        actionSheet.addAction(UIAlertAction(title: "MPR (Multi-Planar)", style: .default) { _ in
+            self.openStudyInViewer(study, viewerType: .mpr)
+        })
+        
+        // 3D/AI Viewer option
+        actionSheet.addAction(UIAlertAction(title: "3D/AI Segmentation", style: .default) { _ in
+            self.openStudyInViewer(study, viewerType: .segmentation)
+        })
+        
+        // Cancel option
+        actionSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+        
+        // Configure for iPad
+        if let popover = actionSheet.popoverPresentationController {
+            popover.sourceView = collectionView
+            if let selectedIndexPath = collectionView.indexPathsForSelectedItems?.first,
+               let cell = collectionView.cellForItem(at: selectedIndexPath) {
+                popover.sourceRect = cell.frame
+            }
+        }
+        
+        present(actionSheet, animated: true)
+    }
+    
+    private func openStudyInViewer(_ study: DICOMStudy, viewerType: ViewerType) {
+        // Navigate to appropriate viewer based on selection
+        switch viewerType {
+        case .viewer2D:
+            // For now, use the basic ViewerViewController
+            let viewerVC = ViewerViewController(study: study)
+            navigationController?.pushViewController(viewerVC, animated: true)
+            
+        case .mpr:
+            // Navigate to MPR viewer
+            print("📊 MPR viewer selected for study: \(study.studyInstanceUID)")
+            let mprVC = MPRViewController()
+            
+            // Load volume data for MPR
+            Task {
+                if let volumeData = await loadVolumeForStudy(study) {
+                    mprVC.loadSeries(study.series.first!, volumeTexture: volumeData.texture, voxelSpacing: volumeData.spacing)
+                }
+            }
+            
+            navigationController?.pushViewController(mprVC, animated: true)
+            
+        case .segmentation:
+            // Navigate to 3D/AI viewer
+            print("🧠 3D/AI viewer selected for study: \(study.studyInstanceUID)")
+            
+            // For now, show a placeholder until AutoSegmentationViewController is added to project
+            showAlert(title: "3D/AI Viewer", message: "3D/AI segmentation viewer will be available soon.\n\nThis feature includes:\n• Volume rendering\n• AI-powered organ segmentation\n• Quantitative analysis")
+        }
+    }
+    
+    private func showAlert(title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default))
+        present(alert, animated: true)
+    }
+    
+    private func loadVolumeForStudy(_ study: DICOMStudy) async -> (texture: MTLTexture, spacing: simd_float3)? {
+        // This is a simplified version - actual implementation would load all slices
+        guard let series = study.series.first,
+              let device = MTLCreateSystemDefaultDevice() else { return nil }
+        
+        let instances = series.instances.sorted { $0.metadata.instanceNumber ?? 0 < $1.metadata.instanceNumber ?? 0 }
+        guard !instances.isEmpty else { return nil }
+        
+        // Get dimensions
+        let width = instances[0].metadata.columns
+        let height = instances[0].metadata.rows  
+        let depth = instances.count
+        
+        // Get voxel spacing
+        let pixelSpacing = instances[0].metadata.pixelSpacing ?? [1.0, 1.0]
+        let sliceThickness = instances[0].metadata.sliceThickness ?? 1.0
+        let spacing = simd_float3(Float(pixelSpacing[0]), Float(pixelSpacing[1]), Float(sliceThickness))
+        
+        // Create 3D texture
+        let textureDescriptor = MTLTextureDescriptor()
+        textureDescriptor.textureType = .type3D
+        textureDescriptor.pixelFormat = .r16Uint
+        textureDescriptor.width = width
+        textureDescriptor.height = height
+        textureDescriptor.depth = depth
+        textureDescriptor.usage = [.shaderRead]
+        
+        guard let texture = device.makeTexture(descriptor: textureDescriptor) else { return nil }
+        
+        // In a real implementation, we would load pixel data from each instance
+        // For now, return the empty texture
+        return (texture: texture, spacing: spacing)
     }
 }
 

@@ -24,6 +24,12 @@ class MainTabBarController: UITabBarController {
         super.viewDidLoad()
         setupTabBarAppearance()
         setupViewControllers()
+        
+        // Add revolutionary Quantum Interface
+        addQuantumViewerTab()
+        
+        // Initialize global quantum features
+        _ = QuantumFeatureManager.shared
     }
     
     // MARK: - Setup Methods
@@ -42,18 +48,22 @@ class MainTabBarController: UITabBarController {
         appearance.backgroundColor = surfaceDark.withAlphaComponent(0.9)
         appearance.selectionIndicatorTintColor = primaryColor
         
+        // Device-specific font sizing
+        let deviceLayout = DeviceLayoutUtility.shared
+        let tabBarFontSize = deviceLayout.scaled(10)
+        
         // Normal state
         appearance.stackedLayoutAppearance.normal.iconColor = textSecondary
         appearance.stackedLayoutAppearance.normal.titleTextAttributes = [
             .foregroundColor: textSecondary,
-            .font: UIFont.systemFont(ofSize: 10, weight: .medium)
+            .font: UIFont.systemFont(ofSize: tabBarFontSize, weight: .medium)
         ]
         
         // Selected state
         appearance.stackedLayoutAppearance.selected.iconColor = primaryColor
         appearance.stackedLayoutAppearance.selected.titleTextAttributes = [
             .foregroundColor: primaryColor,
-            .font: UIFont.systemFont(ofSize: 10, weight: .semibold)
+            .font: UIFont.systemFont(ofSize: tabBarFontSize, weight: .semibold)
         ]
         
         // Add subtle border
@@ -199,16 +209,9 @@ class MainTabBarController: UITabBarController {
     func refreshStudyData(_ study: DICOMStudy) {
         viewerController?.refreshStudy(study)
         mprController?.refreshStudy(study)
-        segmentationController?.refreshStudy(study)
+        // AutoSegmentationViewController will be refreshed through loadStudy
+        segmentationController?.loadStudy(study)
     }
-}
-
-// MARK: - ViewerType Enum
-
-enum ViewerType {
-    case viewer2D
-    case mpr
-    case segmentation
 }
 
 // MARK: - Extensions for View Controllers
@@ -237,14 +240,15 @@ extension MPRViewController {
     }
 }
 
-extension AutoSegmentationViewController {
-    func loadStudy(_ study: DICOMStudy) {
-        // Implementation for segmentation viewer
-        print("🧠 Segmentation: Loading study \(study.studyInstanceUID)")
-    }
-    
-    func refreshStudy(_ study: DICOMStudy) {
-        // Implementation for segmentation refresh
-        print("🔄 Segmentation: Refreshing study \(study.studyInstanceUID)")
-    }
-}
+// Note: AutoSegmentationViewController already has loadStudy and refreshStudy methods
+// extension AutoSegmentationViewController {
+//     func loadStudy(_ study: DICOMStudy) {
+//         // Implementation for segmentation viewer
+//         print("🧠 Segmentation: Loading study \(study.studyInstanceUID)")
+//     }
+//     
+//     func refreshStudy(_ study: DICOMStudy) {
+//         // Implementation for segmentation refresh
+//         print("🔄 Segmentation: Refreshing study \(study.studyInstanceUID)")
+//     }
+// }

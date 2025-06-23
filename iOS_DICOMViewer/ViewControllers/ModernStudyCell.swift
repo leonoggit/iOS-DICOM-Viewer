@@ -3,41 +3,41 @@ import UIKit
 class ModernStudyCell: UICollectionViewCell {
     static let identifier = "ModernStudyCell"
     
-    private let thumbnailImageView: UIImageView = {
+    private lazy var thumbnailImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
         imageView.backgroundColor = UIColor.systemGray6
-        imageView.layer.cornerRadius = 8
+        imageView.layer.cornerRadius = DeviceLayoutUtility.shared.cornerRadius(base: 8)
         imageView.clipsToBounds = true
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
     
-    private let titleLabel: UILabel = {
+    private lazy var titleLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.boldSystemFont(ofSize: 16)
+        label.font = DeviceLayoutUtility.shared.scaledFont(size: 16, weight: .bold)
         label.textColor = .label
         label.numberOfLines = 2
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
-    private let subtitleLabel: UILabel = {
+    private lazy var subtitleLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 14)
+        label.font = DeviceLayoutUtility.shared.scaledFont(size: 14, weight: .regular)
         label.textColor = .secondaryLabel
         label.numberOfLines = 1
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
-    private let modalityLabel: UILabel = {
+    private lazy var modalityLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.boldSystemFont(ofSize: 12)
+        label.font = DeviceLayoutUtility.shared.scaledFont(size: 12, weight: .bold)
         label.textColor = .systemBlue
         label.backgroundColor = UIColor.systemBlue.withAlphaComponent(0.1)
         label.textAlignment = .center
-        label.layer.cornerRadius = 8
+        label.layer.cornerRadius = DeviceLayoutUtility.shared.cornerRadius(base: 8)
         label.clipsToBounds = true
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -49,14 +49,14 @@ class ModernStudyCell: UICollectionViewCell {
         return indicator
     }()
     
-    private let containerView: UIView = {
+    private lazy var containerView: UIView = {
         let view = UIView()
         view.backgroundColor = .systemBackground
-        view.layer.cornerRadius = 12
+        view.layer.cornerRadius = DeviceLayoutUtility.shared.cornerRadius(base: 12)
         view.layer.shadowColor = UIColor.black.cgColor
-        view.layer.shadowOffset = CGSize(width: 0, height: 2)
+        view.layer.shadowOffset = CGSize(width: 0, height: DeviceLayoutUtility.shared.scaled(2))
         view.layer.shadowOpacity = 0.1
-        view.layer.shadowRadius = 4
+        view.layer.shadowRadius = DeviceLayoutUtility.shared.scaled(4)
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -79,38 +79,43 @@ class ModernStudyCell: UICollectionViewCell {
         containerView.addSubview(modalityLabel)
         containerView.addSubview(loadingIndicator)
         
+        // Device-specific spacing
+        let spacing = DeviceLayoutUtility.shared.spacing(8)
+        let padding = DeviceLayoutUtility.shared.spacing(4)
+        let contentPadding = DeviceLayoutUtility.shared.spacing(12)
+        
         NSLayoutConstraint.activate([
-            // Container
-            containerView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 4),
-            containerView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 4),
-            containerView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -4),
-            containerView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -4),
+            // Container with device-specific padding
+            containerView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: padding),
+            containerView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: padding),
+            containerView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -padding),
+            containerView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -padding),
             
-            // Thumbnail image (top area)
-            thumbnailImageView.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 8),
-            thumbnailImageView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 8),
-            thumbnailImageView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -8),
+            // Thumbnail image with device-specific spacing
+            thumbnailImageView.topAnchor.constraint(equalTo: containerView.topAnchor, constant: spacing),
+            thumbnailImageView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: spacing),
+            thumbnailImageView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -spacing),
             thumbnailImageView.heightAnchor.constraint(equalTo: thumbnailImageView.widthAnchor, multiplier: 0.75),
             
             // Loading indicator (centered on thumbnail)
             loadingIndicator.centerXAnchor.constraint(equalTo: thumbnailImageView.centerXAnchor),
             loadingIndicator.centerYAnchor.constraint(equalTo: thumbnailImageView.centerYAnchor),
             
-            // Modality badge (top-right corner of thumbnail)
-            modalityLabel.topAnchor.constraint(equalTo: thumbnailImageView.topAnchor, constant: 8),
-            modalityLabel.trailingAnchor.constraint(equalTo: thumbnailImageView.trailingAnchor, constant: -8),
-            modalityLabel.widthAnchor.constraint(greaterThanOrEqualToConstant: 32),
-            modalityLabel.heightAnchor.constraint(equalToConstant: 20),
+            // Modality badge with device-specific sizing
+            modalityLabel.topAnchor.constraint(equalTo: thumbnailImageView.topAnchor, constant: spacing),
+            modalityLabel.trailingAnchor.constraint(equalTo: thumbnailImageView.trailingAnchor, constant: -spacing),
+            modalityLabel.widthAnchor.constraint(greaterThanOrEqualToConstant: DeviceLayoutUtility.shared.scaled(32)),
+            modalityLabel.heightAnchor.constraint(equalToConstant: DeviceLayoutUtility.shared.scaled(20)),
             
-            // Title and subtitle below thumbnail
-            titleLabel.topAnchor.constraint(equalTo: thumbnailImageView.bottomAnchor, constant: 8),
-            titleLabel.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 12),
-            titleLabel.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -12),
+            // Title and subtitle with device-specific spacing
+            titleLabel.topAnchor.constraint(equalTo: thumbnailImageView.bottomAnchor, constant: spacing),
+            titleLabel.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: contentPadding),
+            titleLabel.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -contentPadding),
             
-            subtitleLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 4),
-            subtitleLabel.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 12),
-            subtitleLabel.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -12),
-            subtitleLabel.bottomAnchor.constraint(lessThanOrEqualTo: containerView.bottomAnchor, constant: -12)
+            subtitleLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: DeviceLayoutUtility.shared.spacing(4)),
+            subtitleLabel.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: contentPadding),
+            subtitleLabel.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -contentPadding),
+            subtitleLabel.bottomAnchor.constraint(lessThanOrEqualTo: containerView.bottomAnchor, constant: -contentPadding)
         ])
     }
     

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0065E315D0BDE706FC130FE2 /* ROIShaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = 213EAA44EC1916D21C85809A /* ROIShaders.metal */; };
+		04BC0530C2104FCB99C6A2C4 /* UrinaryTractSegmentationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2D9477CD64142FA9978CC0C /* UrinaryTractSegmentationService.swift */; };
 		05203F6631E3F0F58BA84747 /* PolygonROITool.swift in Sources */ = {isa = PBXBuildFile; fileRef = B617736EFE7B86D9FDE94533 /* PolygonROITool.swift */; };
 		08AD607E213021733AFDA407 /* ViewerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE6E5013094E8F9E2AC269D /* ViewerViewController.swift */; };
 		0A51DF6CDE277380A9148BF1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 382907EC48DD7F5F2D54AEE1 /* AppDelegate.swift */; };
@@ -15,6 +16,7 @@
 		1717009D2293D57D6C03F7A9 /* RTStructureSetParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 162E6D0BDA44BDCCAF559D11 /* RTStructureSetParser.swift */; };
 		1AB0BAAEB2B468B6F43B5788 /* DICOMImageRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FF51FB8AFF446BB177DA91C /* DICOMImageRenderer.swift */; };
 		1B979FB79EF6F0F8A2519DDA /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BBA28BE8A60891349DE5C9A /* QuartzCore.framework */; };
+		20F7209C39C64621BB3C4B27 /* AutomaticSegmentationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDD080DC9F4FCD8545F147 /* AutomaticSegmentationService.swift */; };
 		2447824A48F13D49A2806DB5 /* VolumeRenderingShaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = 9CFAE6B47CE7F2E857D5ABF5 /* VolumeRenderingShaders.metal */; };
 		26A44B43AA773B8907E8B310 /* DCMTKBridge.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2505340E22827F5503DC580A /* DCMTKBridge.mm */; };
 		281B0F1B30898DB4FB242072 /* DICOMError+Enhanced.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13E0A0B4F0F4423561996756 /* DICOMError+Enhanced.swift */; };
@@ -46,8 +48,15 @@
 		9426CA2EDB58D8BEBF4A29A8 /* DICOMSegmentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF494A74070DC6371896691A /* DICOMSegmentation.swift */; };
 		94AEF2B542F4AC09CA02BC97 /* iOS_DICOMViewerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CC2BFA2C1CBCAF15861ABA /* iOS_DICOMViewerUITests.swift */; };
 		9F6FF5502FFA32EE9E853413 /* DICOMParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3EA315404E0B1B44517E82E /* DICOMParser.swift */; };
+		A3B4C5D6E7F89012345678901 /* DeviceLayoutUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B2C3D4E5F6789012345678 /* DeviceLayoutUtility.swift */; };
 		9FF918C76A30FD5DAF466598 /* DICOMSeries.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90DD79045E16C659A2E71753 /* DICOMSeries.swift */; };
+		EACAF8BD590442D9B128E06F /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC2F4F4E59445CEB67D7FF4 /* MainTabBarController.swift */; };
+		7E9B1650F8AB4ECF80E49DBD /* ModernViewerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F43C48CD14B4C69A33247D1 /* ModernViewerViewController.swift */; };
+		A1B2C3D4567890ABCDEF1234 /* AutoSegmentationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 670E81EDDCED4E37BBB907C4 /* AutoSegmentationViewController.swift */; };
+		B2C3D4E5678901BCDEF23456 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A3CD7F248D34509A0C90ACB /* SettingsViewController.swift */; };
 		A1D878D105EF320F3D576E9E /* ClinicalComplianceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1FD77CC04F063D4EC906660 /* ClinicalComplianceManager.swift */; };
+		C3D4E5F678901BCDEF345678 /* DICOMImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC17013C032B4CCFBE4B198A /* DICOMImageCache.swift */; };
+		A43958E5D0E4413DA0B3EDB7 /* CoreMLSegmentationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09B8DF73678544359F1B3238 /* CoreMLSegmentationService.swift */; };
 		A5E7562C255D1825673550E7 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D12971BD7B8714E53C18942 /* MainViewController.swift */; };
 		AB3C8B21324ED0F1E9294A7D /* iOS_DICOMViewerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A67C9483ECF0450DB0209C61 /* iOS_DICOMViewerTests.swift */; };
 		AC1CE189DFF5A7178CBD700B /* ROIRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB7D0D2579DE4FF7A75DE9F3 /* ROIRenderer.swift */; };
@@ -55,6 +64,7 @@
 		ADB0B77DCD737E90F52987EE /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98723A1530DB60F2CE6DE7F7 /* Accelerate.framework */; };
 		ADF69C6094E8BF076308120B /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8724F417508E14404DB87D04 /* AppCoordinator.swift */; };
 		B22C166BA1DFEBE9C5A83773 /* MPRViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19ED3E3F5D9B7C131955D42F /* MPRViewController.swift */; };
+		B9C3A0D754EA49D8BFD5FC4C /* StudyHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB8710B6DA34727AE99BDEB /* StudyHeaderView.swift */; };
 		BC3E026A56F76AA62EFFF8A2 /* PerformanceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90C52BA42D02D40AEA67036B /* PerformanceTests.swift */; };
 		C38AF99D7FFE2D06B24B5901 /* MetalDICOMRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A19F319E87061991108E9BE2 /* MetalDICOMRenderer.swift */; };
 		C3E66E20C49622FEABD4CA61 /* RTStructureSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7F40BD9AE277651BC8297A6 /* RTStructureSet.swift */; };
@@ -66,17 +76,25 @@
 		D46AE5E4E908ABC751FBF1BF /* DICOMCacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FFE92DE4F5773437FF5D8C9 /* DICOMCacheManager.swift */; };
 		D9FE24836AF4CA069215FF95 /* ROIToolsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4C3E4D460F23C2E06782DE /* ROIToolsTests.swift */; };
 		DC58C515FA7754EC0509117F /* RTStructureShaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = BED4B67601214ACE5F8915F9 /* RTStructureShaders.metal */; };
+		DD49856232A843CA8A4EE03C /* ModernStudyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66CEC845F3EE40308F7D3C82 /* ModernStudyCell.swift */; };
 		E2A016C654336F14B758AF35 /* HapticFeedback.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EE968C0C57A3F5461EFC9F6 /* HapticFeedback.swift */; };
 		EC22570CA87DCA4AAE6C1197 /* SegmentationShaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = 5642CD013A48CA28391CDB6D /* SegmentationShaders.metal */; };
 		F18B70137E10E0D67C1454AC /* RTStructureSetService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5313D11092920EEF5C27BE15 /* RTStructureSetService.swift */; };
 		F4DBB7B653353B6E169E9541 /* RTStructureRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 251D4090577DC6874F9E084A /* RTStructureRenderer.swift */; };
 		FBE0A9013AA4DDA4B1B980E5 /* DICOMParsingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7AC3B9BF55DD3803B29065 /* DICOMParsingTests.swift */; };
 		FF361FB0EEEE1A012B743DED /* SegmentationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FA059AC006CC3DFCB3BD13E /* SegmentationService.swift */; };
-		20F7209C39C64621BB3C4B27 /* AutomaticSegmentationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDD080DC9F4FCD8545F147 /* AutomaticSegmentationService.swift */; };
-		04BC0530C2104FCB99C6A2C4 /* UrinaryTractSegmentationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2D9477CD64142FA9978CC0C /* UrinaryTractSegmentationService.swift */; };
-		A43958E5D0E4413DA0B3EDB7 /* CoreMLSegmentationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09B8DF73678544359F1B3238 /* CoreMLSegmentationService.swift */; };
-		DD49856232A843CA8A4EE03C /* ModernStudyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66CEC845F3EE40308F7D3C82 /* ModernStudyCell.swift */; };
-		B9C3A0D754EA49D8BFD5FC4C /* StudyHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB8710B6DA34727AE99BDEB /* StudyHeaderView.swift */; };
+		F737B31DF38F4DAAB2872C67 /* QuantumDICOMInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C564C2896874CAFB16AD798 /* QuantumDICOMInterface.swift */; };
+		197E131835A244DDB4E00A3B /* BiometricFeedbackOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 024045520B2C406081D22C35 /* BiometricFeedbackOverlay.swift */; };
+		08320A57AA654A1D9442DDE1 /* GestureVisualizationLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 458A061BC1524207A773699B /* GestureVisualizationLayer.swift */; };
+		8EBE005BCABC4D9C83DFE62A /* QuantumIntegration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 196579DF5C34495B940A7A80 /* QuantumIntegration.swift */; };
+		08955FAFC8FF4337B4DF629A /* MedicalReportEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAB231E5370941DDABD7396A /* MedicalReportEngine.swift */; };
+		C59A4B27DD79473D8B0A46D1 /* TemplateEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = B25CD78F36B0443BBF9D9414 /* TemplateEngine.swift */; };
+		944ABE3A10784959BF51D0F3 /* FindingsAnalyzer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B6BCFC02D5844989C155B5B /* FindingsAnalyzer.swift */; };
+		E2556EBE20F34A68819A6BD2 /* MedicalNLPProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3E5DC26AC9F4F21AF5EC9FE /* MedicalNLPProcessor.swift */; };
+		668916A88BBB401886E33C69 /* ReportGenerationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39123FC65FFA4039B01105A5 /* ReportGenerationViewController.swift */; };
+		A6D7C57F50F84B47907A87FE /* AnomalyDetectionSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D8EB96F222A489B89FFF37D /* AnomalyDetectionSystem.swift */; };
+		5EC5F6695712447C91E45314 /* AnomalyVisualizationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C2E52832A694EF19307DCA0 /* AnomalyVisualizationView.swift */; };
+		E0E6B96D38E2409EA2C97268 /* AIIntegrationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E0FBD793C7947428DC0ACAB /* AIIntegrationManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -111,6 +129,7 @@
 
 /* Begin PBXFileReference section */
 		01452AE6DB17FF409918BE10 /* DICOMSegmentationParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DICOMSegmentationParser.swift; sourceTree = "<group>"; };
+		09B8DF73678544359F1B3238 /* CoreMLSegmentationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreMLSegmentationService.swift; sourceTree = "<group>"; };
 		0D1C0B3177DFD490668AD9DD /* diregist.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = diregist.h; sourceTree = "<group>"; };
 		0F5BEEE44BFAC844489CCFB3 /* ROITool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ROITool.swift; sourceTree = "<group>"; };
 		0FA69E46A1FE69D8DDF9FEC0 /* iOS_DICOMViewerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iOS_DICOMViewerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -136,6 +155,7 @@
 		2FF51FB8AFF446BB177DA91C /* DICOMImageRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DICOMImageRenderer.swift; sourceTree = "<group>"; };
 		2FFE92DE4F5773437FF5D8C9 /* DICOMCacheManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DICOMCacheManager.swift; sourceTree = "<group>"; };
 		35CC2BFA2C1CBCAF15861ABA /* iOS_DICOMViewerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOS_DICOMViewerUITests.swift; sourceTree = "<group>"; };
+		35CDD080DC9F4FCD8545F147 /* AutomaticSegmentationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutomaticSegmentationService.swift; sourceTree = "<group>"; };
 		382907EC48DD7F5F2D54AEE1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		42A82151C5A1487BE7C53293 /* DICOMGestureHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DICOMGestureHandler.swift; sourceTree = "<group>"; };
 		46D206ABA893A5D16CB61388 /* MPRRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MPRRenderer.swift; sourceTree = "<group>"; };
@@ -146,6 +166,8 @@
 		5313D11092920EEF5C27BE15 /* RTStructureSetService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RTStructureSetService.swift; sourceTree = "<group>"; };
 		54625880F53384F51EACCBC0 /* Metal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Metal.framework; sourceTree = "<group>"; };
 		5642CD013A48CA28391CDB6D /* SegmentationShaders.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = SegmentationShaders.metal; sourceTree = "<group>"; };
+		5DB8710B6DA34727AE99BDEB /* StudyHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudyHeaderView.swift; sourceTree = "<group>"; };
+		66CEC845F3EE40308F7D3C82 /* ModernStudyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModernStudyCell.swift; sourceTree = "<group>"; };
 		6ACB03E13FE148C334412B0F /* DICOMServiceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DICOMServiceManager.swift; sourceTree = "<group>"; };
 		75C54BDEA2B306044B182A8B /* StudyListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudyListViewController.swift; sourceTree = "<group>"; };
 		8724F417508E14404DB87D04 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
@@ -165,6 +187,7 @@
 		B617736EFE7B86D9FDE94533 /* PolygonROITool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PolygonROITool.swift; sourceTree = "<group>"; };
 		B7886FAAACC3F4036ACDE8DC /* DICOMError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DICOMError.swift; sourceTree = "<group>"; };
 		BED4B67601214ACE5F8915F9 /* RTStructureShaders.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = RTStructureShaders.metal; sourceTree = "<group>"; };
+		C2D9477CD64142FA9978CC0C /* UrinaryTractSegmentationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UrinaryTractSegmentationService.swift; sourceTree = "<group>"; };
 		C39DE6F5F2502098CE8D43B7 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CoreGraphics.framework; sourceTree = "<group>"; };
 		C7F40BD9AE277651BC8297A6 /* RTStructureSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RTStructureSet.swift; sourceTree = "<group>"; };
 		CE6658D1996648A8DD09E0C8 /* RenderingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RenderingTests.swift; sourceTree = "<group>"; };
@@ -184,11 +207,24 @@
 		F94DF31E78D7BB980B9A298B /* module.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = module.modulemap; sourceTree = "<group>"; };
 		FB95C10DFFCA103001F38E79 /* SegmentationRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentationRenderer.swift; sourceTree = "<group>"; };
 		FEDE1524D848B5A18F96FB1D /* ServiceProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceProtocols.swift; sourceTree = "<group>"; };
-		35CDD080DC9F4FCD8545F147 /* AutomaticSegmentationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutomaticSegmentationService.swift; sourceTree = "<group>"; };
-		C2D9477CD64142FA9978CC0C /* UrinaryTractSegmentationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UrinaryTractSegmentationService.swift; sourceTree = "<group>"; };
-		09B8DF73678544359F1B3238 /* CoreMLSegmentationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreMLSegmentationService.swift; sourceTree = "<group>"; };
-		66CEC845F3EE40308F7D3C82 /* ModernStudyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModernStudyCell.swift; sourceTree = "<group>"; };
-		5DB8710B6DA34727AE99BDEB /* StudyHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudyHeaderView.swift; sourceTree = "<group>"; };
+		A1B2C3D4E5F6789012345678 /* DeviceLayoutUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceLayoutUtility.swift; sourceTree = "<group>"; };
+		EDC2F4F4E59445CEB67D7FF4 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
+		6F43C48CD14B4C69A33247D1 /* ModernViewerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModernViewerViewController.swift; sourceTree = "<group>"; };
+		670E81EDDCED4E37BBB907C4 /* AutoSegmentationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoSegmentationViewController.swift; sourceTree = "<group>"; };
+		1A3CD7F248D34509A0C90ACB /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		BC17013C032B4CCFBE4B198A /* DICOMImageCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DICOMImageCache.swift; sourceTree = "<group>"; };
+		8C564C2896874CAFB16AD798 /* QuantumDICOMInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuantumDICOMInterface.swift; sourceTree = "<group>"; };
+		024045520B2C406081D22C35 /* BiometricFeedbackOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BiometricFeedbackOverlay.swift; sourceTree = "<group>"; };
+		458A061BC1524207A773699B /* GestureVisualizationLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GestureVisualizationLayer.swift; sourceTree = "<group>"; };
+		196579DF5C34495B940A7A80 /* QuantumIntegration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuantumIntegration.swift; sourceTree = "<group>"; };
+		EAB231E5370941DDABD7396A /* MedicalReportEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedicalReportEngine.swift; sourceTree = "<group>"; };
+		B25CD78F36B0443BBF9D9414 /* TemplateEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemplateEngine.swift; sourceTree = "<group>"; };
+		8B6BCFC02D5844989C155B5B /* FindingsAnalyzer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindingsAnalyzer.swift; sourceTree = "<group>"; };
+		D3E5DC26AC9F4F21AF5EC9FE /* MedicalNLPProcessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedicalNLPProcessor.swift; sourceTree = "<group>"; };
+		39123FC65FFA4039B01105A5 /* ReportGenerationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportGenerationViewController.swift; sourceTree = "<group>"; };
+		0D8EB96F222A489B89FFF37D /* AnomalyDetectionSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnomalyDetectionSystem.swift; sourceTree = "<group>"; };
+		4C2E52832A694EF19307DCA0 /* AnomalyVisualizationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnomalyVisualizationView.swift; sourceTree = "<group>"; };
+		3E0FBD793C7947428DC0ACAB /* AIIntegrationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIIntegrationManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -222,6 +258,7 @@
 			isa = PBXGroup;
 			children = (
 				1EE968C0C57A3F5461EFC9F6 /* HapticFeedback.swift */,
+				A1B2C3D4E5F6789012345678 /* DeviceLayoutUtility.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -278,6 +315,10 @@
 				C7CE45827DE6F1C654DD122A /* ROI */,
 				66CEC845F3EE40308F7D3C82 /* ModernStudyCell.swift */,
 				5DB8710B6DA34727AE99BDEB /* StudyHeaderView.swift */,
+				54837CDFF21E4F6087A7CC32 /* Main */,
+				FF7A1E4E5A5849C08BA899E5 /* Viewer */,
+				84230558FE8D4AAABCFE8A2A /* Segmentation */,
+				29B09A47FCA243378CAA6927 /* Settings */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -400,6 +441,7 @@
 				35CDD080DC9F4FCD8545F147 /* AutomaticSegmentationService.swift */,
 				C2D9477CD64142FA9978CC0C /* UrinaryTractSegmentationService.swift */,
 				09B8DF73678544359F1B3238 /* CoreMLSegmentationService.swift */,
+				BC17013C032B4CCFBE4B198A /* DICOMImageCache.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -476,6 +518,9 @@
 				3610308685F4818C33C8709C /* Tools */,
 				0B40C2E082C290238830988A /* Utils */,
 				2A416634D1D8537F7F079C70 /* ViewControllers */,
+			C99919027EA94E278753C5E2 /* UI */,
+				BE9DC8079AB844C1BC8F63E3 /* AI */,
+				F0991010F52B4B8A991DCC3F /* Integration */,
 			);
 			path = iOS_DICOMViewer;
 			sourceTree = "<group>";
@@ -580,6 +625,111 @@
 				18BBBEBFE352D239D277C9D2 /* StudyListCoordinator.swift */,
 			);
 			path = Coordinators;
+			sourceTree = "<group>";
+		};
+		54837CDFF21E4F6087A7CC32 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				EDC2F4F4E59445CEB67D7FF4 /* MainTabBarController.swift */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		FF7A1E4E5A5849C08BA899E5 /* Viewer */ = {
+			isa = PBXGroup;
+			children = (
+				6F43C48CD14B4C69A33247D1 /* ModernViewerViewController.swift */,
+			);
+			path = Viewer;
+			sourceTree = "<group>";
+		};
+		84230558FE8D4AAABCFE8A2A /* Segmentation */ = {
+			isa = PBXGroup;
+			children = (
+				670E81EDDCED4E37BBB907C4 /* AutoSegmentationViewController.swift */,
+			);
+			path = Segmentation;
+			sourceTree = "<group>";
+		};
+		29B09A47FCA243378CAA6927 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				1A3CD7F248D34509A0C90ACB /* SettingsViewController.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		C99919027EA94E278753C5E2 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				61A7756293C847B8813CF2ED /* UltraModern */,
+				6C41645114E64AD49042FE20 /* ReportGeneration */,
+				83D040D1FFB84DBF9ADA0E4E /* AnomalyDetection */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		61A7756293C847B8813CF2ED /* UltraModern */ = {
+			isa = PBXGroup;
+			children = (
+				8C564C2896874CAFB16AD798 /* QuantumDICOMInterface.swift */,
+				024045520B2C406081D22C35 /* BiometricFeedbackOverlay.swift */,
+				458A061BC1524207A773699B /* GestureVisualizationLayer.swift */,
+				196579DF5C34		BE9DC8079AB844C1BC8F63E3 /* AI */ = {
+			isa = PBXGroup;
+			children = (
+				9EBF2335397B4C13AA4389E4 /* ReportGeneration */,
+				221C002B639D48C6B86EA474 /* AnomalyDetection */,
+			);
+			path = AI;
+			sourceTree = "<group>";
+		};
+		9EBF2335397B4C13AA4389E4 /* ReportGeneration */ = {
+			isa = PBXGroup;
+			children = (
+				EAB231E5370941DDABD7396A /* MedicalReportEngine.swift */,
+				B25CD78F36B0443BBF9D9414 /* TemplateEngine.swift */,
+				8B6BCFC02D5844989C155B5B /* FindingsAnalyzer.swift */,
+				D3E5DC26AC9F4F21AF5EC9FE /* MedicalNLPProcessor.swift */,
+			);
+			path = ReportGeneration;
+			sourceTree = "<group>";
+		};
+		221C002B639D48C6B86EA474 /* AnomalyDetection */ = {
+			isa = PBXGroup;
+			children = (
+				0D8EB96F222A489B89FFF37D /* AnomalyDetectionSystem.swift */,
+			);
+			path = AnomalyDetection;
+			sourceTree = "<group>";
+		};
+		F0991010F52B4B8A991DCC3F /* Integration */ = {
+			isa = PBXGroup;
+			children = (
+				3E0FBD793C7947428DC0ACAB /* AIIntegrationManager.swift */,
+			);
+			path = Integration;
+			sourceTree = "<group>";
+		};
+		6C41645114E64AD49042FE20 /* ReportGeneration */ = {
+			isa = PBXGroup;
+			children = (
+				39123FC65FFA4039B01105A5 /* ReportGenerationViewController.swift */,
+			);
+			path = ReportGeneration;
+			sourceTree = "<group>";
+		};
+		83D040D1FFB84DBF9ADA0E4E /* AnomalyDetection */ = {
+			isa = PBXGroup;
+			children = (
+				4C2E52832A694EF19307DCA0 /* AnomalyVisualizationView.swift */,
+			);
+			path = AnomalyDetection;
+			sourceTree = "<group>";
+		};
+495B940A7A80 /* QuantumIntegration.swift */,
+			);
+			path = UltraModern;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -723,6 +873,7 @@
 				81085EF13BB0C55D62BD924D /* DICOMShaders.metal in Sources */,
 				460B53E1473A51F51461A0ED /* DICOMStudy.swift in Sources */,
 				E2A016C654336F14B758AF35 /* HapticFeedback.swift in Sources */,
+				A3B4C5D6E7F89012345678901 /* DeviceLayoutUtility.swift in Sources */,
 				2A6CA80F5F0EDD13F04B6D90 /* MPRRenderer.swift in Sources */,
 				CA3C2AFE8994EFCC790A9B3F /* MPRShaders.metal in Sources */,
 				B22C166BA1DFEBE9C5A83773 /* MPRViewController.swift in Sources */,
@@ -754,6 +905,23 @@
 				A43958E5D0E4413DA0B3EDB7 /* CoreMLSegmentationService.swift in Sources */,
 				DD49856232A843CA8A4EE03C /* ModernStudyCell.swift in Sources */,
 				B9C3A0D754EA49D8BFD5FC4C /* StudyHeaderView.swift in Sources */,
+				EACAF8BD590442D9B128E06F /* MainTabBarController.swift in Sources */,
+				7E9B1650F8AB4ECF80E49DBD /* ModernViewerViewController.swift in Sources */,
+				A1B2C3D4567890ABCDEF1234 /* AutoSegmentationViewController.swift in Sources */,
+				B2C3D4E5678901BCDEF23456 /* SettingsViewController.swift in Sources */,
+				C3D4E5F678901BCDEF345678 /* DICOMImageCache.swift in Sources */,
+				F737B31DF38F4DAAB2872C67 /* QuantumDICOMInterface.swift in Sources */,
+				197E131835A244DDB4E00A3B /* BiometricFeedbackOverlay.swift in Sources */,
+				08320A57AA654A1D9442DDE1 /* GestureVisualizationLayer.swift in Sources */,
+				8EBE005BCABC4D9C83DFE62A /* QuantumIntegration.swift in Sources */,
+				08955FAFC8FF4337B4DF629A /* MedicalReportEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAB231E5370941DDABD7396A /* MedicalReportEngine.swift */; };
+				C59A4B27DD79473D8B0A46D1 /* TemplateEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = B25CD78F36B0443BBF9D9414 /* TemplateEngine.swift */; };
+				944ABE3A10784959BF51D0F3 /* FindingsAnalyzer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B6BCFC02D5844989C155B5B /* FindingsAnalyzer.swift */; };
+				E2556EBE20F34A68819A6BD2 /* MedicalNLPProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3E5DC26AC9F4F21AF5EC9FE /* MedicalNLPProcessor.swift */; };
+				668916A88BBB401886E33C69 /* ReportGenerationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39123FC65FFA4039B01105A5 /* ReportGenerationViewController.swift */; };
+				A6D7C57F50F84B47907A87FE /* AnomalyDetectionSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D8EB96F222A489B89FFF37D /* AnomalyDetectionSystem.swift */; };
+				5EC5F6695712447C91E45314 /* AnomalyVisualizationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C2E52832A694EF19307DCA0 /* AnomalyVisualizationView.swift */; };
+				E0E6B96D38E2409EA2C97268 /* AIIntegrationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E0FBD793C7947428DC0ACAB /* AIIntegrationManager.swift */; };
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -806,7 +974,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				DEVELOPMENT_TEAM = 7CQCP8DTHJ;
+				DEVELOPMENT_TEAM = C3Y254HR6B;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\".\"",
@@ -1007,7 +1175,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				DEVELOPMENT_TEAM = 7CQCP8DTHJ;
+				DEVELOPMENT_TEAM = C3Y254HR6B;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\".\"",

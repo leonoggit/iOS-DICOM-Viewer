@@ -64,14 +64,15 @@ class ROIViewController: UIViewController {
         measurementTableView.register(ROIMeasurementCell.self, forCellReuseIdentifier: "ROIMeasurementCell")
         
         // Configure buttons
-        exportButton.layer.cornerRadius = 8
-        clearAllButton.layer.cornerRadius = 8
+        let deviceLayout = DeviceLayoutUtility.shared
+        exportButton.layer.cornerRadius = deviceLayout.cornerRadius(base: 8)
+        clearAllButton.layer.cornerRadius = deviceLayout.cornerRadius(base: 8)
         clearAllButton.tintColor = .systemRed
         
         // Configure statistics view
-        statisticsView.layer.cornerRadius = 8
+        statisticsView.layer.cornerRadius = deviceLayout.cornerRadius(base: 8)
         statisticsView.backgroundColor = UIColor.systemBackground.withAlphaComponent(0.9)
-        statisticsLabel.font = UIFont.monospacedSystemFont(ofSize: 12, weight: .regular)
+        statisticsLabel.font = UIFont.monospacedSystemFont(ofSize: deviceLayout.scaled(12), weight: .regular)
         statisticsLabel.numberOfLines = 0
         
         setupAccessibility()

@@ -1,0 +1,9 @@
+{
+  "python-poetry": {
+    "command": "node",
+    "args": ["/Users/leandroalmeida/iOS_DICOM/MCPs/python-poetry-mcp/build/index.js"],
+    "env": {
+      "POETRY_VIRTUALENVS_IN_PROJECT": "true"
+    }
+  }
+}

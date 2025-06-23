@@ -1,0 +1,118 @@
+name: Convert TotalSegmentator to CoreML
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - 'scripts/convert_full_model.py'
+      - '.github/workflows/convert-model.yml'
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+    inputs:
+      input_size:
+        description: 'Input volume size (cubic)'
+        required: false
+        default: '128'
+      model_variant:
+        description: 'Model variant to convert'
+        required: false
+        default: 'standard'
+        type: choice
+        options:
+          - standard
+          - fast
+          - small
+
+jobs:
+  convert:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Set up Python 3.11
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.11'
+        cache: 'pip'
+
+    - name: Cache dependencies
+      uses: actions/cache@v3
+      with:
+        path: |
+          ~/.cache/pip
+          ~/.cache/torch
+        key: ${{ runner.os }}-pip-${{ hashFiles('requirements-codespaces.txt') }}
+        restore-keys: |
+          ${{ runner.os }}-pip-
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements-codespaces.txt
+        pip install torch==2.1.2 torchvision==0.16.2 --index-url https://download.pytorch.org/whl/cpu
+
+    - name: Run conversion script
+      run: |
+        python scripts/convert_full_model.py \
+          --input-size ${{ github.event.inputs.input_size || '128' }} \
+          --output-dir ./models
+
+    - name: Test converted models
+      run: |
+        python -c "
+        import coremltools as ct
+        import os
+        
+        models_dir = './models'
+        for file in os.listdir(models_dir):
+            if file.endswith('.mlmodel'):
+                print(f'Testing {file}...')
+                model = ct.models.MLModel(os.path.join(models_dir, file))
+                print(f'  ✅ {file} loaded successfully')
+                print(f'  Description: {model.short_description}')
+        "
+
+    - name: Upload artifacts
+      uses: actions/upload-artifact@v3
+      with:
+        name: totalsegmentator-coreml-models
+        path: |
+          models/*.mlmodel
+          models/*.mlpackage
+          models/*.swift
+          models/*.md
+          models/*.zip
+        retention-days: 30
+
+    - name: Create release (on main branch)
+      if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+      uses: softprops/action-gh-release@v1
+      with:
+        tag_name: v${{ github.run_number }}
+        name: TotalSegmentator CoreML Models - Build ${{ github.run_number }}
+        draft: false
+        prerelease: false
+        files: |
+          models/TotalSegmentator_iOS_Package.zip
+        body: |
+          ## TotalSegmentator CoreML Models
+          
+          **Build**: ${{ github.run_number }}
+          **Date**: ${{ github.event.head_commit.timestamp }}
+          **Input Size**: ${{ github.event.inputs.input_size || '128' }}³
+          
+          ### Models Included:
+          - TotalSegmentator.mlmodel (iOS 15+)
+          - TotalSegmentator.mlpackage (iOS 16+)
+          - Swift integration code
+          - Complete documentation
+          
+          ### Installation:
+          1. Download `TotalSegmentator_iOS_Package.zip`
+          2. Extract and add to your Xcode project
+          3. Follow the included README for integration
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

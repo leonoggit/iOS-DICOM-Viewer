@@ -73,12 +73,15 @@ class MainViewController: UIViewController {
         containerView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(containerView)
         
-        // Optimized for iPhone 16 Pro Max - full screen utilization
+        // Use device-specific layout optimization
+        let layout = DeviceLayoutUtility.shared
+        
+        // Full screen utilization with device-specific adjustments
         NSLayoutConstraint.activate([
             containerView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             containerView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             containerView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            containerView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+            containerView.bottomAnchor.constraint(equalTo: layout.hasHomeIndicator ? view.safeAreaLayoutGuide.bottomAnchor : view.bottomAnchor)
         ])
     }
     
@@ -91,11 +94,12 @@ class MainViewController: UIViewController {
         welcomeCard!.layer.masksToBounds = true
         welcomeCard!.translatesAutoresizingMaskIntoConstraints = false
         
-        // Setup card styling
-        welcomeCard!.layer.cornerRadius = 20
+        // Setup card styling with device-specific corner radius
+        let layout = DeviceLayoutUtility.shared
+        welcomeCard!.layer.cornerRadius = layout.cornerRadius(base: 20)
         welcomeCard!.layer.shadowColor = UIColor.black.cgColor
-        welcomeCard!.layer.shadowOffset = CGSize(width: 0, height: 8)
-        welcomeCard!.layer.shadowRadius = 20
+        welcomeCard!.layer.shadowOffset = CGSize(width: 0, height: layout.scaled(8))
+        welcomeCard!.layer.shadowRadius = layout.scaled(20)
         welcomeCard!.layer.shadowOpacity = 0.15
         
         // Medical icon
@@ -106,28 +110,28 @@ class MainViewController: UIViewController {
         iconImageView.contentMode = .scaleAspectFit
         iconImageView.translatesAutoresizingMaskIntoConstraints = false
         
-        // Title label
+        // Title label with device-specific font scaling
         let titleLabel = UILabel()
         titleLabel.text = "DICOM Viewer"
-        titleLabel.font = UIFont.systemFont(ofSize: 28, weight: .bold)
+        titleLabel.font = layout.scaledFont(size: 28, weight: .bold)
         titleLabel.textColor = UIColor.white // HTML template text-primary-dark
         titleLabel.textAlignment = .center
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         
-        // Subtitle label
+        // Subtitle label with device-specific font scaling
         let subtitleLabel = UILabel()
         subtitleLabel.text = "Professional Medical Imaging\nfor iOS 18+"
-        subtitleLabel.font = UIFont.systemFont(ofSize: 16, weight: .medium)
+        subtitleLabel.font = layout.scaledFont(size: 16, weight: .medium)
         let textSecondary = UIColor(red: 156/255, green: 178/255, blue: 186/255, alpha: 1.0) // #9cb2ba
         subtitleLabel.textColor = textSecondary
         subtitleLabel.textAlignment = .center
         subtitleLabel.numberOfLines = 0
         subtitleLabel.translatesAutoresizingMaskIntoConstraints = false
         
-        // Status label
+        // Status label with device-specific font scaling
         statusLabel = UILabel()
         statusLabel!.text = "Initializing Services..."
-        statusLabel!.font = UIFont.systemFont(ofSize: 16, weight: .regular)
+        statusLabel!.font = layout.scaledFont(size: 16, weight: .regular)
         statusLabel!.textColor = primaryColor
         statusLabel!.textAlignment = .center
         statusLabel!.translatesAutoresizingMaskIntoConstraints = false
@@ -147,38 +151,41 @@ class MainViewController: UIViewController {
         
         containerView.addSubview(welcomeCard!)
         
+        // Device-specific padding
+        let padding = layout.padding(horizontal: 20, vertical: 20)
+        
         NSLayoutConstraint.activate([
-            // Welcome card
+            // Welcome card with device-specific constraints
             welcomeCard!.centerXAnchor.constraint(equalTo: containerView.centerXAnchor),
-            welcomeCard!.centerYAnchor.constraint(equalTo: containerView.centerYAnchor, constant: -40),
-            welcomeCard!.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 20),
-            welcomeCard!.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -20),
-            welcomeCard!.heightAnchor.constraint(lessThanOrEqualToConstant: 400),
-            welcomeCard!.heightAnchor.constraint(greaterThanOrEqualToConstant: 280),
+            welcomeCard!.centerYAnchor.constraint(equalTo: containerView.centerYAnchor, constant: layout.scaled(-40)),
+            welcomeCard!.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: padding.left),
+            welcomeCard!.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -padding.right),
+            welcomeCard!.heightAnchor.constraint(lessThanOrEqualToConstant: layout.scaled(400)),
+            welcomeCard!.heightAnchor.constraint(greaterThanOrEqualToConstant: layout.scaled(280)),
             
-            // Icon
-            iconImageView.topAnchor.constraint(equalTo: welcomeCard!.topAnchor, constant: 40),
+            // Icon with device-specific sizing
+            iconImageView.topAnchor.constraint(equalTo: welcomeCard!.topAnchor, constant: layout.spacing(40)),
             iconImageView.centerXAnchor.constraint(equalTo: welcomeCard!.centerXAnchor),
-            iconImageView.widthAnchor.constraint(equalToConstant: 80),
-            iconImageView.heightAnchor.constraint(equalToConstant: 80),
+            iconImageView.widthAnchor.constraint(equalToConstant: layout.iconSize(80)),
+            iconImageView.heightAnchor.constraint(equalToConstant: layout.iconSize(80)),
             
             // Title
-            titleLabel.topAnchor.constraint(equalTo: iconImageView.bottomAnchor, constant: 24),
-            titleLabel.leadingAnchor.constraint(equalTo: welcomeCard!.leadingAnchor, constant: 20),
-            titleLabel.trailingAnchor.constraint(equalTo: welcomeCard!.trailingAnchor, constant: -20),
+            titleLabel.topAnchor.constraint(equalTo: iconImageView.bottomAnchor, constant: layout.spacing(24)),
+            titleLabel.leadingAnchor.constraint(equalTo: welcomeCard!.leadingAnchor, constant: layout.spacing(20)),
+            titleLabel.trailingAnchor.constraint(equalTo: welcomeCard!.trailingAnchor, constant: -layout.spacing(20)),
             
             // Subtitle
-            subtitleLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 8),
-            subtitleLabel.leadingAnchor.constraint(equalTo: welcomeCard!.leadingAnchor, constant: 20),
-            subtitleLabel.trailingAnchor.constraint(equalTo: welcomeCard!.trailingAnchor, constant: -20),
+            subtitleLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: layout.spacing(8)),
+            subtitleLabel.leadingAnchor.constraint(equalTo: welcomeCard!.leadingAnchor, constant: layout.spacing(20)),
+            subtitleLabel.trailingAnchor.constraint(equalTo: welcomeCard!.trailingAnchor, constant: -layout.spacing(20)),
             
             // Status
-            statusLabel!.topAnchor.constraint(equalTo: subtitleLabel.bottomAnchor, constant: 32),
-            statusLabel!.leadingAnchor.constraint(equalTo: welcomeCard!.leadingAnchor, constant: 20),
-            statusLabel!.trailingAnchor.constraint(equalTo: welcomeCard!.trailingAnchor, constant: -20),
+            statusLabel!.topAnchor.constraint(equalTo: subtitleLabel.bottomAnchor, constant: layout.spacing(32)),
+            statusLabel!.leadingAnchor.constraint(equalTo: welcomeCard!.leadingAnchor, constant: layout.spacing(20)),
+            statusLabel!.trailingAnchor.constraint(equalTo: welcomeCard!.trailingAnchor, constant: -layout.spacing(20)),
             
             // Activity indicator
-            activityIndicator!.topAnchor.constraint(equalTo: statusLabel!.bottomAnchor, constant: 16),
+            activityIndicator!.topAnchor.constraint(equalTo: statusLabel!.bottomAnchor, constant: layout.spacing(16)),
             activityIndicator!.centerXAnchor.constraint(equalTo: welcomeCard!.centerXAnchor)
         ])
     }

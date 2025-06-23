@@ -80,6 +80,10 @@ NS_ASSUME_NONNULL_BEGIN
 /// @return Dictionary with orientation and position data
 + (nullable NSDictionary *)getImageGeometry:(NSString *)filePath;
 
+/// Diagnostic method for debugging pixel data issues
+/// @param filePath Path to the DICOM file to diagnose
++ (void)diagnosePixelDataIssue:(NSString *)filePath;
+
 @end
 
 NS_ASSUME_NONNULL_END

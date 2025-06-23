@@ -57,9 +57,9 @@ class ViewerViewController: UIViewController {
         label.text = "1 / 1"
         label.textColor = .white
         label.textAlignment = .center
-        label.font = .systemFont(ofSize: 14, weight: .medium)
+        label.font = DeviceLayoutUtility.shared.scaledFont(size: 14, weight: .medium)
         label.backgroundColor = UIColor.black.withAlphaComponent(0.7)
-        label.layer.cornerRadius = 8
+        label.layer.cornerRadius = DeviceLayoutUtility.shared.cornerRadius(base: 8)
         label.clipsToBounds = true
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -68,7 +68,7 @@ class ViewerViewController: UIViewController {
     private lazy var windowLevelControlsView: UIView = {
         let view = UIView()
         view.backgroundColor = UIColor.black.withAlphaComponent(0.8)
-        view.layer.cornerRadius = 12
+        view.layer.cornerRadius = DeviceLayoutUtility.shared.cornerRadius(base: 12)
         view.isHidden = true
         view.translatesAutoresizingMaskIntoConstraints = false
         
@@ -187,12 +187,16 @@ class ViewerViewController: UIViewController {
     }
     
     private func setupConstraints() {
+        // Get device layout utility
+        let deviceLayout = DeviceLayoutUtility.shared
+        let spacing = deviceLayout.spacing(16)
+        
         NSLayoutConstraint.activate([
             // Scroll view
             scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            scrollView.bottomAnchor.constraint(equalTo: seriesSegmentedControl.topAnchor, constant: -16),
+            scrollView.bottomAnchor.constraint(equalTo: seriesSegmentedControl.topAnchor, constant: -spacing),
             
             // Image view
             imageView.topAnchor.constraint(equalTo: scrollView.topAnchor),
@@ -202,21 +206,21 @@ class ViewerViewController: UIViewController {
             imageView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
             imageView.heightAnchor.constraint(equalTo: scrollView.heightAnchor),
             
-            // Series control
-            seriesSegmentedControl.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
-            seriesSegmentedControl.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
-            seriesSegmentedControl.bottomAnchor.constraint(equalTo: instanceSlider.topAnchor, constant: -16),
-            seriesSegmentedControl.heightAnchor.constraint(equalToConstant: 32),
+            // Series control with device-specific sizing
+            seriesSegmentedControl.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: spacing),
+            seriesSegmentedControl.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -spacing),
+            seriesSegmentedControl.bottomAnchor.constraint(equalTo: instanceSlider.topAnchor, constant: -spacing),
+            seriesSegmentedControl.heightAnchor.constraint(equalToConstant: deviceLayout.buttonHeight(32)),
             
-            // Instance slider
-            instanceSlider.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
-            instanceSlider.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
-            instanceSlider.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -16),
+            // Instance slider with device-specific spacing
+            instanceSlider.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: spacing),
+            instanceSlider.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -spacing),
+            instanceSlider.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -spacing),
             
-            // Instance label
+            // Instance label with device-specific sizing
             instanceLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            instanceLabel.bottomAnchor.constraint(equalTo: instanceSlider.topAnchor, constant: -8),
-            instanceLabel.widthAnchor.constraint(equalToConstant: 80),
+            instanceLabel.bottomAnchor.constraint(equalTo: instanceSlider.topAnchor, constant: -deviceLayout.spacing(8)),
+            instanceLabel.widthAnchor.constraint(equalToConstant: deviceLayout.scaled(80)),
             instanceLabel.heightAnchor.constraint(equalToConstant: 24),
             
             // Window/Level controls

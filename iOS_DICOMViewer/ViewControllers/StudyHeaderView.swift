@@ -3,17 +3,17 @@ import UIKit
 class StudyHeaderView: UICollectionReusableView {
     static let identifier = "StudyHeaderView"
     
-    private let titleLabel: UILabel = {
+    private lazy var titleLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.boldSystemFont(ofSize: 20)
+        label.font = DeviceLayoutUtility.shared.scaledFont(size: 20, weight: .bold)
         label.textColor = .label
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
-    private let countLabel: UILabel = {
+    private lazy var countLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 16)
+        label.font = DeviceLayoutUtility.shared.scaledFont(size: 16, weight: .regular)
         label.textColor = .secondaryLabel
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -35,13 +35,15 @@ class StudyHeaderView: UICollectionReusableView {
         addSubview(titleLabel)
         addSubview(countLabel)
         
+        let spacing = DeviceLayoutUtility.shared.spacing(16)
+        
         NSLayoutConstraint.activate([
-            titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
+            titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: spacing),
             titleLabel.centerYAnchor.constraint(equalTo: centerYAnchor),
             
-            countLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
+            countLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -spacing),
             countLabel.centerYAnchor.constraint(equalTo: centerYAnchor),
-            countLabel.leadingAnchor.constraint(greaterThanOrEqualTo: titleLabel.trailingAnchor, constant: 8)
+            countLabel.leadingAnchor.constraint(greaterThanOrEqualTo: titleLabel.trailingAnchor, constant: DeviceLayoutUtility.shared.spacing(8))
         ])
     }
     

@@ -5,6 +5,47 @@ import Foundation
 
 /// Multi-Planar Reconstruction (MPR) renderer for 2D slice visualization
 /// Provides axial, sagittal, and coronal views from 3D volume data
+// MARK: - Supporting Types
+
+enum ThickSlabProjection: Int {
+    case mip = 0      // Maximum Intensity Projection
+    case minip = 1    // Minimum Intensity Projection
+    case average = 2  // Average Intensity Projection
+    
+    var rawValue: Int {
+        switch self {
+        case .mip: return 0
+        case .minip: return 1
+        case .average: return 2
+        }
+    }
+}
+
+enum MeasurementTool {
+    case none
+    case distance
+    case angle
+    case roi
+}
+
+struct ROIMeasurement {
+    let type: MeasurementTool
+    let points: [simd_float2]
+    let value: Float
+    let unit: String
+}
+
+enum QualityLevel {
+    case interactive  // Low quality for interaction
+    case balanced     // Medium quality
+    case diagnostic   // High quality for diagnosis
+}
+
+struct VolumeLevel {
+    let resolution: MTLSize
+    let texture: MTLTexture
+}
+
 final class MPRRenderer: NSObject {
     
     // MARK: - Core Metal Objects
@@ -32,6 +73,17 @@ final class MPRRenderer: NSObject {
     private var annotationsEnabled = true
     private var rulerEnabled = false
     
+    // MARK: - Enhanced MPR Features
+    private var obliquePlaneNormal: simd_float3?
+    private var obliquePlanePosition: simd_float3?
+    private var curvedMPRPath: [simd_float3]?
+    private var curvedMPRRadius: Float = 10.0
+    private var thickSlabEnabled = false
+    private var thickSlabThickness: Int = 1
+    private var thickSlabProjection: ThickSlabProjection = .mip
+    private var measurementTool: MeasurementTool = .none
+    private var measurements: [ROIMeasurement] = []
+    
     // MARK: - Window/Level
     private var windowCenter: Float = 0.5
     private var windowWidth: Float = 1.0
@@ -51,6 +103,12 @@ final class MPRRenderer: NSObject {
         var flipVertical: Bool = false
         var crosshairPosition = simd_float2(0.5, 0.5)
         var crosshairEnabled: Bool = true
+        var thickSlabEnabled: Bool = false
+        var thickSlabThickness: UInt32 = 1
+        var thickSlabProjection: UInt32 = 0  // 0=MIP, 1=MinIP, 2=Average
+        var obliquePlaneNormal = simd_float3(0, 0, 1)
+        var obliquePlanePosition = simd_float3(0, 0, 0)
+        var isOblique: Bool = false
     }
     
     enum MPRPlane: Int, CaseIterable {
@@ -446,6 +504,66 @@ final class MPRRenderer: NSObject {
         }
         
         return texture
+    }
+    
+    // MARK: - Enhanced MPR Methods
+    
+    func setObliqueSlice(normal: simd_float3, position: simd_float3) {
+        obliquePlaneNormal = normalize(normal)
+        obliquePlanePosition = position
+        mprParams.obliquePlaneNormal = obliquePlaneNormal!
+        mprParams.obliquePlanePosition = position
+        mprParams.isOblique = true
+    }
+    
+    func setCurvedMPR(path: [simd_float3], radius: Float) {
+        curvedMPRPath = path
+        curvedMPRRadius = radius
+        // TODO: Implement curved MPR rendering
+    }
+    
+    func clearCurvedMPR() {
+        curvedMPRPath = nil
+    }
+    
+    func setThickSlab(thickness: Int, projectionType: ThickSlabProjection) {
+        thickSlabEnabled = true
+        thickSlabThickness = thickness
+        thickSlabProjection = projectionType
+        mprParams.thickSlabEnabled = true
+        mprParams.thickSlabThickness = UInt32(thickness)
+        mprParams.thickSlabProjection = UInt32(projectionType.rawValue)
+    }
+    
+    func disableThickSlab() {
+        thickSlabEnabled = false
+        mprParams.thickSlabEnabled = false
+    }
+    
+    func activateMeasurementTool(_ tool: MeasurementTool) {
+        measurementTool = tool
+    }
+    
+    func clearAllMeasurements() {
+        measurements.removeAll()
+    }
+    
+    func captureCurrentFrame() -> UIImage? {
+        // TODO: Implement frame capture
+        return nil
+    }
+    
+    func exportSlicesAsVideo(completion: @escaping (URL?) -> Void) {
+        // TODO: Implement video export
+        completion(nil)
+    }
+    
+    func loadMultiResolutionVolume(levels: [VolumeLevel]) {
+        // TODO: Implement multi-resolution support
+    }
+    
+    func setQualityLevel(_ level: QualityLevel) {
+        // TODO: Adjust rendering quality based on level
     }
     
     // MARK: - Utility Functions

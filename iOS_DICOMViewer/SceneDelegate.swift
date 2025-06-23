@@ -35,15 +35,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         print("🔄 SceneDelegate: Window created with bounds: \(self.window?.bounds ?? .zero)")
         
-        // TEMPORARY DEBUG: Create simple test controller for direct DICOM study display
-        print("🎯 SceneDelegate: Creating simple test controller for direct study display")
-        let testVC = createTestViewController()
-        let navController = UINavigationController(rootViewController: testVC)
+        // Create main tab bar controller for modern UI
+        print("🎯 SceneDelegate: Creating main tab bar controller")
+        let mainTabBarController = MainTabBarController()
         
-        print("🎯 SceneDelegate: TestViewController created and wrapped in navigation controller")
+        print("🎯 SceneDelegate: MainTabBarController created with modern tab-based architecture")
         
-        // Set root view controller directly to TestViewController
-        window?.rootViewController = navController
+        // Set root view controller
+        window?.rootViewController = mainTabBarController
         print("🔄 SceneDelegate: Root view controller set")
         
         // Make window key and visible
@@ -56,21 +55,21 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         // Force layout
         window?.layoutIfNeeded()
-        navController.view.layoutIfNeeded()
+        mainTabBarController.view.layoutIfNeeded()
         
         print("✅ SceneDelegate: Layout forced")
         
-        // Initialize DICOM services immediately for debugging
-        print("🎯 SceneDelegate: Initializing DICOM services immediately")
+        // Initialize DICOM services immediately for modern UI
+        print("🎯 SceneDelegate: Initializing DICOM services for modern UI")
         Task {
             do {
                 print("🎯 SceneDelegate: Starting DICOM service initialization")
                 try await DICOMServiceManager.shared.initialize()
                 print("🎯 SceneDelegate: DICOM services initialized successfully")
                 
-                // TestViewController will load studies automatically
+                // MainTabBarController will handle the UI updates
                 await MainActor.run {
-                    print("🎯 SceneDelegate: DICOM services ready - TestViewController will handle display")
+                    print("🎯 SceneDelegate: DICOM services ready - MainTabBarController with modern UI is active")
                 }
             } catch {
                 print("❌ SceneDelegate: Failed to initialize DICOM services: \(error)")
@@ -243,11 +242,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         for context in urlContexts {
             DispatchQueue.main.async {
                 if let fileImporter = DICOMServiceManager.shared.fileImporter {
-                    do {
-                        _ = fileImporter.handleIncomingFile(url: context.url)
-                    } catch {
-                        print("⚠️ Failed to handle incoming file: \(error)")
-                    }
+                    _ = fileImporter.handleIncomingFile(url: context.url)
                 } else {
                     print("⚠️ DICOM services not ready yet")
                 }

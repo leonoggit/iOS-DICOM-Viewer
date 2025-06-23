@@ -1,0 +1,13 @@
+version: '3.8'
+
+services:
+  coreml-converter:
+    build: .
+    container_name: totalsegmentator-coreml-converter
+    volumes:
+      - ./models:/app/models
+      - ./scripts:/app/scripts:ro
+    environment:
+      - PYTHONUNBUFFERED=1
+      - CUDA_VISIBLE_DEVICES=""
+    command: python convert_model.py
