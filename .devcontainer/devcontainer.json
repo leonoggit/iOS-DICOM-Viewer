@@ -1,0 +1,44 @@
+{
+  "name": "iOS DICOM Viewer - Python 3.11",
+  "image": "mcr.microsoft.com/devcontainers/python:3.11",
+  "features": {
+    "ghcr.io/devcontainers/features/python:1": {
+      "version": "3.11"
+    },
+    "ghcr.io/devcontainers/features/git:1": {},
+    "ghcr.io/devcontainers/features/github-cli:1": {},
+    "ghcr.io/devcontainers/features/node:1": {
+      "version": "lts"
+    }
+  },
+  "postCreateCommand": "cd MCPs/totalsegmentator-coreml-mcp && bash -c 'pip install --upgrade pip && pip install numpy==1.24.3 && pip install torch==2.1.2 torchvision==0.16.2 --index-url https://download.pytorch.org/whl/cpu && pip install coremltools==7.2 scipy==1.10.1 scikit-image==0.21.0 nibabel==5.2.0 matplotlib==3.7.2 tqdm==4.66.1 pandas==2.0.3 && echo Setup complete!'",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-python.python",
+        "ms-python.vscode-pylance",
+        "ms-toolsai.jupyter",
+        "ms-toolsai.jupyter-keymap",
+        "ms-toolsai.jupyter-renderers",
+        "ms-vscode.cpptools",
+        "GitHub.copilot"
+      ],
+      "settings": {
+        "python.defaultInterpreter": "/usr/local/bin/python",
+        "python.linting.enabled": true,
+        "python.linting.pylintEnabled": true,
+        "python.formatting.provider": "black",
+        "python.terminal.activateEnvironment": true,
+        "terminal.integrated.defaultProfile.linux": "bash"
+      }
+    }
+  },
+  "forwardPorts": [8888, 6006],
+  "remoteUser": "vscode",
+  "mounts": [
+    "source=${localWorkspaceFolder}/MCPs/totalsegmentator-coreml-mcp/models,target=/workspace/models,type=bind,consistency=cached"
+  ],
+  "remoteEnv": {
+    "PYTHONPATH": "/workspaces/iOS-DICOM-Viewer/MCPs/totalsegmentator-coreml-mcp"
+  }
+}
