@@ -1,68 +1,18 @@
 {
-  "name": "TotalSegmentator CoreML Converter",
-  "build": {
-    "dockerfile": "Dockerfile",
-    "context": ".."
-  },
-  
-  // Features to add to the dev container
+  "name": "TotalSegmentator CoreML Python 3.11",
+  "image": "mcr.microsoft.com/devcontainers/python:3.11",
   "features": {
-    "ghcr.io/devcontainers/features/docker-in-docker:2": {},
     "ghcr.io/devcontainers/features/python:1": {
       "version": "3.11"
-    },
-    "ghcr.io/devcontainers/features/git:1": {},
-    "ghcr.io/devcontainers/features/github-cli:1": {}
+    }
   },
-  
-  // Configure tool-specific properties
+  "postCreateCommand": "pip install -r requirements-codespaces.txt && python scripts/convert_full_model.py",
   "customizations": {
     "vscode": {
       "extensions": [
         "ms-python.python",
-        "ms-python.vscode-pylance",
-        "ms-azuretools.vscode-docker",
-        "GitHub.copilot",
-        "ms-vscode.jupyter",
-        "ms-toolsai.jupyter-keymap",
-        "ms-toolsai.jupyter-renderers"
-      ],
-      "settings": {
-        "python.defaultInterpreter": "/usr/local/bin/python",
-        "python.linting.enabled": true,
-        "python.linting.pylintEnabled": true,
-        "python.formatting.provider": "black",
-        "python.terminal.activateEnvironment": true,
-        "jupyter.askForKernelRestart": false
-      }
+        "ms-python.vscode-pylance"
+      ]
     }
-  },
-  
-  // Forward ports for Jupyter and any web services
-  "forwardPorts": [8888, 6006],
-  
-  // Use 'postCreateCommand' to run commands after the container is created
-  "postCreateCommand": "bash .devcontainer/post-create.sh",
-  
-  // Set environment variables
-  "remoteEnv": {
-    "PYTHONPATH": "/workspace",
-    "CUDA_VISIBLE_DEVICES": ""
-  },
-  
-  // Run as non-root user
-  "remoteUser": "vscode",
-  
-  // Mounts for persistent storage
-  "mounts": [
-    "source=${localWorkspaceFolder}/models,target=/workspace/models,type=bind,consistency=cached",
-    "source=${localWorkspaceFolder}/notebooks,target=/workspace/notebooks,type=bind,consistency=cached"
-  ],
-  
-  // Container capabilities
-  "runArgs": [
-    "--cap-add=SYS_PTRACE",
-    "--security-opt",
-    "seccomp=unconfined"
-  ]
+  }
 }
