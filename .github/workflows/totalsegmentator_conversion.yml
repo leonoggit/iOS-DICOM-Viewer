@@ -16,10 +16,28 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
       
+      - name: Check Docker and Docker Compose setup
+        run: |
+          # Check installed versions
+          docker --version
+          docker compose version || echo "Docker compose not found as 'docker compose'"
+          
+          # Create docker-compose compatibility script
+          echo '#!/bin/bash' | sudo tee /usr/local/bin/docker-compose
+          echo 'docker compose "$@"' | sudo tee -a /usr/local/bin/docker-compose
+          sudo chmod +x /usr/local/bin/docker-compose
+          
+          # Verify docker-compose command works
+          docker-compose --version
+      
       - name: Run conversion in Docker
         run: |
           cd MCPs/totalsegmentator-coreml-mcp/docker
+          
+          # Ensure the conversion script is executable
           chmod +x run_conversion.sh
+          
+          # Run the conversion script
           ./run_conversion.sh
       
       - name: Upload converted model
