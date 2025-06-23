@@ -1,0 +1,29 @@
+name: TotalSegmentator to CoreML Conversion
+
+on:
+  workflow_dispatch:
+    inputs:
+      model_version:
+        description: 'Model version or tag'
+        required: false
+        default: 'v1'
+        type: string
+
+jobs:
+  convert:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Run conversion in Docker
+        run: |
+          cd MCPs/totalsegmentator-coreml-mcp/docker
+          chmod +x run_conversion.sh
+          ./run_conversion.sh
+      
+      - name: Upload converted model
+        uses: actions/upload-artifact@v4
+        with:
+          name: TotalSegmentator-CoreML-${{ github.event.inputs.model_version }}
+          path: MCPs/totalsegmentator-coreml-mcp/docker/models/
